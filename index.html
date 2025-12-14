@@ -149,13 +149,15 @@ footer {
 .footer-column a:hover {
     color: #ffeb3b;
 }
+/* డెస్క్‌టాప్‌లో లోగోలను ఒకే వరుసలో, ఎడమవైపు అలైన్ చేయడానికి కొత్త CSS */
 .social-icons {
-    display: flex;
-    justify-content: flex-start;
-    gap: 15px;
+    display: flex; /* ఒకే వరుసలో ఉంచడానికి */
+    gap: 15px; /* ఐకాన్‌ల మధ్య ఖాళీ */
+    justify-content: flex-start; /* డెస్క్‌టాప్‌లో ఎడమవైపు అలైన్మెంట్ */
+    align-items: center;
 }
 .social-icons a {
-    font-size: 24px;
+    font-size: 20px; /* డెస్క్‌టాప్‌లో 24px నుండి 20px కి తగ్గించబడింది */
     color: white;
     transition: color 0.2s, transform 0.2s;
 }
@@ -260,7 +262,11 @@ footer {
         margin-top: 15px;
     }
     .social-icons {
-        justify-content: center;
+        justify-content: center; /* లోగోలు మొబైల్‌లో మధ్యలో ఉండటానికి */
+    }
+    /* సోషల్ ఐకాన్ సైజును మరింత తగ్గించబడింది */
+    .social-icons a { 
+        font-size: 18px; 
     }
 }
 
@@ -323,6 +329,7 @@ footer {
 
         <div class="footer-column">
             <h4>Connect With Us</h4>
+            <!-- .social-icons కు display:flex జోడించబడింది -->
             <div class="social-icons mt-3">
                 <a href="https://www.svtc.life" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://www.svtc.life" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
