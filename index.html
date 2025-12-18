@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Added Website Favicon -->
+<link rel="icon" type="image/png" href="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -9,7 +11,6 @@
 body {
     margin: 0;
     padding: 0;
-    /* ఫాంట్ Arial నుండి Roboto Slab కి మార్చబడింది */
     font-family: 'Roboto Slab', serif; 
     min-height: 100vh;
     display: flex;
@@ -17,7 +18,7 @@ body {
 }
 header {
     background: #00008B;
-    padding: 15px 25px;
+    padding: 10px 25px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,39 +31,31 @@ header {
     overflow: hidden; 
 }
 
-/* ---------------------------------------------------- */
-/* NEW SCROLLING BACKGROUND ELEMENT */
-/* ---------------------------------------------------- */
+/* --- SCROLLING BACKGROUND ELEMENT --- */
 .header-scroll-bg {
     position: absolute;
     top: 0;
     left: 0;
-    width: 400%; /* నిరంతర స్క్రోలింగ్ కోసం వెడల్పు 400% కి పెంచబడింది */
+    width: 400%; 
     height: 100%;
     background: linear-gradient(to right, 
         transparent 0%, 
         rgba(255, 255, 255, 0.2) 5%, 
-        rgba(255, 255, 255, 0.6) 10%, /* గ్లో తీవ్రత పెంచబడింది */
+        rgba(255, 255, 255, 0.6) 10%, 
         rgba(255, 255, 255, 0.1) 15%, 
         transparent 20%
     );
     z-index: 1;
-    animation: scrollGlow 25s linear infinite; /* వేగం 20s నుండి 25s కి తగ్గించబడింది */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* గ్లో షాడో పెంచబడింది */
-    opacity: 0.9; /* మరింత స్పష్టంగా కనిపించడానికి */
+    animation: scrollGlow 25s linear infinite; 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); 
+    opacity: 0.9; 
 }
 
 @keyframes scrollGlow {
-    0% {
-        transform: translateX(-100%); /* కుడి అంచు వెలుపల నుండి ప్రారంభం */
-    }
-    100% {
-        transform: translateX(25%); /* ఎడమ వైపుకు పూర్తి స్క్రోల్ */
-    }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(25%); }
 }
-/* ---------------------------------------------------- */
 
-/* Z-Index ను లోగోలు/టెక్స్ట్ కోసం పెంచండి, తద్వారా అవి గ్లో పైన కనిపిస్తాయి */
 header .header-left, header .header-right, .header-corner, .header-corner-right {
     z-index: 10;
 }
@@ -70,49 +63,62 @@ header .header-left, header .header-right, .header-corner, .header-corner-right 
 header .header-left {
     display: flex;
     align-items: center;
-    gap: 20px; /* <-- లోగో మరియు టెక్స్ట్ మధ్య గ్యాప్ */
+    gap: 20px; 
     z-index: 10;
 }
 header .logo {
     height: 50px;
     border-radius: 50%;
     border: 3px solid #ffffff;
-    box-shadow:
-        0 0 12px rgba(255,255,255,0.95),
-        0 0 18px rgba(0,0,0,0.7);
+    box-shadow: 0 0 12px rgba(255,255,255,0.95), 0 0 18px rgba(0,0,0,0.7);
     background: radial-gradient(circle, #e8f1ff 20%, #b0c9ff 80%);
 }
 
-/* Center Text Block (Desktop Style) - తొలగించబడింది */
-.header-text-center {
-    /* స్థానం మరియు సెంటరింగ్ CSS తొలగించబడింది */
-}
-/* .header-text-center span తొలగించబడింది */
-
-
 header .header-right {
     display: flex;
-    gap: 25px;
+    gap: 20px; 
     align-items: center;
-    transform: translateX(-12px);
+    transform: translateX(-10px);
     z-index: 10;
 }
+
+/* --- ICON & LABEL STYLING --- */
+.menu-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
 header .icon {
     font-size: 20px;
-    cursor: pointer;
     color: orange;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    transition: transform 0.2s, opacity 0.2s;
+    transition: color 0.2s;
 }
-header .icon:hover {
-    transform: scale(1.15);
-    opacity: 0.8;
-    color: orange;
+
+.icon-label {
+    font-size: 11px;
+    color: white;
+    margin-top: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
+
+.menu-item:hover a {
+    transform: scale(1.1);
+}
+.menu-item:hover .icon, .menu-item:hover .icon-label {
+    color: #ffeb3b;
+}
+
 footer {
     background: #00008B; 
     color: white;
-    padding: 25px 25px 10px 25px;
+    padding: 30px 25px 20px 25px;
     text-align: center;
     font-size: 16px;
     width: 100%;
@@ -121,26 +127,23 @@ footer {
 }
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto 20px auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
     text-align: left;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .footer-column h4 {
     font-size: 18px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #ffeb3b;
-    /* ఇక్కడ అండర్‌లైన్ జోడించబడింది */
     border-bottom: 2px solid #ffeb3b; 
     padding-bottom: 5px;
 }
 .footer-column a, .footer-column p {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
@@ -149,15 +152,13 @@ footer {
 .footer-column a:hover {
     color: #ffeb3b;
 }
-/* డెస్క్‌టాప్‌లో లోగోలను ఒకే వరుసలో, ఎడమవైపు అలైన్ చేయడానికి కొత్త CSS */
 .social-icons {
-    display: flex; /* ఒకే వరుసలో ఉంచడానికి */
-    gap: 15px; /* ఐకాన్‌ల మధ్య ఖాళీ */
-    justify-content: flex-start; /* డెస్క్‌టాప్‌లో ఎడమవైపు అలైన్మెంట్ */
-    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
 }
 .social-icons a {
-    font-size: 20px; /* డెస్క్‌టాప్‌లో 24px నుండి 20px కి తగ్గించబడింది */
+    font-size: 24px;
     color: white;
     transition: color 0.2s, transform 0.2s;
 }
@@ -191,83 +192,21 @@ footer {
     transform: scaleX(-1);
 }
 
-@media (max-width: 900px) {
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 600px) {
     header {
         padding: 10px 15px;
         flex-wrap: wrap; 
     }
-    
-    header .logo {
-        height: 40px;
-        margin-bottom: 5px;
-    }
-    
-    /* మొబైల్ లో టెక్స్ట్ ను సెంటర్ అలైన్ చేయండి */
-    header .title {
-        text-align: center;
-        width: 100%;
-    }
-
-    header .title span {
-        text-align: center;
-    }
-
-    header .header-left {
-        width: 100%; /* పూర్తి వెడల్పు తీసుకోండి */
-        justify-content: center; /* కంటెంట్‌ను అడ్డంగా మధ్యలో ఉంచండి */
-        flex-direction: column; /* లోగో కిందకు టెక్స్ట్ ను స్టాక్ చేయండి */
-        align-items: center; /* నిలువుగా మధ్యలో ఉంచండి */
-        order: 1; 
-        gap: 5px; /* లోగో మరియు టెక్స్ట్ మధ్య చిన్న గ్యాప్ */
-    }
-
-    /* మొబైల్ సెంటరింగ్ ఓవర్రైడ్లను తొలగిస్తుంది, డెస్క్‌టాప్ సెట్టింగ్‌లను ఉపయోగిస్తుంది */
-    header .header-right {
-        gap: 30px;
-        transform: translateX(0); 
-        width: 100%;
-        justify-content: space-around;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid rgba(255, 255, 255, 0.5); 
-        order: 3; /* ఐకాన్స్ చివరి వరుసలో ఉంటాయి */
-    }
-    
-    header .icon {
-        font-size: 18px;
-    }
-
-    .header-corner {
-        height: 50px;
-        top: -5px; 
-        left: -5px; 
-    }
-    .header-corner-right {
-        height: 50px;
-        top: -5px; 
-        right: -5px; 
-        transform: scaleX(-1);
-    }
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    .footer-column h4 {
-        margin-top: 15px;
-    }
-    .social-icons {
-        justify-content: center; /* లోగోలు మొబైల్‌లో మధ్యలో ఉండటానికి */
-    }
-    /* సోషల్ ఐకాన్ సైజును మరింత తగ్గించబడింది */
-    .social-icons a { 
-        font-size: 18px; 
-    }
+    header .logo { height: 40px; margin-bottom: 5px; }
+    header .title { text-align: center; width: 100%; }
+    header .header-left { width: 100%; justify-content: center; flex-direction: column; align-items: center; order: 1; gap: 5px; }
+    header .header-right { gap: 10px; transform: translateX(0); width: 100%; justify-content: space-around; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.3); order: 3; }
+    header .icon { font-size: 18px; }
+    .icon-label { font-size: 9px; }
+    .header-corner, .header-corner-right { height: 50px; }
+    .footer-content { grid-template-columns: 1fr; text-align: center; }
+    .footer-column h4 { margin-top: 25px; }
+    .social-icons { justify-content: center; }
 }
 
 </style>
@@ -277,69 +216,53 @@ footer {
     <div class="header-scroll-bg"></div>
     
    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner">
-   
    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner-right">
    
    <div class="header-left">
       <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" alt="Logo" class="logo">
-      <!-- టెక్స్ట్ ను లోగో పక్కన ఉంచబడింది -->
       <span class="title" style="position:relative; display:inline-block;">
          <span style='font-size: 20px; font-weight: 700; color: white; display: block;'>Student Vision Talent Competition</span>
-         <!-- margin-top: -10px నుండి margin-top: -2px కి మార్చబడింది (మరింత ఖాళీ కోసం) -->
          <small style='font-size:14px; font-weight:600; color:#ffeb3b; display: block; margin-top: -2px;'>“See Your Success”</small>
       </span>
    </div>
    
-   
    <div class="header-right">
-      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-house icon"></i></a></div>
-      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-user-plus icon"></i></a></div>
-      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-right-to-bracket icon"></i></a></div>
-      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-phone icon"></i></a></div>
+      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
+      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Join</span></a></div>
+      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
+      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Employee</span></a></div>
+      <div class="menu-item"><a href="https://www.svtc.life"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
    </div>
 </header>
 
+<div class="main">WELCOME</div>
 
-<div class="main">
-   WELCOME
-</div>
-
-<footer class="text-center">
+<footer>
     <div class="footer-content">
+        <!-- Column 1 -->
         <div class="footer-column">
-            <h4>Quick Links</h4>
-            <a href="https://www.svtc.life">Home</a>
-            <a href="https://www.svtc.life">Join Now</a>
-            <a href="https://www.svtc.life">Pricing</a>
-            <a href="https://www.svtc.life">Connect</a>
-        </div>
-
-        <div class="footer-column">
-            <h4>Company</h4>
+            <h4>Company & Contact</h4>
+            <p>+91 8985170500</p>
+            <p style="margin-bottom: 15px;">contact.studentvision@gmail.com</p>
             <a href="https://www.svtc.life">About Us</a>
-            <a href="https://www.svtc.life">Contact</a>
             <a href="https://www.svtc.life">Terms & Privacy</a>
         </div>
 
-        <div class="footer-column">
-            <h4>Get In Touch</h4>
-            <p>+91 8985170500</p>
-            <p>contact.studentvision@gmail.com</p>
-        </div>
-
+        <!-- Column 2 -->
         <div class="footer-column">
             <h4>Connect With Us</h4>
-            <!-- .social-icons కు display:flex జోడించబడింది -->
-            <div class="social-icons mt-3">
+            <p style="margin-bottom: 15px;">Follow our official handles for the latest updates.</p>
+            <div class="social-icons" style="margin-bottom: 20px;">
                 <a href="https://www.svtc.life" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://www.svtc.life" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
                 <a href="https://www.svtc.life" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.svtc.life" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.svtc.life" aria-label="YouTube"><i class="fab fa-youtube"></i></i></a>
+                <!-- Facebook Icon Removed -->
+                <a href="https://www.svtc.life" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
+            <!-- Copyright at the bottom of the column -->
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 15px;">&copy; 2025 Student Vision TC. All rights reserved.</p>
         </div>
     </div>
-    <p class="text-sm pt-4">&copy; 2025 Student Vision TC. All rights reserved.</p>
 </footer>
 </body>
 </html>
