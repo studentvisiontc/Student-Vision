@@ -6,385 +6,118 @@
     <link rel="icon" type="image/png" href="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Student Vision - Dashboard Overview</title>
+    <title>Pricing - Student Vision</title>
     <style>
         :root {
             --primary-blue: #00008B;
             --accent-yellow: #ffeb3b;
             --accent-orange: #ffa500;
             --bg-gray: #f4f7f9;
-            --text-dark: #1e293b;
             --border-color: #e2e8f0;
-            --success-green: #16a34a;
-            --danger-red: #d00000;
-            --topic-bg: #e0f2fe; 
-            --white: #ffffff;
-            --gold-metallic: #d4af37;
+            --success-green: #2ecc71;
+            --info-blue: #3498db;
         }
 
-        /* Fluid Typography & Box Sizing */
-        * { font-family: 'Roboto Slab', serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; overflow-x: hidden; }
-        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; flex-direction: column; }
-
-        /* HEADER SECTION */
-        header { 
-            background: var(--primary-blue); 
-            padding: 8px clamp(10px, 3vw, 25px); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            color: white; 
-            width: 100%; 
-            position: relative; 
-            overflow: hidden; 
-            min-height: 55px; 
-            z-index: 100;
-        }
-        .header-scroll-bg { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 400%; height: 100%; 
-            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
-            z-index: 1; 
-            animation: scrollGlow 25s linear infinite; 
-            opacity: 0.9; 
-        }
+        * { font-family: 'Roboto Slab', serif; box-sizing: border-box; }
+        body { margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; background-color: #f8fafc; }
+        
+        /* HEADER SECTION - INCREASED HEIGHT */
+        header { background: var(--primary-blue); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; color: white; width: 100%; position: relative; overflow: hidden; min-height: 95px; }
+        .header-scroll-bg { position: absolute; top: 0; left: 0; width: 400%; height: 100%; background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; }
         @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
         
         header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
-        header .header-left { display: flex; align-items: center; gap: 10px; }
-        header .logo { height: 34px; width: 34px; border-radius: 50%; border: 1.5px solid #ffffff; background: white; flex-shrink: 0; }
-        header .main-title { font-size: clamp(11px, 2.8vw, 16px); font-weight: 900; line-height: 1.1; }
-        header .sub-title { font-size: clamp(7.5px, 1.8vw, 10px); font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
+        header .header-left { display: flex; align-items: center; gap: 15px; }
+        header .logo { height: 48px; width: 48px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: 20px; font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: 12px; font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
         
-        header .header-right { display: flex; gap: clamp(6px, 1.8vw, 12px); align-items: center; }
+        header .header-right { display: flex; gap: 18px; align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
-        header .icon { font-size: clamp(14px, 2.8vw, 18px); color: var(--accent-orange); }
-        .icon-label { font-size: 6px; margin-top: 1px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2px; }
+        header .icon { font-size: 18px; color: var(--accent-orange); }
+        .icon-label { font-size: 8px; margin-top: 3px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        .header-corner { position: absolute; top: 0; left: 0; height: 35px; opacity: 0.8; pointer-events: none; z-index: 15; }
-        .header-corner-right { position: absolute; top: 0; right: 0; height: 35px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
+        .header-corner { position: absolute; top: -10px; left: -10px; height: 60px; opacity: 0.7; pointer-events: none; }
+        .header-corner-right { position: absolute; top: -10px; right: -10px; height: 60px; opacity: 0.7; transform: scaleX(-1); pointer-events: none; }
 
-        /* DYNAMIC MAIN LAYOUT */
-        main { 
-            flex: 1; 
-            width: 100%; 
-            margin: 0 auto; 
-            max-width: 1400px; 
-            padding: 0; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 0; 
-        }
-
-        section, div[id="subjects-container"] > div, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .details-grid, .fame-box, .cert-section, .new-feature-section {
-            width: 100%;
-            padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); 
-            margin: 0;
-            border-bottom: 1px solid var(--border-color);
-            background: white;
-            box-sizing: border-box;
-        }
-
-        /* WELCOME SECTION */
-        .welcome-section { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            flex-wrap: nowrap; 
-            gap: 5px; 
-            background: white; 
-            border-bottom: 1px solid rgba(0,0,139,0.1);
-            padding-top: 6px !important;
-            padding-bottom: 6px !important;
-        }
-        .welcome-content { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
-        .welcome-text h1 { margin: 0; font-size: clamp(10px, 2.5vw, 14px); font-weight: 900; color: #1e293b; white-space: nowrap; }
-        .student-name { color: var(--primary-blue); font-weight: 900; }
-        .class-badge { font-size: clamp(8px, 1.8vw, 11px); font-weight: 800; color: #475569; text-transform: uppercase; border-left: 1px solid #cbd5e1; padding-left: 8px; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
-        .premium-status { display: flex; align-items: center; gap: 4px; font-size: clamp(7.5px, 1.6vw, 8.5px); font-weight: 900; color: var(--accent-orange); background: #fff7ed; padding: 2px 6px; border-radius: 50px; border: 1px solid #ffedd5; white-space: nowrap; }
-        .premium-status i { animation: pulseIcon 2s infinite; }
-        @keyframes pulseIcon { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
-
-        /* STATS CONTAINER */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: clamp(3px, 0.8vw, 6px);
-            background: white;
-            padding-top: 5px !important;
-            padding-bottom: 5px !important;
-        }
-        .stat-box { 
-            background: transparent;
-            padding: 4px 1px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            border: none;
-        }
-        .stat-box i { font-size: 11px; color: var(--primary-blue); margin-bottom: 1px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
-        .stat-label { font-size: 6px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 0px; }
-        .stat-value { font-family: 'Inter', sans-serif; font-size: clamp(9px, 1.5vw, 11px); font-weight: 900; color: var(--text-dark); }
-        .stat-box.highlight i { color: var(--accent-orange); }
-        .stat-box.highlight .stat-value { color: var(--accent-orange); }
-
-        /* DAILY CHALLENGE SECTION */
-        .daily-challenge-box {
-            background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
-            border: 1px solid #fef3c7;
-            display: flex; align-items: center; justify-content: space-between; gap: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            margin: 10px 0;
-        }
-        .challenge-info { display: flex; align-items: center; gap: 15px; }
-        .challenge-icon { font-size: 24px; color: var(--accent-orange); animation: bounceIcon 2s infinite; }
-        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        .challenge-text h4 { margin: 0; font-size: 14px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
-        .challenge-text p { margin: 2px 0 0 0; font-size: 11px; color: #64748b; font-weight: 600; line-height: 1.4; }
-        .btn-challenge { 
-            background: var(--accent-orange); 
-            color: white; 
-            text-decoration: none; 
-            padding: 8px 20px; 
-            border-radius: 8px; 
-            font-size: 10px; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            box-shadow: 0 4px 10px rgba(255,165,0,0.25);
-            transition: 0.3s;
-            white-space: nowrap;
-        }
-
-        /* SRM BANNER */
-        .srm-banner {
-            display: flex;
-            align-items: center;
-            gap: clamp(10px, 2vw, 20px);
-            background: linear-gradient(to right, #fff, #f9fbff);
-            position: relative;
-            flex-wrap: wrap;
-        }
-        .srm-banner::before { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--primary-blue); }
-        .srm-icon-box { width: clamp(35px, 6vw, 50px); height: clamp(35px, 6vw, 50px); background: #f0f7ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: clamp(16px, 2vw, 20px); color: var(--primary-blue); flex-shrink: 0; border: 1px solid #e0efff; }
+        /* BODY SECTION */
+        main { flex: 1; width: 100%; padding: 40px 20px; max-width: 1150px; margin: 0 auto; }
         
-        .srm-main-container { display: flex; flex: 1; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .srm-content { flex: 2; min-width: 250px; }
-        .srm-title { font-size: clamp(11px, 2vw, 14px); font-weight: 900; color: var(--primary-blue); margin-bottom: 1px; text-transform: uppercase; }
-        .srm-desc { font-size: clamp(8px, 1.5vw, 10.5px); color: #64748b; line-height: 1.4; font-family: 'Inter'; margin: 0; text-align: justify; }
+        .pricing-header { text-align: center; margin-bottom: 35px; }
+        .pricing-header h2 { font-size: 28px; color: var(--primary-blue); font-weight: 900; text-transform: uppercase; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .pricing-header p { color: #475569; font-weight: 600; font-size: 15px; max-width: 750px; margin: 0 auto; line-height: 1.5; }
+
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; align-items: stretch; margin-bottom: 40px; }
         
-        .srm-contact-hd-text { 
-            flex: 1;
-            min-width: 220px;
-            display: flex; 
-            flex-direction: column; 
-            gap: 8px;
-            align-items: flex-start;
-            border-left: 1.5px solid rgba(0,0,139,0.1);
-            padding-left: 15px;
-        }
-        .srm-contact-hd-text div { display: flex; align-items: baseline; gap: 8px; }
-        .srm-contact-hd-text .label { color: #1e293b; font-size: 9px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
-        .srm-contact-hd-text .value { 
-            color: var(--gold-metallic); 
-            font-weight: 900; 
-            font-size: 15px; 
-            font-family: 'Roboto Slab', serif;
-            letter-spacing: 0.3px;
-            text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.1);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ACHIEVEMENTS */
-        .achievements-premium {
-            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
-            color: white;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .achiever-header { flex: 1 1 180px; }
-        .achiever-header h3 { margin: 0; font-size: clamp(13px, 2.8vw, 16px); font-weight: 900; color: var(--accent-yellow); text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
-        .achiever-header p { margin: 1px 0 0 0; font-size: clamp(8.5px, 1.6vw, 10px); opacity: 0.8; font-family: 'Inter'; }
-        .badge-row { display: flex; gap: clamp(5px, 1.2vw, 15px); flex: 2 1 280px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
-        .badge-unit { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-        .badge-glow { width: clamp(28px, 4.5vw, 38px); height: clamp(28px, 4.5vw, 38px); border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: clamp(12px, 2.2vw, 16px); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        .badge-unit.active .badge-glow { background: linear-gradient(135deg, #fceabb 0%, #f8b500 50%, #fceabb 100%); color: var(--primary-blue); border-color: #fff; }
-        .badge-lbl { font-size: clamp(6.5px, 1.4vw, 7.5px); font-weight: 800; text-transform: uppercase; color: rgba(255,255,255,0.9); }
-
-        /* SUBJECT PANES */
-        .subject-pane { background: white; padding-bottom: 15px !important; }
-        .sub-head-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .sub-head-row i { font-size: clamp(20px, 3.5vw, 26px); color: var(--accent-orange); }
-        .sub-head-row h3 { font-size: clamp(18px, 3.5vw, 22px); font-weight: 900; color: var(--primary-blue); margin: 0; }
-        .sub-inspiration { padding: 0 0 15px 0; font-size: clamp(12px, 2.2vw, 14px); line-height: 1.6; color: #334155; text-align: justify; font-weight: 500; }
+        .pricing-card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,80,0.05); border: 2px solid transparent; transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,80,0.1); border-color: var(--accent-orange); }
         
-        .item-row { background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-bottom: 6px; width: 100%; transition: 0.3s ease; }
-        .item-top { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; width: 100%; flex-wrap: nowrap; }
-        .item-month { font-weight: 900; color: var(--danger-red); font-size: 10px; text-transform: uppercase; flex: 0 0 auto; min-width: 80px; text-align: left; }
-        .item-meta { display: flex; gap: 10px; align-items: center; color: var(--primary-blue); font-size: 8.5px; font-weight: 900; flex: 1; justify-content: center; }
-        .item-meta span { background: #e0f2fe; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
-        .item-scores { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; justify-content: flex-end; }
-        .score-lbl { font-size: 9px; font-weight: 800; color: #64748b; margin-right: 4px; }
-        .box-grid { display: flex; gap: 4px; }
-        .box-unit { width: 30px; height: 24px; border: 1.2px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 10px; }
+        .card-top { background: var(--primary-blue); color: white; padding: 25px 15px; text-align: center; position: relative; }
+        .gold-badge { position: absolute; top: 10px; right: 10px; background: var(--accent-yellow); color: #000; font-size: 8px; font-weight: 900; padding: 3px 8px; border-radius: 50px; text-transform: uppercase; }
         
-        .item-bottom { background: var(--topic-bg); padding: 8px 18px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #bae6fd; width: 100%; }
-        .item-topic-name { font-size: 12px; font-weight: 800; text-align: left; }
-        .btn-take { background: var(--primary-blue); color: white; text-decoration: none; padding: 4px 15px; border-radius: 5px; font-size: 8.5px; font-weight: 900; text-transform: uppercase; transition: 0.3s; margin-left: auto; }
-
-        /* STATUS PANEL */
-        .status-panel { background: white; padding-top: 15px !important; padding-bottom: 15px !important; }
-        .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; flex-wrap: wrap; gap: 6px; }
-        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; }
-        .progress-card { background: #f8fafc; padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #e2e8f0; }
-        .subj-icon { width: 32px; height: 32px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--primary-blue); flex-shrink: 0; }
-        .subj-info { flex: 1; }
-        .subj-meta { display: flex; justify-content: space-between; margin-bottom: 3px; }
-        .subj-name { font-size: 11px; font-weight: 800; }
-        .bar-container { width: 100%; height: 5px; background: #e2e8f0; border-radius: 8px; overflow: hidden; }
-        .bar-fill { height: 100%; background: linear-gradient(to right, var(--primary-blue), #3b82f6); transition: width 1s ease-in-out; }
-
-        /* PERFORMANCE ANALYSIS */
-        .performance-analysis {
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px;
-            background: #fff;
-        }
-        .rank-card {
-            background: linear-gradient(135deg, var(--primary-blue), #000050);
-            border-radius: 15px; padding: 20px; color: white; text-align: center;
-        }
-        .rank-number { font-size: 36px; font-weight: 900; color: var(--accent-yellow); margin: 10px 0; font-family: 'Bebas Neue'; }
+        .plan-name { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-yellow); font-weight: 800; margin-bottom: 4px; opacity: 0.9; }
+        .plan-target { font-size: 20px; font-weight: 900; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
         
-        .recent-activity { flex: 1; }
-        .activity-header { font-size: 13px; font-weight: 900; color: var(--primary-blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .activity-list { list-style: none; padding: 0; margin: 0; }
-        .activity-item { 
-            background: #f8fafc; padding: 8px 15px; border-radius: 10px; margin-bottom: 6px; 
-            display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0;
-        }
-        .act-name { font-size: 11px; font-weight: 800; color: var(--text-dark); }
-        .act-date { font-size: 9px; color: #64748b; font-weight: 600; }
-        .act-score { font-size: 11px; font-weight: 900; color: var(--success-green); }
+        .price-container { display: flex; flex-direction: column; align-items: center; }
+        .original-price { text-decoration: line-through; color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 600; }
+        .current-price { font-size: 34px; font-weight: 900; color: white; line-height: 1; margin: 3px 0; }
+        .current-price span { font-size: 16px; vertical-align: top; margin-top: 4px; display: inline-block; }
+        .discount-tag { background: var(--success-green); color: white; font-size: 10px; font-weight: 800; padding: 2px 10px; border-radius: 50px; margin-top: 5px; }
 
-        /* DOWNLOAD CERTIFICATE */
-        .cert-section {
-            background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
-            display: flex; align-items: center; justify-content: space-between; gap: 15px;
-            padding-top: 20px !important; padding-bottom: 20px !important;
-        }
-        .cert-content { flex: 1; }
-        .cert-title { font-size: 18px; font-weight: 900; color: var(--primary-blue); margin-bottom: 6px; text-transform: uppercase; }
-        .cert-points { list-style: none; padding: 0; margin: 0; }
-        .cert-points li { font-size: 11px; font-weight: 700; color: #475569; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; line-height: 1.4; }
-        .btn-download { background: linear-gradient(135deg, var(--accent-orange), #ff8c00); color: var(--primary-blue); text-decoration: none; padding: 10px 25px; border-radius: 12px; font-weight: 900; font-size: 12px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(255,165,0,0.25); text-transform: uppercase; transition: 0.3s; }
-
-        /* DETAILS GRID */
-        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: white; padding: 20px clamp(15px, 5vw, 40px) !important; }
-        .details-card { padding: 10px 0 !important; border-right: 1px solid var(--border-color); margin: 0 10px; }
-        .details-card:last-child { border-right: none; }
-        .details-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .details-header i { width: 32px; height: 32px; background: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 16px; }
-        .details-header h2 { font-size: 16px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.5px; }
-        .field-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .value-box { background: #f8fafc; padding: 8px 12px; border-radius: 10px; border: 1px solid #f1f5f9; display: flex; align-items: center; gap: 12px; }
-        .value-box.full { grid-column: span 2; }
-        .value-box i { font-size: 14px; color: var(--primary-blue); width: 20px; text-align: center; flex-shrink: 0; }
-        .value-text { font-size: 12px; font-weight: 800; color: var(--text-dark); font-family: 'Inter', sans-serif; word-break: break-word; }
-
-        /* PARENTS CORNER SECTION */
-        .parents-corner {
-            background: #fdf2f2; border-top: 3px solid var(--danger-red);
-            display: flex; flex-direction: column; gap: 10px;
-        }
-        .parents-header { font-size: 14px; font-weight: 900; color: var(--danger-red); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .parents-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .p-stat { background: white; padding: 10px 15px; border-radius: 8px; border: 1px solid #fee2e2; }
-        .p-lbl { font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; }
-        .p-val { font-size: 13px; font-weight: 900; color: var(--text-dark); margin-top: 2px; }
-
-        /* STATE TOPPERS - MODIFIED WITH GOLD SCROLL AND FIREWORKS */
-        .fame-box { padding: 25px 0; background: white; width: 100%; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
-        .fame-track { display: flex; gap: 15px; width: max-content; animation: liveScroll 85s linear infinite; padding: 10px 0; }
+        .card-features { padding: 20px 15px; flex-grow: 1; }
+        .feature-title { font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: block; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px; }
+        .feature-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 11px; font-weight: 700; color: #1e293b; line-height: 1.4; }
+        .feature-item i { font-size: 14px; width: 20px; text-align: center; margin-top: 2px; }
         
-        .topper-unit { 
-            background: white; 
-            border: 2px solid #bae6fd; 
-            width: 290px; 
-            min-height: 330px; 
-            flex-shrink: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            position: relative; 
-            overflow: hidden; 
-            border-radius: 15px;
-            /* GOLD SCROLL EFFECT BACKGROUND */
-            background-image: linear-gradient(135deg, #fff 0%, #fff 40%, rgba(255, 215, 0, 0.1) 50%, #fff 60%, #fff 100%);
-            background-size: 200% 200%;
-            animation: goldScrollBG 5s infinite linear;
-        }
-        @keyframes goldScrollBG { 0% { background-position: -100% -100%; } 100% { background-position: 100% 100%; } }
-
-        .rank-badge { position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg, var(--primary-blue), #3b82f6); color: white; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 900; z-index: 10; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .topper-photo { width: 75px; height: 75px; border-radius: 50%; border: 3px solid var(--accent-orange); object-fit: cover; margin-bottom: 12px; z-index: 5; position: relative; }
-        .topper-score { font-size: 13px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 6px 15px; border-radius: 40px; margin-top: 8px; border: 1px solid var(--success-green); width: 80%; z-index: 5; position: relative; }
-        .congrats-txt { font-size: 18px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; margin-bottom: 8px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite, congratsPulse 1.5s ease-in-out infinite alternate; z-index: 5; position: relative; }
-
-        /* LIVE FIREWORKS INSIDE CARD */
-        .card-firework-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .mini-rocket { position: absolute; bottom: -20px; width: 2px; height: 10px; background: var(--accent-orange); opacity: 0; animation: rocketFlight 3s infinite; }
-        .mini-burst { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: burstPop 3s infinite; }
+        .icon-class { color: var(--primary-blue); }
+        .icon-book { color: #5c6bc0; }
+        .icon-trophy { color: #fbc02d; }
+        .icon-mock { color: #42a5f5; }
+        .icon-math { color: #7e57c2; }
+        .icon-rank { color: #ef5350; }
         
-        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-150px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-orange); } 70% { opacity: 0; transform: scale(3); } 100% { opacity: 0; } }
+        .validity-info { background: #f0f9ff; padding: 10px; text-align: center; border-top: 1px dashed #bae6fd; font-size: 11px; font-weight: 800; color: var(--primary-blue); display: flex; justify-content: center; align-items: center; gap: 6px; }
+        
+        .card-btn { padding: 15px; text-align: center; background: #fff; }
+        .btn-pay { display: block; background: var(--accent-orange); color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 900; text-transform: uppercase; transition: 0.3s; box-shadow: 0 4px 10px rgba(255, 165, 0, 0.3); font-size: 12px; }
+        .btn-pay:hover { background: #e69500; transform: scale(1.03); }
 
-        /* FOOTER */
-        footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1450px; margin: 0 auto; text-align: left; }
-        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 10.5px; text-transform: uppercase; align-self: flex-start; }
-        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; line-height: 1.4; font-weight: 600; }
-        .social-icons { display: flex; gap: 10px; margin: 5px 0; }
-        .social-icons a { font-size: 18px; color: white; }
+        .srm-box { margin-top: 12px; background: #fff7ed; border: 1px solid #ffedd5; padding: 8px; border-radius: 8px; font-size: 10px; font-weight: 700; color: #9a3412; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+        .srm-box i { font-size: 18px; color: #f97316; }
 
+        /* POST-PURCHASE INFO SECTION */
+        .info-section { background: white; border-radius: 18px; padding: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.03); border: 1px solid var(--border-color); margin-bottom: 40px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .info-box { display: flex; align-items: flex-start; gap: 12px; padding: 15px; border-radius: 12px; background: #f8fafc; }
+        .info-box i { font-size: 20px; color: var(--info-blue); }
+        .info-box h3 { margin: 0 0 4px 0; font-size: 14px; font-weight: 900; color: var(--primary-blue); }
+        .info-box p { margin: 0; font-size: 12px; color: #475569; font-weight: 600; line-height: 1.4; }
+
+        .terms-box { margin-top: 15px; padding: 15px; border-radius: 12px; border: 2px solid #fee2e2; background: #fffafb; text-align: center; }
+        .terms-box p { margin: 0; font-size: 12px; font-weight: 800; color: #b91c1c; }
+        .terms-link { color: #dc2626; text-decoration: underline; margin-left: 4px; cursor: pointer; }
+
+        footer { background: var(--primary-blue); color: white; padding: 25px 20px 15px 20px; border-top: 4px solid var(--accent-orange); margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; max-width: 1450px; margin: 0 auto; text-align: left; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; }
+        .footer-column p, .footer-column a { font-size: 11px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 10px; margin-bottom: 8px; line-height: 1.4; font-weight: 600; }
+        .footer-column a:hover { color: var(--accent-yellow); text-decoration: underline; }
+        .social-icons { display: flex; gap: 15px; margin: 10px 0; }
+        .social-icons a { font-size: 20px; color: white; }
+
+        /* MOBILE OPTIMIZATIONS - UPDATED FOR CENTERED LOGO */
         @media (max-width: 850px) {
-            header { flex-direction: column; height: auto; padding: 8px 10px; text-align: center; gap: 5px; }
-            header .header-left { flex-direction: column; align-items: center; width: 100%; gap: 3px; }
-            header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 5px; flex-wrap: wrap; }
-            
-            .welcome-section { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; padding: 4px 12px; }
-            .welcome-text h1 { font-size: clamp(8.5px, 3.2vw, 12px); }
-            
-            .performance-analysis { grid-template-columns: 1fr; }
-            .srm-banner { flex-direction: column; text-align: center; padding: 15px 10px; }
-            .srm-icon-box { margin: 0 auto 10px auto; }
-            
-            .srm-main-container { flex-direction: column; gap: 10px; text-align: center; }
-            .srm-contact-hd-text { border-left: none; padding-left: 0; align-items: center; border-top: 1px dashed rgba(0,0,139,0.1); padding-top: 10px; margin-top: 5px; width: 100%; }
-            .srm-contact-hd-text div { align-items: center; }
-
-            .cert-section { flex-direction: column; text-align: center; gap: 15px; }
-            .btn-download { width: 100%; justify-content: center; }
-
-            .item-top { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; }
-            .item-month { flex: 0 0 auto; min-width: 50px; text-align: left; font-size: 7.5px; }
-            .item-meta { flex: 1; justify-content: center; gap: 3px; font-size: 5.5px; }
-            .item-scores { flex: 0 0 auto; justify-content: flex-end; }
+            header { flex-direction: column; height: auto; padding: 20px 15px; text-align: center; gap: 15px; }
+            header .header-left { flex-direction: column; align-items: center; justify-content: center; width: 100%; text-align: center; gap: 10px; }
+            header .header-left div { display: flex; flex-direction: column; align-items: center; }
+            header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 15px; flex-wrap: wrap; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-column { align-items: center; }
+            .registration-form, .review-grid, .security-grid { grid-template-columns: 1fr !important; }
+            .horizontal-section { flex-direction: column; gap: 10px; text-align: center; }
         }
-
-        /* CARD FIREWORKS ANIMATIONS */
-        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-150px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-orange); } 70% { opacity: 0; transform: scale(3); } 100% { opacity: 0; } }
-        @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body>
@@ -397,7 +130,7 @@
         <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" alt="SV Logo" class="logo">
         <div>
             <div class="main-title">Student Vision Talent Competition</div>
-            <div class="sub-title">3<sup>rd</sup> Class Students</div>
+            <div class="sub-title">“See Your Success”</div>
         </div>
     </div>
     <div class="header-right">
@@ -410,405 +143,136 @@
 </header>
 
 <main>
-    <!-- WELCOME DASHBOARD SECTION -->
-    <div class="welcome-section">
-        <div class="welcome-content">
-            <div class="welcome-text">
-                <h1>Welcome, <span class="student-name">Student Vision</span>! 👋</h1>
-            </div>
-            <div class="class-badge">
-                <i class="fa-solid fa-star" style="color:var(--accent-orange)"></i> 3<sup>rd</sup> Class
-            </div>
-        </div>
-        <div class="premium-status">
-            <i class="fa-solid fa-crown"></i>
-            <span>GOLD</span>
-        </div>
+    <div class="pricing-header">
+        <h2>Take the First Step to Your Success</h2>
+        <p>Unlock academic excellence with our specialized testing platform. Choosing this plan is the very first step toward your victory and a brighter future.</p>
     </div>
 
-    <!-- STATS CONTAINER SECTION - MINI 5 ICONS -->
-    <div class="stats-container">
-        <div class="stat-box">
-            <i class="fa-solid fa-stopwatch"></i>
-            <span class="stat-label">SESSION</span>
-            <span class="stat-value" id="timer">00:00:45</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span class="stat-label">LOGINS</span>
-            <span class="stat-value">14</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-hourglass-half"></i>
-            <span class="stat-label">TOTAL TIME</span>
-            <span class="stat-value">128h</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-tasks"></i>
-            <span class="stat-label">TESTS DONE</span>
-            <span class="stat-value">45/120</span>
-        </div>
-        <div class="stat-box highlight">
-            <i class="fa-solid fa-star"></i>
-            <span class="stat-label">TC SCORE</span>
-            <span class="stat-value">92%</span>
-        </div>
-    </div>
-
-    <!-- DAILY CHALLENGE SECTION -->
-    <div class="new-feature-section daily-challenge-box">
-        <div class="challenge-info">
-            <i class="fa-solid fa-lightbulb challenge-icon"></i>
-            <div class="challenge-text">
-                <h4>Question of the Day</h4>
-                <p>If today is Monday, what will be the day after tomorrow? Solve to earn 5 Vision Coins!</p>
-            </div>
-        </div>
-        <a href="#" class="btn-challenge">Solve Now</a>
-    </div>
-
-    <!-- SECTION: Dedicated Student Relationship Manager (SRM) -->
-    <div class="srm-banner">
-        <div class="srm-icon-box">
-            <i class="fa-solid fa-user-tie"></i>
-        </div>
-        <div class="srm-main-container">
-            <div class="srm-content">
-                <div class="srm-title">Dedicated Student Relationship Manager (SRM)</div>
-                <p class="srm-desc">
-                    We are committed to your success! Your dedicated Student Relations Manager (SRM) acts as a bridge between you and academic excellence, providing tailored roadmaps, consistent guidance for competitive preparation, and swift resolution to any technical or subscription-related queries. We believe every student has a unique vision; your SRM is here to ensure that vision translates into a reality.
-                </p>
-            </div>
-            <!-- HD BLOCK TEXT FOR INFO -->
-            <div class="srm-contact-hd-text">
-                <div>
-                    <span class="label">Manager Name :</span>
-                    <span class="value">Sri Veda TC</span>
-                </div>
-                <div>
-                    <span class="label">Direct Contact :</span>
-                    <span class="value">8985170500</span>
+    <div class="pricing-grid">
+        <!-- PRIMARY PLAN -->
+        <div class="pricing-card">
+            <div class="card-top">
+                <span class="gold-badge">GOLD</span>
+                <div class="plan-name">Annual Plan</div>
+                <div class="plan-target"><i class="fa-solid fa-child-reaching"></i> PRIMARY</div>
+                <div class="price-container">
+                    <span class="original-price">₹1,141</span>
+                    <div class="current-price"><span>₹</span>799</div>
+                    <span class="discount-tag">30% Offer</span>
                 </div>
             </div>
+            <div class="card-features">
+                <span class="feature-title">Premium Access Includes:</span>
+                <div class="feature-item"><i class="fa-solid fa-graduation-cap icon-class"></i> <strong>Exclusively for Class 3 & Class 4</strong></div>
+                <div class="feature-item"><i class="fa-solid fa-book-open icon-book"></i> Unlock All Subject Tests</div>
+                <div class="feature-item"><i class="fa-solid fa-trophy icon-trophy"></i> Unlimited National Competitions</div>
+                <div class="feature-item"><i class="fa-solid fa-file-signature icon-mock"></i> Advanced Mock Test Series</div>
+                <div class="feature-item"><i class="fa-solid fa-calculator icon-math"></i> Full Vedic Math Curriculum</div>
+                <div class="feature-item"><i class="fa-solid fa-ranking-star icon-rank"></i> National Ranking & Leaderboards</div>
+                <div class="srm-box">
+                    <i class="fa-solid fa-headset"></i>
+                    <div>Dedicated <strong>SRM</strong> Priority Support</div>
+                </div>
+            </div>
+            <div class="validity-info">
+                <i class="fa-solid fa-calendar-check"></i> VALIDITY: 365 Days
+            </div>
+            <div class="card-btn">
+                <a href="#" class="btn-pay">Subscribe Now</a>
+            </div>
+        </div>
+
+        <!-- SECONDARY PLAN -->
+        <div class="pricing-card" style="border-color: var(--accent-orange);">
+            <div class="card-top" style="background: linear-gradient(135deg, #00008B 0%, #0000CD 100%);">
+                <span class="gold-badge">GOLD</span>
+                <div class="plan-name">Annual Plan</div>
+                <div class="plan-target"><i class="fa-solid fa-user-graduate"></i> SECONDARY</div>
+                <div class="price-container">
+                    <span class="original-price">₹2,725</span>
+                    <div class="current-price"><span>₹</span>1,499</div>
+                    <span class="discount-tag">45% Offer</span>
+                </div>
+            </div>
+            <div class="card-features">
+                <span class="feature-title">Premium Access Includes:</span>
+                <div class="feature-item"><i class="fa-solid fa-graduation-cap icon-class"></i> <strong>Only Class 5 to Class 9</strong></div>
+                <div class="feature-item"><i class="fa-solid fa-book-open icon-book"></i> Unlock All Subject Tests</div>
+                <div class="feature-item"><i class="fa-solid fa-trophy icon-trophy"></i> Unlimited National Competitions</div>
+                <div class="feature-item"><i class="fa-solid fa-file-signature icon-mock"></i> Advanced Mock Test Series</div>
+                <div class="feature-item"><i class="fa-solid fa-calculator icon-math"></i> Full Vedic Math Curriculum</div>
+                <div class="feature-item"><i class="fa-solid fa-ranking-star icon-rank"></i> National Ranking & Leaderboards</div>
+                <div class="srm-box">
+                    <i class="fa-solid fa-headset"></i>
+                    <div>Dedicated <strong>SRM</strong> Priority Support</div>
+                </div>
+            </div>
+            <div class="validity-info" style="background: #fff7ed;">
+                <i class="fa-solid fa-calendar-check"></i> VALIDITY: 365 Days
+            </div>
+            <div class="card-btn">
+                <a href="#" class="btn-pay">Subscribe Now</a>
+            </div>
+        </div>
+
+        <!-- SSC SPECIAL PLAN -->
+        <div class="pricing-card">
+            <div class="card-top">
+                <span class="gold-badge">GOLD</span>
+                <div class="plan-name">Annual Plan</div>
+                <div class="plan-target"><i class="fa-solid fa-user-tie"></i> SSC SPECIAL</div>
+                <div class="price-container">
+                    <span class="original-price">₹3,998</span>
+                    <div class="current-price"><span>₹</span>1,999</div>
+                    <span class="discount-tag">50% Offer</span>
+                </div>
+            </div>
+            <div class="card-features">
+                <span class="feature-title">Premium Access Includes:</span>
+                <div class="feature-item"><i class="fa-solid fa-graduation-cap icon-class"></i> <strong>Exclusively for Class 10</strong></div>
+                <div class="feature-item"><i class="fa-solid fa-book-open icon-book"></i> Unlock All Subject Tests</div>
+                <div class="feature-item"><i class="fa-solid fa-trophy icon-trophy"></i> Unlimited National Competitions</div>
+                <div class="feature-item"><i class="fa-solid fa-file-signature icon-mock"></i> Advanced Mock Test Series</div>
+                <div class="feature-item"><i class="fa-solid fa-calculator icon-math"></i> Full Vedic Math Curriculum</div>
+                <div class="feature-item"><i class="fa-solid fa-ranking-star icon-rank"></i> National Ranking & Leaderboards</div>
+                <div class="srm-box">
+                    <i class="fa-solid fa-headset"></i>
+                    <div>Dedicated <strong>SRM</strong> Priority Support</div>
+                </div>
+            </div>
+            <div class="validity-info">
+                <i class="fa-solid fa-calendar-check"></i> VALIDITY: 365 Days
+            </div>
+            <div class="card-btn">
+                <a href="#" class="btn-pay">Subscribe Now</a>
+            </div>
         </div>
     </div>
 
-    <!-- MASTERY BADGES SECTION -->
-    <div class="achievements-premium">
-        <div class="achiever-header">
-            <h3><i class="fa-solid fa-medal"></i> Mastery Badges</h3>
-            <p>Perform well in tests to unlock academic badges.</p>
-        </div>
-        <div class="badge-row">
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-book-open"></i></div>
-                <span class="badge-lbl">Literacy</span>
+    <!-- POST-PURCHASE INSTRUCTIONS -->
+    <div class="info-section">
+        <div class="info-grid">
+            <div class="info-box">
+                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                <div>
+                    <h3>WhatsApp Confirmation</h3>
+                    <p>Login credentials and plan details will be sent within <strong>24 hours</strong> of successful payment.</p>
+                </div>
             </div>
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-square-root-variable"></i></div>
-                <span class="badge-lbl">Math Guru</span>
-            </div>
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-lightbulb"></i></div>
-                <span class="badge-lbl">Logic</span>
-            </div>
-            <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-microchip"></i></div>
-                <span class="badge-lbl">Tech Wiz</span>
-            </div>
-            <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-earth-asia"></i></div>
-                <span class="badge-lbl">EVS Pro</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- SUBJECT WISE TESTS SECTION (All 10 Subjects) -->
-    <div id="subjects-container">
-        <script>
-            const subjectsData = [
-                { id: 1, name: "English", icon: "fa-book", time: "30 MINS", 
-                  passage: "English is the global key that unlocks endless opportunities for class 3 students! Building a strong foundation in phonics, reading, and vocabulary at this early stage is absolutely essential for long-term academic excellence. Elite entrance examinations like Navodaya and Sainik Schools place a massive emphasis on English proficiency. By mastering these 10 core topics, children develop the critical thinking skills needed to understand complex texts and communicate effectively. In the future, this literacy will empower you to shine on international platforms, excel in high-stakes interviews, and become a global leader.",
-                  topics: ["Alphabet Revision", "Phonics Sounds", "New Words (Vocabulary)", "Opposite Words", "Nouns", "Verbs", "Articles (a, an, the)", "Simple Sentences", "Reading Short Stories", "Speaking Simple English"] },
-                { id: 2, name: "Mathematics", icon: "fa-calculator", time: "30 MINS", 
-                  passage: "Mathematics is the secret language of logic and the universe! For a class 3 student, playing with numbers builds a brain that is exceptionally fast and sharp. These 10 essential topics are modeled after International Math Olympiads (IMO) and prestigious scholarship foundation exams. Why is this section a must? Because a strong grip on addition, shapes, and multiplication tables today creates a 'Math Brain' that solves real-world problems 10x faster than others.",
-                  topics: ["Numbers up to 1000", "Place Value", "Addition", "Subtraction", "Multiplication Tables", "Division", "Shapes", "Measurement", "Time & Clock", "Word Problems"] },
-                { id: 3, name: "Environmental Studies (EVS)", icon: "fa-earth-asia", time: "30 MINS", 
-                  passage: "Knowing about our world makes class 3 students wise global explorers! Environmental Studies (EVS) helps children understand how nature works and our role in protecting it. This subject is the early foundation for high-level competitive exams like the UPSC Civil Services. Learning about plants, animals, and our neighbourhood makes you an informed and responsible citizen from a young age.",
-                  topics: ["Myself", "My Family", "My School", "Plants Around Us", "Animals Around Us", "Food We Eat", "Water", "Air", "Our Neighbourhood", "Cleanliness"] },
-                { id: 4, name: "General Knowledge (GK)", icon: "fa-trophy", time: "30 MINS", 
-                  passage: "General Knowledge is the light that illuminates the path to leadership! For a 3rd-grade student, staying aware of our national symbols, leaders, and sports is the first step toward becoming a global influencer. This section is a crucial part of all competitive foundation courses.",
-                  topics: ["India – Our Country", "National Symbols", "Our Leaders", "Festivals", "Animals & Birds", "Sports", "Important Days", "Famous Places", "World Facts", "Current GK"] },
-                { id: 5, name: "Technical Knowledge", icon: "fa-laptop-code", time: "30 MINS", 
-                  passage: "Welcome to the era of digital superpowers! In the modern world, digital literacy is as critical as reading and writing. For a class 3 student, understanding computer parts, keyboard functions, and internet safety is the key to staying ahead in the 21st century.",
-                  topics: ["What is a Computer?", "Parts of a Computer", "Uses of Computer", "Keyboard Keys", "Mouse Functions", "Monitor, CPU, Printer", "Starting & Shutting Down", "Drawing in Paint", "Computer Safety", "Internet Safety"] },
-                { id: 6, name: "Logical Reasoning", icon: "fa-brain", time: "30 MINS", 
-                  passage: "Logical Reasoning is the ultimate mental gymnasium for your brain! Great detectives, scientists, and engineers use logic to solve the world's toughest mysteries, and you can too. Practice patterns and recognition skills.",
-                  topics: ["Big & Small", "Same & Different", "Odd One Out", "Number Patterns", "Shape Patterns", "Find the Missing Number", "Picture Reasoning", "Matching", "Simple Puzzles", "Think & Answer"] },
-                { id: 7, name: "Mental Ability / Intelligence", icon: "fa-head-side-virus", time: "30 MINS", 
-                  passage: "Unlock the hidden potential of your mind with Brain Gymnastics! Mental Ability exercises boost your memory, focus, and visual processing speed. Students who excel in this category at a young age consistently become the top scorers.",
-                  topics: ["Memory Games", "Observation Skills", "Find the Differences", "Identify Pictures", "Quick Thinking", "Sorting Objects", "Matching Shadows", "Colour Patterns", "Simple Riddles", "Fun IQ Activities"] },
-                { id: 8, name: "Art & Craft", icon: "fa-palette", time: "30 MINS", 
-                  passage: "Creativity is the most valuable currency in the future world! For a class 3 student, Art & Craft is not just about drawing; it is about building fine motor skills and creative thinking. Completing these 10 projects builds your patience.",
-                  topics: ["Free Hand Drawing", "Colouring", "Paper Folding", "Paper Cutting", "Clay Modelling", "Leaf Art", "Greeting Card Making", "Mask Making", "Best Out of Waste", "Simple Craft Projects"] },
-                { id: 9, name: "Life Skills / Personal Development", icon: "fa-star", time: "30 MINS", 
-                  passage: "Real winners are defined by their character as much as their grades! Personal Development builds your heart and leadership qualities. Success is a habit—start practicing time management today.",
-                  topics: ["Good Manners", "Clean Habits", "Discipline", "Time Management", "Honesty", "Helping Others", "Respect Elders", "Self-Confidence", "Positive Thinking", "Healthy Habits"] },
-                { id: 10, name: "Moral Stories & Values", icon: "fa-book-open", time: "30 MINS", 
-                  passage: "Values are the moral compass that guides every great champion! This subject helps class 3 students build the inner strength needed to face life's challenges with courage and kindness.",
-                  topics: ["Honesty is the Best Policy", "Helping Others", "Kindness", "Sharing is Caring", "Obedience", "Hard Work", "Respect", "Courage", "Truthfulness", "Inspirational Stories"] }
-            ];
-
-            const monthsData = ["JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER", "JANUARY", "FEBRUARY", "MARCH"];
-
-            subjectsData.forEach(sub => {
-                document.write(`
-                <div class="subject-pane">
-                    <div class="sub-head-row">
-                        <i class="fa-solid ${sub.icon}"></i>
-                        <h3>${sub.id}. ${sub.name}</h3>
-                    </div>
-                    <div class="sub-inspiration">${sub.passage}</div>
-                `);
-
-                sub.topics.forEach((topic, idx) => {
-                    document.write(`
-                    <div class="item-row">
-                        <div class="item-top">
-                            <span class="item-month">${monthsData[idx]}</span>
-                            <div class="item-meta">
-                                <span><i class="fa-solid fa-clock"></i> ${sub.time}</span>
-                                <span><i class="fa-solid fa-file-alt"></i> 30 QS</span>
-                                <span><i class="fa-solid fa-star"></i> 30 MARKS</span>
-                            </div>
-                            <div class="item-scores">
-                                <span class="score-lbl">Attempts:</span>
-                                <div class="box-grid">
-                                    <div class="box-unit scored">${idx === 0 ? '28' : '--'}</div>
-                                    <div class="box-unit">--</div>
-                                    <div class="box-unit">--</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-bottom">
-                            <div class="item-topic-name"><span>Topic:</span> ${topic}</div>
-                            <a href="#" class="btn-take">Take Test</a>
-                        </div>
-                    </div>
-                    `);
-                });
-
-                document.write(`</div>`);
-            });
-        </script>
-    </div>
-
-    <!-- SUBJECT PROGRESS SECTION -->
-    <div class="status-panel">
-        <div class="status-header">
-            <div>
-                <h2 style="font-size:18px; margin:0; text-transform:uppercase; font-weight: 900; color: var(--primary-blue);">Subject Progress</h2>
-                <p style="font-size: 11px; margin: 2px 0 0 0; color: #64748b; font-family: 'Inter'; font-weight: 600;">Overall Mastery: 42.5%</p>
-            </div>
-            <div style="text-align: right;">
-                <span style="font-size: 11px; font-weight: 900; color: var(--success-green); text-transform: uppercase;">Level Up in 5 Tests</span>
+            <div class="info-box">
+                <i class="fa-solid fa-phone-volume" style="color: #00008B;"></i>
+                <div>
+                    <h3>Direct Support Call</h3>
+                    <p>Your assigned <strong>SRM</strong> will call you to provide guidance and assist with the setup process.</p>
+                </div>
             </div>
         </div>
         
-        <div class="status-grid">
-            <script>
-                const statusItems = [
-                    { name: "English", count: 8, w: "80%", icon: "fa-book" },
-                    { name: "Maths", count: 5, w: "50%", icon: "fa-calculator" },
-                    { name: "GK", count: 3, w: "30%", icon: "fa-globe" },
-                    { name: "EVS", count: 2, w: "20%", icon: "fa-earth-asia" },
-                    { name: "Technical", count: 0, w: "0%", icon: "fa-laptop-code" },
-                    { name: "Logic", count: 0, w: "0%", icon: "fa-brain" },
-                    { name: "Mental", count: 1, w: "10%", icon: "fa-head-side-virus" },
-                    { name: "Art", count: 0, w: "0%", icon: "fa-palette" },
-                    { name: "Life Skills", count: 2, w: "20%", icon: "fa-star" },
-                    { name: "Moral", count: 0, w: "0%", icon: "fa-book-open" }
-                ];
-                statusItems.forEach(item => {
-                    document.write(`
-                    <div class="progress-card">
-                        <div class="subj-icon"><i class="fa-solid ${item.icon}"></i></div>
-                        <div class="subj-info">
-                            <div class="subj-meta">
-                                <span class="subj-name">${item.name}</span>
-                                <span class="subj-count">${item.count}/10</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: ${item.w}"></div>
-                            </div>
-                        </div>
-                    </div>
-                    `);
-                });
-            </script>
-        </div>
-    </div>
-
-    <!-- PERFORMANCE ANALYSIS - 4 ITEMS -->
-    <div class="new-feature-section performance-analysis">
-        <div class="rank-card">
-            <span class="rank-label">Your Current Rank</span>
-            <div class="rank-number">#12</div>
-            <p style="font-size: 10px; font-weight: 700; opacity: 0.9;">Top 5% among Class 3 Students!</p>
-        </div>
-        <div class="recent-activity">
-            <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Activity</div>
-            <div class="activity-list">
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">Mathematics - Place Value</span>
-                        <span class="act-date">Completed on 25 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">28/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">English - Nouns</span>
-                        <span class="act-date">Completed on 22 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">25/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">GK - National Symbols</span>
-                        <span class="act-date">Completed on 20 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">29/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">Art - Paper Folding</span>
-                        <span class="act-date">Completed on 18 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">30/30</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DOWNLOAD CERTIFICATE SECTION -->
-    <div class="cert-section">
-        <div class="cert-content">
-            <h2 class="cert-title">Get Your Achievement Certificate!</h2>
-            <ul class="cert-points">
-                <li><i class="fa-solid fa-circle-check"></i> High Value for school level interviews and admissions.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Validates your strong subject grip and background knowledge.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Proof of enhanced logical reasoning and mathematical ability.</li>
-            </ul>
-        </div>
-        <a href="#" class="btn-download">
-            <i class="fa-solid fa-file-pdf"></i> Download
-        </a>
-    </div>
-
-    <!-- STUDENT & SUBSCRIPTION DETAILS SECTION -->
-    <div class="details-grid">
-        <div class="details-card">
-            <div class="details-header">
-                <i class="fa-solid fa-user-graduate"></i>
-                <h2>Student Profile</h2>
-            </div>
-            <div class="field-container">
-                <div class="value-box"><i class="fa-solid fa-id-card"></i><span class="value-text">SVTC3G</span></div>
-                <div class="value-box"><i class="fa-solid fa-user"></i><span class="value-text">Sri Veda Talent Competitions</span></div>
-                <div class="value-box"><i class="fa-solid fa-user-tie"></i><span class="value-text">KVS SWAMY</span></div>
-                <div class="value-box"><i class="fa-solid fa-mobile-screen"></i><span class="value-text">89XXXXXX00</span></div>
-                <div class="value-box"><i class="fa-solid fa-graduation-cap"></i><span class="value-text v-highlight">3<sup>rd</sup> Class</span></div>
-                <div class="value-box"><i class="fa-solid fa-school"></i><span class="value-text">Sri Veda High School</span></div>
-                <div class="value-box full"><i class="fa-solid fa-check-double"></i><span class="value-text v-success">Agreed & Verified <i class="fa-solid fa-circle-check"></i></span></div>
-            </div>
-        </div>
-        <div class="details-card">
-            <div class="details-header">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-                <h2>Subscription Details</h2>
-            </div>
-            <div class="field-container">
-                <div class="value-box full"><i class="fa-solid fa-file-invoice"></i><span class="value-text">Sri Veda Talent Competitions</span></div>
-                <div class="value-box"><i class="fa-solid fa-crown"></i><span class="value-text v-highlight">Gold Student</span></div>
-                <div class="value-box"><i class="fa-solid fa-sign-in-alt"></i><span class="value-text">14 Times Logged</span></div>
-                <div class="value-box"><i class="fa-solid fa-calendar-check"></i><span class="value-text">26-10-2025</span></div>
-                <div class="value-box"><i class="fa-solid fa-calendar-times"></i><span class="value-text">26-11-2026</span></div>
-                <div class="value-box full"><i class="fa-solid fa-hourglass-half"></i><span class="value-text v-danger">170 Days Remaining</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PARENTS CORNER SECTION -->
-    <div class="new-feature-section parents-corner">
-        <div class="parents-header"><i class="fa-solid fa-user-shield"></i> Parents Corner (Weekly Summary)</div>
-        <div class="parents-stats">
-            <div class="p-stat">
-                <span class="p-lbl">Time Spent this week</span>
-                <div class="p-val">12h 45m</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">Logins this week</span>
-                <div class="p-val">05 Logins</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">New Topics Covered</span>
-                <div class="p-val">08 Topics</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">Average Accuracy</span>
-                <div class="p-val">92%</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODIFIED SECTION: STATE TOPPERS (WITH LIVE FIREWORKS AND GOLD SCROLL) -->
-    <div class="fame-box">
-        <div style="border-left: 5px solid var(--accent-orange); padding-left: 15px; margin-bottom: 10px;">
-            <span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform:uppercase; letter-spacing:1px;">SVTC State Level Toppers</span>
-        </div>
-        <div style="width: 100%; overflow: hidden;">
-            <div class="fame-track">
-                <script>
-                    const logoFallback = "https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png";
-                    const topStars = [
-                        { name: "Rohan Sharma", class: "3rd Class", school: "Holy Cross High School", city: "Hyderabad", uid: "SVTC_03_001", score: "99/100", photo: "" },
-                        { name: "Ananya Reddy", class: "4th Class", school: "Little Angels EM School", city: "Visakhapatnam", uid: "SVTC_04_023", score: "98/100", photo: "" },
-                        { name: "P. Karthik", class: "5th Class", school: "Sri Chaitanya School", city: "Vijayawada", uid: "SVTC_05_102", score: "97/100", photo: "" },
-                        { name: "Sneha Latha", class: "6th Class", school: "Narayana Olympiad", city: "Guntur", uid: "SVTC_06_056", score: "96/100", photo: "" },
-                        { name: "Vikas Kumar", class: "7th Class", school: "Government High School", city: "Tirupati", uid: "SVTC_07_089", score: "95/100", photo: "" }
-                    ];
-
-                    function renderStar(p) {
-                        return `
-                        <div class="topper-unit">
-                            <div class="rank-badge">1st Rank</div>
-                            <div class="card-firework-container">
-                                <div class="mini-rocket" style="left: 20%; animation-delay: 0s;"></div>
-                                <div class="mini-burst" style="left: 20%; top: 30%; animation-delay: 1.5s;"></div>
-                                <div class="mini-rocket" style="left: 50%; animation-delay: 1.5s;"></div>
-                                <div class="mini-burst" style="left: 50%; top: 20%; animation-delay: 3s;"></div>
-                                <div class="mini-rocket" style="left: 80%; animation-delay: 0.5s;"></div>
-                                <div class="mini-burst" style="left: 80%; top: 40%; animation-delay: 2s;"></div>
-                            </div>
-                            
-                            <div class="congrats-txt">CONGRATULATIONS!</div>
-                            <img src="${p.photo || logoFallback}" class="topper-photo" onerror="this.src='${logoFallback}'">
-                            
-                            <!-- INFO ORDER: Name -> Username -> Class -> School -> City -> Score -->
-                            <div style="font-size: 16px; font-weight: 900; color: var(--primary-blue); margin-bottom: 4px; z-index: 5;">${p.name}</div>
-                            <div style="font-family: 'Inter'; font-size: 9px; font-weight: 800; color: var(--accent-orange); margin-bottom: 6px; z-index: 5; text-transform: uppercase;">${p.uid}</div>
-                            <div style="font-size: 12px; font-weight: 800; color: #475569; margin-bottom: 4px; z-index: 5;">${p.class}</div>
-                            <div style="font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 2px; z-index: 5;">${p.school}</div>
-                            <div style="font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; z-index: 5;">${p.city}</div>
-                            
-                            <div class="topper-score">Score: ${p.score}</div>
-                        </div>`;
-                    }
-                    let fameHtml = topStars.map(p => renderStar(p)).join('');
-                    document.write(fameHtml + fameHtml);
-                </script>
-            </div>
+        <div class="terms-box">
+            <p>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Please read our <span class="terms-link">Terms and Conditions</span> carefully before making the payment.
+            </p>
         </div>
     </div>
 </main>
@@ -827,30 +291,10 @@
         </div>
         <div class="footer-column">
             <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-            </div>
+            <div class="social-icons"><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-facebook"></i></a></div>
             <p style="opacity: 0.7; font-size: 10px;">&copy; 2025 Student Vision TC. All rights reserved.</p>
         </div>
     </div>
 </footer>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let seconds = 45; 
-        setInterval(() => {
-            seconds++;
-            const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-            const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-            const sc = (seconds % 60).toString().padStart(2, '0');
-            const timerEl = document.getElementById('timer');
-            if (timerEl) timerEl.textContent = `${h}:${m}:${sc}`;
-        }, 1000);
-    });
-</script>
-
 </body>
 </html>
