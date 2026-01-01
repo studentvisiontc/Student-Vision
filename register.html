@@ -6,385 +6,141 @@
     <link rel="icon" type="image/png" href="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Student Vision - Dashboard Overview</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <title>Registration - Student Vision</title>
     <style>
         :root {
             --primary-blue: #00008B;
             --accent-yellow: #ffeb3b;
             --accent-orange: #ffa500;
+            --success-green: #2e7d32;
+            --error-red: #d32f2f;
             --bg-gray: #f4f7f9;
-            --text-dark: #1e293b;
             --border-color: #e2e8f0;
-            --success-green: #16a34a;
-            --danger-red: #d00000;
-            --topic-bg: #e0f2fe; 
-            --white: #ffffff;
-            --gold-metallic: #d4af37;
         }
 
-        /* Fluid Typography & Box Sizing */
-        * { font-family: 'Roboto Slab', serif; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; overflow-x: hidden; }
-        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; flex-direction: column; }
-
-        /* HEADER SECTION */
-        header { 
-            background: var(--primary-blue); 
-            padding: 8px clamp(10px, 3vw, 25px); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            color: white; 
-            width: 100%; 
-            position: relative; 
-            overflow: hidden; 
-            min-height: 55px; 
-            z-index: 100;
-        }
-        .header-scroll-bg { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 400%; height: 100%; 
-            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
-            z-index: 1; 
-            animation: scrollGlow 25s linear infinite; 
-            opacity: 0.9; 
-        }
+        * { font-family: 'Roboto Slab', serif; box-sizing: border-box; }
+        body { margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; background-color: var(--bg-gray); scroll-behavior: smooth; }
+        
+        header { background: var(--primary-blue); padding: 8px 30px; display: flex; justify-content: space-between; align-items: center; color: white; width: 100%; position: relative; overflow: hidden; min-height: 75px; }
+        .header-scroll-bg { position: absolute; top: 0; left: 0; width: 400%; height: 100%; background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; }
         @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
-        
         header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
-        header .header-left { display: flex; align-items: center; gap: 10px; }
-        header .logo { height: 34px; width: 34px; border-radius: 50%; border: 1.5px solid #ffffff; background: white; flex-shrink: 0; }
-        header .main-title { font-size: clamp(11px, 2.8vw, 16px); font-weight: 900; line-height: 1.1; }
-        header .sub-title { font-size: clamp(7.5px, 1.8vw, 10px); font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
-        
-        header .header-right { display: flex; gap: clamp(6px, 1.8vw, 12px); align-items: center; }
+        header .header-left { display: flex; align-items: center; gap: 15px; }
+        header .logo { height: 48px; width: 48px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: 20px; font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: 12px; font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
+        header .header-right { display: flex; gap: 15px; align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
-        header .icon { font-size: clamp(14px, 2.8vw, 18px); color: var(--accent-orange); }
-        .icon-label { font-size: 6px; margin-top: 1px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2px; }
+        header .icon { font-size: 18px; color: var(--accent-orange); }
+        .icon-label { font-size: 8px; margin-top: 3px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        .header-corner { position: absolute; top: 0; left: 0; height: 35px; opacity: 0.8; pointer-events: none; z-index: 15; }
-        .header-corner-right { position: absolute; top: 0; right: 0; height: 35px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
+        .header-corner { position: absolute; top: -10px; left: -10px; height: 60px; opacity: 0.7; pointer-events: none; }
+        .header-corner-right { position: absolute; top: -10px; right: -10px; height: 60px; opacity: 0.7; transform: scaleX(-1); pointer-events: none; }
 
-        /* DYNAMIC MAIN LAYOUT */
-        main { 
-            flex: 1; 
-            width: 100%; 
-            margin: 0 auto; 
-            max-width: 1400px; 
-            padding: 0; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 0; 
-        }
+        .marquee-container { background: #fff; border-bottom: 2px solid var(--border-color); overflow: hidden; white-space: nowrap; padding: 4px 0; }
+        .marquee-text { display: inline-block; padding-left: 100%; animation: marqueeScroll 45s linear infinite; font-size: 13px; font-weight: 700; color: #d32f2f; }
+        @keyframes marqueeScroll { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-        section, div[id="subjects-container"] > div, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .details-grid, .fame-box, .cert-section, .new-feature-section {
-            width: 100%;
-            padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); 
-            margin: 0;
-            border-bottom: 1px solid var(--border-color);
-            background: white;
-            box-sizing: border-box;
-        }
+        .info-area { padding: 15px 20px 0 20px; }
+        .info-wrapper { max-width: 1450px; margin: 0 auto; width: 100%; padding: 5px 0; }
+        .info-header { font-size: 15px; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; color: var(--primary-blue); text-transform: uppercase; }
+        .info-list { list-style: none; padding: 0; margin: 0; }
+        .info-list li { font-size: 12px; color: #475569; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+        .info-list li i { color: var(--accent-orange); margin-top: 3px; font-size: 10px; }
 
-        /* WELCOME SECTION */
-        .welcome-section { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            flex-wrap: nowrap; 
-            gap: 5px; 
-            background: white; 
-            border-bottom: 1px solid rgba(0,0,139,0.1);
-            padding-top: 6px !important;
-            padding-bottom: 6px !important;
-        }
-        .welcome-content { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
-        .welcome-text h1 { margin: 0; font-size: clamp(10px, 2.5vw, 14px); font-weight: 900; color: #1e293b; white-space: nowrap; }
-        .student-name { color: var(--primary-blue); font-weight: 900; }
-        .class-badge { font-size: clamp(8px, 1.8vw, 11px); font-weight: 800; color: #475569; text-transform: uppercase; border-left: 1px solid #cbd5e1; padding-left: 8px; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
-        .premium-status { display: flex; align-items: center; gap: 4px; font-size: clamp(7.5px, 1.6vw, 8.5px); font-weight: 900; color: var(--accent-orange); background: #fff7ed; padding: 2px 6px; border-radius: 50px; border: 1px solid #ffedd5; white-space: nowrap; }
-        .premium-status i { animation: pulseIcon 2s infinite; }
-        @keyframes pulseIcon { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        .selection-area { padding: 15px 20px; }
+        .selection-wrapper { max-width: 1450px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .horizontal-section { background: white; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; border: 2px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: all 0.3s ease; cursor: pointer; }
+        .horizontal-section.active-path { border-color: var(--primary-blue); background: #f0f7ff; }
+        .section-info h3 { margin: 0; font-size: 14px; color: var(--primary-blue); font-weight: 900; display: flex; align-items: center; gap: 10px; }
+        .step-badge { background: var(--primary-blue); color: white; font-size: 9px; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; margin-right: 5px; }
+        .section-info p { margin: 3px 0 0 0; font-size: 11px; color: #64748b; }
+        .btn-register { background: var(--primary-blue); color: white; border: none; padding: 8px 22px; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 11px; }
+        .btn-join-blink { background: #ff5722; animation: blink 1.2s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
 
-        /* STATS CONTAINER */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: clamp(3px, 0.8vw, 6px);
-            background: white;
-            padding-top: 5px !important;
-            padding-bottom: 5px !important;
-        }
-        .stat-box { 
-            background: transparent;
-            padding: 4px 1px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            border: none;
-        }
-        .stat-box i { font-size: 11px; color: var(--primary-blue); margin-bottom: 1px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
-        .stat-label { font-size: 6px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 0px; }
-        .stat-value { font-family: 'Inter', sans-serif; font-size: clamp(9px, 1.5vw, 11px); font-weight: 900; color: var(--text-dark); }
-        .stat-box.highlight i { color: var(--accent-orange); }
-        .stat-box.highlight .stat-value { color: var(--accent-orange); }
+        .registration-box { display: none; width: 100%; margin-top: 10px; padding-bottom: 15px; }
+        .registration-box.show { display: block !important; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* DAILY CHALLENGE SECTION */
-        .daily-challenge-box {
-            background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
-            border: 1px solid #fef3c7;
-            display: flex; align-items: center; justify-content: space-between; gap: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            margin: 10px 0;
-        }
-        .challenge-info { display: flex; align-items: center; gap: 15px; }
-        .challenge-icon { font-size: 24px; color: var(--accent-orange); animation: bounceIcon 2s infinite; }
-        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        .challenge-text h4 { margin: 0; font-size: 14px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
-        .challenge-text p { margin: 2px 0 0 0; font-size: 11px; color: #64748b; font-weight: 600; line-height: 1.4; }
-        .btn-challenge { 
-            background: var(--accent-orange); 
-            color: white; 
-            text-decoration: none; 
-            padding: 8px 20px; 
-            border-radius: 8px; 
-            font-size: 10px; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            box-shadow: 0 4px 10px rgba(255,165,0,0.25);
-            transition: 0.3s;
-            white-space: nowrap;
-        }
+        .verify-container { display: flex; flex-direction: column; background: #fff; padding: 12px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 2px solid var(--border-color); max-width: 500px; margin: 0 auto 15px auto; }
+        .verify-row { display: flex; align-items: center; gap: 10px; width: 100%; }
+        .verify-input-group { flex: 1; position: relative; display: flex; align-items: center; }
+        .verify-input-group i { position: absolute; left: 10px; color: var(--primary-blue); font-size: 16px; }
+        .verify-input-group input { width: 100%; padding: 10px 10px 10px 35px; border: 2px solid #f1f5f9; border-radius: 8px; font-size: 14px; font-weight: 700; background: #f8fafc; }
+        .btn-verify { background: linear-gradient(135deg, var(--primary-blue) 0%, #0000cd 100%); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 900; text-transform: uppercase; cursor: pointer; font-size: 11px; box-shadow: 0 3px 0 #000044; transition: 0.2s; }
+        .btn-verify:active { transform: translateY(2px); box-shadow: none; }
+        .verify-error-box { display: none; margin-top: 10px; padding: 10px; background: #fff5f5; border: 1px solid #feb2b2; border-radius: 8px; color: var(--error-red); font-size: 11px; font-weight: 700; }
 
-        /* SRM BANNER */
-        .srm-banner {
-            display: flex;
-            align-items: center;
-            gap: clamp(10px, 2vw, 20px);
-            background: linear-gradient(to right, #fff, #f9fbff);
-            position: relative;
-            flex-wrap: wrap;
-        }
-        .srm-banner::before { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--primary-blue); }
-        .srm-icon-box { width: clamp(35px, 6vw, 50px); height: clamp(35px, 6vw, 50px); background: #f0f7ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: clamp(16px, 2vw, 20px); color: var(--primary-blue); flex-shrink: 0; border: 1px solid #e0efff; }
+        .form-header { text-align: center; margin-bottom: 15px; padding: 5px 0; }
+        .form-title { color: var(--primary-blue); font-size: 18px; font-weight: 900; border-bottom: 3px solid var(--accent-orange); display: inline-block; text-transform: uppercase; }
+        .form-section { margin-bottom: 15px; padding: 20px; background: #ffffff; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .section-name { color: var(--primary-blue); font-size: 13px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
         
-        .srm-main-container { display: flex; flex: 1; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .srm-content { flex: 2; min-width: 250px; }
-        .srm-title { font-size: clamp(11px, 2vw, 14px); font-weight: 900; color: var(--primary-blue); margin-bottom: 1px; text-transform: uppercase; }
-        .srm-desc { font-size: clamp(8px, 1.5vw, 10.5px); color: #64748b; line-height: 1.4; font-family: 'Inter'; margin: 0; text-align: justify; }
+        .registration-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 10px; font-weight: 800; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
+        .form-group input, .form-group select { padding: 10px 12px; border: 2px solid #f1f5f9; border-radius: 8px; font-size: 13px; background-color: #f8fafc; color: #1e293b; }
+        .dob-container { display: grid; grid-template-columns: 1fr 2fr 1.5fr; gap: 5px; }
+
+        .box-selector { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+        .box-option { position: relative; width: fit-content; }
+        .box-option input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+        .box-label { display: inline-block; padding: 4px 10px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 9px; font-weight: 800; text-align: center; cursor: pointer; min-width: 45px; transition: 0.2s; }
+        .box-option input:checked + .box-label { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+
+        .review-area { background: white; border-radius: 16px; padding: 20px; border: 2px solid var(--primary-blue); margin-bottom: 15px; display: none; width: 100%; max-width: 1450px; margin: 0 auto; }
+        .review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .review-item { border-bottom: 1px solid #eee; padding: 5px 0; }
+        .review-label { font-size: 8px; color: #64748b; font-weight: 800; text-transform: uppercase; }
+        .review-value { font-size: 12px; color: var(--primary-blue); font-weight: 700; }
+
+        .status-container { width: 100%; display: none; padding: 25px; text-align: center; background: white; border-radius: 12px; border: 3px dashed var(--border-color); margin-top: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .status-loading-text { font-weight: 900; color: var(--primary-blue); font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         
-        .srm-contact-hd-text { 
-            flex: 1;
-            min-width: 220px;
-            display: flex; 
-            flex-direction: column; 
-            gap: 8px;
-            align-items: flex-start;
-            border-left: 1.5px solid rgba(0,0,139,0.1);
-            padding-left: 15px;
-        }
-        .srm-contact-hd-text div { display: flex; align-items: baseline; gap: 8px; }
-        .srm-contact-hd-text .label { color: #1e293b; font-size: 9px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
-        .srm-contact-hd-text .value { 
-            color: var(--gold-metallic); 
-            font-weight: 900; 
-            font-size: 15px; 
-            font-family: 'Roboto Slab', serif;
-            letter-spacing: 0.3px;
-            text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.1);
-            -webkit-font-smoothing: antialiased;
-        }
+        .cred-item { font-weight: 900; color: var(--error-red); text-transform: uppercase; font-size: 20px; letter-spacing: 1px; }
+        .action-row { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
+        .btn-action { padding: 12px 25px; border-radius: 12px; font-weight: 900; font-size: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .wa-btn { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; }
+        .wa-btn i { font-size: 32px; }
+        .dl-btn { background: #ffffff; color: #475569; border: 2px solid #e2e8f0; }
+        .home-btn { background: var(--primary-blue); color: white; }
+        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 
-        /* ACHIEVEMENTS */
-        .achievements-premium {
-            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
-            color: white;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .achiever-header { flex: 1 1 180px; }
-        .achiever-header h3 { margin: 0; font-size: clamp(13px, 2.8vw, 16px); font-weight: 900; color: var(--accent-yellow); text-transform: uppercase; display: flex; align-items: center; gap: 4px; }
-        .achiever-header p { margin: 1px 0 0 0; font-size: clamp(8.5px, 1.6vw, 10px); opacity: 0.8; font-family: 'Inter'; }
-        .badge-row { display: flex; gap: clamp(5px, 1.2vw, 15px); flex: 2 1 280px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
-        .badge-unit { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-        .badge-glow { width: clamp(28px, 4.5vw, 38px); height: clamp(28px, 4.5vw, 38px); border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: clamp(12px, 2.2vw, 16px); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        .badge-unit.active .badge-glow { background: linear-gradient(135deg, #fceabb 0%, #f8b500 50%, #fceabb 100%); color: var(--primary-blue); border-color: #fff; }
-        .badge-lbl { font-size: clamp(6.5px, 1.4vw, 7.5px); font-weight: 800; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+        .security-wrapper { max-width: 1450px; margin: 15px auto; padding: 0 20px; }
+        .security-box { background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%); border-radius: 16px; padding: 20px; border: 1px solid #dbeafe; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
+        .security-header { color: var(--primary-blue); font-size: 18px; font-weight: 900; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; border-bottom: 2px solid var(--accent-orange); padding-bottom: 8px; width: fit-content; }
+        .security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .security-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.7); padding: 12px; border-radius: 12px; border: 1px solid #edf2f7; }
+        .security-item i { color: var(--primary-blue); font-size: 16px; margin-top: 2px; }
+        .security-item p { margin: 0; font-size: 11px; font-weight: 700; color: #334155; line-height: 1.5; }
 
-        /* SUBJECT PANES */
-        .subject-pane { background: white; padding-bottom: 15px !important; }
-        .sub-head-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .sub-head-row i { font-size: clamp(20px, 3.5vw, 26px); color: var(--accent-orange); }
-        .sub-head-row h3 { font-size: clamp(18px, 3.5vw, 22px); font-weight: 900; color: var(--primary-blue); margin: 0; }
-        .sub-inspiration { padding: 0 0 15px 0; font-size: clamp(12px, 2.2vw, 14px); line-height: 1.6; color: #334155; text-align: justify; font-weight: 500; }
-        
-        .item-row { background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-bottom: 6px; width: 100%; transition: 0.3s ease; }
-        .item-top { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; width: 100%; flex-wrap: nowrap; }
-        .item-month { font-weight: 900; color: var(--danger-red); font-size: 10px; text-transform: uppercase; flex: 0 0 auto; min-width: 80px; text-align: left; }
-        .item-meta { display: flex; gap: 10px; align-items: center; color: var(--primary-blue); font-size: 8.5px; font-weight: 900; flex: 1; justify-content: center; }
-        .item-meta span { background: #e0f2fe; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
-        .item-scores { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; justify-content: flex-end; }
-        .score-lbl { font-size: 9px; font-weight: 800; color: #64748b; margin-right: 4px; }
-        .box-grid { display: flex; gap: 4px; }
-        .box-unit { width: 30px; height: 24px; border: 1.2px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 10px; }
-        
-        .item-bottom { background: var(--topic-bg); padding: 8px 18px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #bae6fd; width: 100%; }
-        .item-topic-name { font-size: 12px; font-weight: 800; text-align: left; }
-        .btn-take { background: var(--primary-blue); color: white; text-decoration: none; padding: 4px 15px; border-radius: 5px; font-size: 8.5px; font-weight: 900; text-transform: uppercase; transition: 0.3s; margin-left: auto; }
+        .submit-container { display: flex; justify-content: center; width: 100%; margin-top: 10px; gap: 10px; }
+        .review-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 25px; font-size: 11px; font-weight: 900; border-radius: 50px; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 0 #000044; }
+        .edit-btn { background: #64748b; color: white; border: none; padding: 10px 20px; font-size: 10px; font-weight: 800; border-radius: 50px; cursor: pointer; text-transform: uppercase; }
 
-        /* STATUS PANEL */
-        .status-panel { background: white; padding-top: 15px !important; padding-bottom: 15px !important; }
-        .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; flex-wrap: wrap; gap: 6px; }
-        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; }
-        .progress-card { background: #f8fafc; padding: 10px; border-radius: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #e2e8f0; }
-        .subj-icon { width: 32px; height: 32px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--primary-blue); flex-shrink: 0; }
-        .subj-info { flex: 1; }
-        .subj-meta { display: flex; justify-content: space-between; margin-bottom: 3px; }
-        .subj-name { font-size: 11px; font-weight: 800; }
-        .bar-container { width: 100%; height: 5px; background: #e2e8f0; border-radius: 8px; overflow: hidden; }
-        .bar-fill { height: 100%; background: linear-gradient(to right, var(--primary-blue), #3b82f6); transition: width 1s ease-in-out; }
+        footer { background: var(--primary-blue); color: white; padding: 25px 20px 15px 20px; border-top: 4px solid var(--accent-orange); margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; max-width: 1450px; margin: 0 auto; text-align: left; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; }
+        .footer-column p, .footer-column a { font-size: 11px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 10px; margin-bottom: 8px; line-height: 1.4; font-weight: 600; }
+        .footer-column a:hover { color: var(--accent-yellow); text-decoration: underline; }
+        .social-icons { display: flex; gap: 15px; margin: 10px 0; }
+        .social-icons a { font-size: 20px; color: white; }
 
-        /* PERFORMANCE ANALYSIS */
-        .performance-analysis {
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px;
-            background: #fff;
-        }
-        .rank-card {
-            background: linear-gradient(135deg, var(--primary-blue), #000050);
-            border-radius: 15px; padding: 20px; color: white; text-align: center;
-        }
-        .rank-number { font-size: 36px; font-weight: 900; color: var(--accent-yellow); margin: 10px 0; font-family: 'Bebas Neue'; }
-        
-        .recent-activity { flex: 1; }
-        .activity-header { font-size: 13px; font-weight: 900; color: var(--primary-blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .activity-list { list-style: none; padding: 0; margin: 0; }
-        .activity-item { 
-            background: #f8fafc; padding: 8px 15px; border-radius: 10px; margin-bottom: 6px; 
-            display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0;
-        }
-        .act-name { font-size: 11px; font-weight: 800; color: var(--text-dark); }
-        .act-date { font-size: 9px; color: #64748b; font-weight: 600; }
-        .act-score { font-size: 11px; font-weight: 900; color: var(--success-green); }
-
-        /* DOWNLOAD CERTIFICATE */
-        .cert-section {
-            background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
-            display: flex; align-items: center; justify-content: space-between; gap: 15px;
-            padding-top: 20px !important; padding-bottom: 20px !important;
-        }
-        .cert-content { flex: 1; }
-        .cert-title { font-size: 18px; font-weight: 900; color: var(--primary-blue); margin-bottom: 6px; text-transform: uppercase; }
-        .cert-points { list-style: none; padding: 0; margin: 0; }
-        .cert-points li { font-size: 11px; font-weight: 700; color: #475569; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; line-height: 1.4; }
-        .btn-download { background: linear-gradient(135deg, var(--accent-orange), #ff8c00); color: var(--primary-blue); text-decoration: none; padding: 10px 25px; border-radius: 12px; font-weight: 900; font-size: 12px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(255,165,0,0.25); text-transform: uppercase; transition: 0.3s; }
-
-        /* DETAILS GRID */
-        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: white; padding: 20px clamp(15px, 5vw, 40px) !important; }
-        .details-card { padding: 10px 0 !important; border-right: 1px solid var(--border-color); margin: 0 10px; }
-        .details-card:last-child { border-right: none; }
-        .details-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .details-header i { width: 32px; height: 32px; background: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 16px; }
-        .details-header h2 { font-size: 16px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.5px; }
-        .field-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .value-box { background: #f8fafc; padding: 8px 12px; border-radius: 10px; border: 1px solid #f1f5f9; display: flex; align-items: center; gap: 12px; }
-        .value-box.full { grid-column: span 2; }
-        .value-box i { font-size: 14px; color: var(--primary-blue); width: 20px; text-align: center; flex-shrink: 0; }
-        .value-text { font-size: 12px; font-weight: 800; color: var(--text-dark); font-family: 'Inter', sans-serif; word-break: break-word; }
-
-        /* PARENTS CORNER SECTION */
-        .parents-corner {
-            background: #fdf2f2; border-top: 3px solid var(--danger-red);
-            display: flex; flex-direction: column; gap: 10px;
-        }
-        .parents-header { font-size: 14px; font-weight: 900; color: var(--danger-red); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .parents-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .p-stat { background: white; padding: 10px 15px; border-radius: 8px; border: 1px solid #fee2e2; }
-        .p-lbl { font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; }
-        .p-val { font-size: 13px; font-weight: 900; color: var(--text-dark); margin-top: 2px; }
-
-        /* STATE TOPPERS - MODIFIED WITH GOLD SCROLL AND FIREWORKS */
-        .fame-box { padding: 25px 0; background: white; width: 100%; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
-        .fame-track { display: flex; gap: 15px; width: max-content; animation: liveScroll 85s linear infinite; padding: 10px 0; }
-        
-        .topper-unit { 
-            background: white; 
-            border: 2px solid #bae6fd; 
-            width: 290px; 
-            min-height: 330px; 
-            flex-shrink: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            position: relative; 
-            overflow: hidden; 
-            border-radius: 15px;
-            /* GOLD SCROLL EFFECT BACKGROUND */
-            background-image: linear-gradient(135deg, #fff 0%, #fff 40%, rgba(255, 215, 0, 0.1) 50%, #fff 60%, #fff 100%);
-            background-size: 200% 200%;
-            animation: goldScrollBG 5s infinite linear;
-        }
-        @keyframes goldScrollBG { 0% { background-position: -100% -100%; } 100% { background-position: 100% 100%; } }
-
-        .rank-badge { position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg, var(--primary-blue), #3b82f6); color: white; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 900; z-index: 10; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .topper-photo { width: 75px; height: 75px; border-radius: 50%; border: 3px solid var(--accent-orange); object-fit: cover; margin-bottom: 12px; z-index: 5; position: relative; }
-        .topper-score { font-size: 13px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 6px 15px; border-radius: 40px; margin-top: 8px; border: 1px solid var(--success-green); width: 80%; z-index: 5; position: relative; }
-        .congrats-txt { font-size: 18px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; margin-bottom: 8px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite, congratsPulse 1.5s ease-in-out infinite alternate; z-index: 5; position: relative; }
-
-        /* LIVE FIREWORKS INSIDE CARD */
-        .card-firework-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .mini-rocket { position: absolute; bottom: -20px; width: 2px; height: 10px; background: var(--accent-orange); opacity: 0; animation: rocketFlight 3s infinite; }
-        .mini-burst { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: burstPop 3s infinite; }
-        
-        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-150px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-orange); } 70% { opacity: 0; transform: scale(3); } 100% { opacity: 0; } }
-
-        /* FOOTER */
-        footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1450px; margin: 0 auto; text-align: left; }
-        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 10.5px; text-transform: uppercase; align-self: flex-start; }
-        .footer-column p, .footer-column a { font-size: 10.5px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; line-height: 1.4; font-weight: 600; }
-        .social-icons { display: flex; gap: 10px; margin: 5px 0; }
-        .social-icons a { font-size: 18px; color: white; }
-
+        /* MOBILE OPTIMIZATIONS - UPDATED FOR CENTERED LOGO */
         @media (max-width: 850px) {
-            header { flex-direction: column; height: auto; padding: 8px 10px; text-align: center; gap: 5px; }
-            header .header-left { flex-direction: column; align-items: center; width: 100%; gap: 3px; }
-            header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 5px; flex-wrap: wrap; }
-            
-            .welcome-section { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; padding: 4px 12px; }
-            .welcome-text h1 { font-size: clamp(8.5px, 3.2vw, 12px); }
-            
-            .performance-analysis { grid-template-columns: 1fr; }
-            .srm-banner { flex-direction: column; text-align: center; padding: 15px 10px; }
-            .srm-icon-box { margin: 0 auto 10px auto; }
-            
-            .srm-main-container { flex-direction: column; gap: 10px; text-align: center; }
-            .srm-contact-hd-text { border-left: none; padding-left: 0; align-items: center; border-top: 1px dashed rgba(0,0,139,0.1); padding-top: 10px; margin-top: 5px; width: 100%; }
-            .srm-contact-hd-text div { align-items: center; }
-
-            .cert-section { flex-direction: column; text-align: center; gap: 15px; }
-            .btn-download { width: 100%; justify-content: center; }
-
-            .item-top { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; }
-            .item-month { flex: 0 0 auto; min-width: 50px; text-align: left; font-size: 7.5px; }
-            .item-meta { flex: 1; justify-content: center; gap: 3px; font-size: 5.5px; }
-            .item-scores { flex: 0 0 auto; justify-content: flex-end; }
+            header { flex-direction: column; height: auto; padding: 20px 15px; text-align: center; gap: 15px; }
+            header .header-left { flex-direction: column; align-items: center; justify-content: center; width: 100%; text-align: center; gap: 10px; }
+            header .header-left div { display: flex; flex-direction: column; align-items: center; }
+            header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 15px; flex-wrap: wrap; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-column { align-items: center; }
+            .registration-form, .review-grid, .security-grid { grid-template-columns: 1fr !important; }
+            .horizontal-section { flex-direction: column; gap: 10px; text-align: center; }
         }
-
-        /* CARD FIREWORKS ANIMATIONS */
-        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-150px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-orange); } 70% { opacity: 0; transform: scale(3); } 100% { opacity: 0; } }
-        @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
 <body>
@@ -394,424 +150,247 @@
     <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner">
     <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner-right">
     <div class="header-left">
-        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" alt="SV Logo" class="logo">
+        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="logo">
         <div>
             <div class="main-title">Student Vision Talent Competition</div>
-            <div class="sub-title">3<sup>rd</sup> Class Students</div>
+            <div class="sub-title">“See Your Success”</div>
         </div>
     </div>
     <div class="header-right">
         <div class="menu-item"><a href="#"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
-        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
+        <div class="menu-item"><a href="javascript:void(0)" onclick="toggleForm('paid')"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
         <div class="menu-item"><a href="#"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
         <div class="menu-item"><a href="#"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
         <div class="menu-item"><a href="#"><i class="fa-solid fa-tags icon"></i><span class="icon-label">Pricing</span></a></div>
     </div>
 </header>
 
-<main>
-    <!-- WELCOME DASHBOARD SECTION -->
-    <div class="welcome-section">
-        <div class="welcome-content">
-            <div class="welcome-text">
-                <h1>Welcome, <span class="student-name">Student Vision</span>! 👋</h1>
-            </div>
-            <div class="class-badge">
-                <i class="fa-solid fa-star" style="color:var(--accent-orange)"></i> 3<sup>rd</sup> Class
-            </div>
-        </div>
-        <div class="premium-status">
-            <i class="fa-solid fa-crown"></i>
-            <span>GOLD</span>
-        </div>
-    </div>
+<div class="marquee-container"><div class="marquee-text">Please register carefully with correct details. You will receive a WhatsApp message with all login details after registration. Review your information before final submission.</div></div>
 
-    <!-- STATS CONTAINER SECTION - MINI 5 ICONS -->
-    <div class="stats-container">
-        <div class="stat-box">
-            <i class="fa-solid fa-stopwatch"></i>
-            <span class="stat-label">SESSION</span>
-            <span class="stat-value" id="timer">00:00:45</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span class="stat-label">LOGINS</span>
-            <span class="stat-value">14</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-hourglass-half"></i>
-            <span class="stat-label">TOTAL TIME</span>
-            <span class="stat-value">128h</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-tasks"></i>
-            <span class="stat-label">TESTS DONE</span>
-            <span class="stat-value">45/120</span>
-        </div>
-        <div class="stat-box highlight">
-            <i class="fa-solid fa-star"></i>
-            <span class="stat-label">TC SCORE</span>
-            <span class="stat-value">92%</span>
-        </div>
+<div class="info-area">
+    <div class="info-wrapper">
+        <div class="info-header"><i class="fa-solid fa-circle-exclamation"></i> Important Instructions</div>
+        <ul class="info-list">
+            <li><i class="fa-solid fa-circle-chevron-right"></i> Unpaid students should register first in Step 1. Our team will contact you.</li>
+            <li><i class="fa-solid fa-circle-chevron-right"></i> Register carefully and enter correct information.</li>
+            <li><i class="fa-solid fa-circle-chevron-right"></i> Choose the correct section and class while registering.</li>
+            <li><i class="fa-solid fa-circle-chevron-right"></i> After payment, register only under Step 2: Paid Students.</li>
+            <li><i class="fa-solid fa-circle-chevron-right"></i> Second-time joining students should submit details only after payment.</li>
+            <li><i class="fa-solid fa-circle-chevron-right"></i> Review all details before final submission to ensure data accuracy.</li>
+        </ul>
     </div>
+</div>
 
-    <!-- DAILY CHALLENGE SECTION -->
-    <div class="new-feature-section daily-challenge-box">
-        <div class="challenge-info">
-            <i class="fa-solid fa-lightbulb challenge-icon"></i>
-            <div class="challenge-text">
-                <h4>Question of the Day</h4>
-                <p>If today is Monday, what will be the day after tomorrow? Solve to earn 5 Vision Coins!</p>
-            </div>
-        </div>
-        <a href="#" class="btn-challenge">Solve Now</a>
-    </div>
-
-    <!-- SECTION: Dedicated Student Relationship Manager (SRM) -->
-    <div class="srm-banner">
-        <div class="srm-icon-box">
-            <i class="fa-solid fa-user-tie"></i>
-        </div>
-        <div class="srm-main-container">
-            <div class="srm-content">
-                <div class="srm-title">Dedicated Student Relationship Manager (SRM)</div>
-                <p class="srm-desc">
-                    We are committed to your success! Your dedicated Student Relations Manager (SRM) acts as a bridge between you and academic excellence, providing tailored roadmaps, consistent guidance for competitive preparation, and swift resolution to any technical or subscription-related queries. We believe every student has a unique vision; your SRM is here to ensure that vision translates into a reality.
-                </p>
-            </div>
-            <!-- HD BLOCK TEXT FOR INFO -->
-            <div class="srm-contact-hd-text">
-                <div>
-                    <span class="label">Manager Name :</span>
-                    <span class="value">Sri Veda TC</span>
+<div class="selection-area">
+    <div class="selection-wrapper">
+        <!-- STEP 1 -->
+        <div id="step1_block">
+            <div class="horizontal-section" id="unpaidSection" onclick="toggleForm('unpaid')">
+                <div class="section-info">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> <span class="step-badge">UN-PAID</span> Unpaid Students / Enquiry</h3>
+                    <p>Register here for more information or enquiry.</p>
                 </div>
-                <div>
-                    <span class="label">Direct Contact :</span>
-                    <span class="value">8985170500</span>
-                </div>
+                <button class="btn-register btn-join-blink">Join</button>
             </div>
-        </div>
-    </div>
-
-    <!-- MASTERY BADGES SECTION -->
-    <div class="achievements-premium">
-        <div class="achiever-header">
-            <h3><i class="fa-solid fa-medal"></i> Mastery Badges</h3>
-            <p>Perform well in tests to unlock academic badges.</p>
-        </div>
-        <div class="badge-row">
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-book-open"></i></div>
-                <span class="badge-lbl">Literacy</span>
-            </div>
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-square-root-variable"></i></div>
-                <span class="badge-lbl">Math Guru</span>
-            </div>
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-lightbulb"></i></div>
-                <span class="badge-lbl">Logic</span>
-            </div>
-            <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-microchip"></i></div>
-                <span class="badge-lbl">Tech Wiz</span>
-            </div>
-            <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-earth-asia"></i></div>
-                <span class="badge-lbl">EVS Pro</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- SUBJECT WISE TESTS SECTION (All 10 Subjects) -->
-    <div id="subjects-container">
-        <script>
-            const subjectsData = [
-                { id: 1, name: "English", icon: "fa-book", time: "30 MINS", 
-                  passage: "English is the global key that unlocks endless opportunities for class 3 students! Building a strong foundation in phonics, reading, and vocabulary at this early stage is absolutely essential for long-term academic excellence. Elite entrance examinations like Navodaya and Sainik Schools place a massive emphasis on English proficiency. By mastering these 10 core topics, children develop the critical thinking skills needed to understand complex texts and communicate effectively. In the future, this literacy will empower you to shine on international platforms, excel in high-stakes interviews, and become a global leader.",
-                  topics: ["Alphabet Revision", "Phonics Sounds", "New Words (Vocabulary)", "Opposite Words", "Nouns", "Verbs", "Articles (a, an, the)", "Simple Sentences", "Reading Short Stories", "Speaking Simple English"] },
-                { id: 2, name: "Mathematics", icon: "fa-calculator", time: "30 MINS", 
-                  passage: "Mathematics is the secret language of logic and the universe! For a class 3 student, playing with numbers builds a brain that is exceptionally fast and sharp. These 10 essential topics are modeled after International Math Olympiads (IMO) and prestigious scholarship foundation exams. Why is this section a must? Because a strong grip on addition, shapes, and multiplication tables today creates a 'Math Brain' that solves real-world problems 10x faster than others.",
-                  topics: ["Numbers up to 1000", "Place Value", "Addition", "Subtraction", "Multiplication Tables", "Division", "Shapes", "Measurement", "Time & Clock", "Word Problems"] },
-                { id: 3, name: "Environmental Studies (EVS)", icon: "fa-earth-asia", time: "30 MINS", 
-                  passage: "Knowing about our world makes class 3 students wise global explorers! Environmental Studies (EVS) helps children understand how nature works and our role in protecting it. This subject is the early foundation for high-level competitive exams like the UPSC Civil Services. Learning about plants, animals, and our neighbourhood makes you an informed and responsible citizen from a young age.",
-                  topics: ["Myself", "My Family", "My School", "Plants Around Us", "Animals Around Us", "Food We Eat", "Water", "Air", "Our Neighbourhood", "Cleanliness"] },
-                { id: 4, name: "General Knowledge (GK)", icon: "fa-trophy", time: "30 MINS", 
-                  passage: "General Knowledge is the light that illuminates the path to leadership! For a 3rd-grade student, staying aware of our national symbols, leaders, and sports is the first step toward becoming a global influencer. This section is a crucial part of all competitive foundation courses.",
-                  topics: ["India – Our Country", "National Symbols", "Our Leaders", "Festivals", "Animals & Birds", "Sports", "Important Days", "Famous Places", "World Facts", "Current GK"] },
-                { id: 5, name: "Technical Knowledge", icon: "fa-laptop-code", time: "30 MINS", 
-                  passage: "Welcome to the era of digital superpowers! In the modern world, digital literacy is as critical as reading and writing. For a class 3 student, understanding computer parts, keyboard functions, and internet safety is the key to staying ahead in the 21st century.",
-                  topics: ["What is a Computer?", "Parts of a Computer", "Uses of Computer", "Keyboard Keys", "Mouse Functions", "Monitor, CPU, Printer", "Starting & Shutting Down", "Drawing in Paint", "Computer Safety", "Internet Safety"] },
-                { id: 6, name: "Logical Reasoning", icon: "fa-brain", time: "30 MINS", 
-                  passage: "Logical Reasoning is the ultimate mental gymnasium for your brain! Great detectives, scientists, and engineers use logic to solve the world's toughest mysteries, and you can too. Practice patterns and recognition skills.",
-                  topics: ["Big & Small", "Same & Different", "Odd One Out", "Number Patterns", "Shape Patterns", "Find the Missing Number", "Picture Reasoning", "Matching", "Simple Puzzles", "Think & Answer"] },
-                { id: 7, name: "Mental Ability / Intelligence", icon: "fa-head-side-virus", time: "30 MINS", 
-                  passage: "Unlock the hidden potential of your mind with Brain Gymnastics! Mental Ability exercises boost your memory, focus, and visual processing speed. Students who excel in this category at a young age consistently become the top scorers.",
-                  topics: ["Memory Games", "Observation Skills", "Find the Differences", "Identify Pictures", "Quick Thinking", "Sorting Objects", "Matching Shadows", "Colour Patterns", "Simple Riddles", "Fun IQ Activities"] },
-                { id: 8, name: "Art & Craft", icon: "fa-palette", time: "30 MINS", 
-                  passage: "Creativity is the most valuable currency in the future world! For a class 3 student, Art & Craft is not just about drawing; it is about building fine motor skills and creative thinking. Completing these 10 projects builds your patience.",
-                  topics: ["Free Hand Drawing", "Colouring", "Paper Folding", "Paper Cutting", "Clay Modelling", "Leaf Art", "Greeting Card Making", "Mask Making", "Best Out of Waste", "Simple Craft Projects"] },
-                { id: 9, name: "Life Skills / Personal Development", icon: "fa-star", time: "30 MINS", 
-                  passage: "Real winners are defined by their character as much as their grades! Personal Development builds your heart and leadership qualities. Success is a habit—start practicing time management today.",
-                  topics: ["Good Manners", "Clean Habits", "Discipline", "Time Management", "Honesty", "Helping Others", "Respect Elders", "Self-Confidence", "Positive Thinking", "Healthy Habits"] },
-                { id: 10, name: "Moral Stories & Values", icon: "fa-book-open", time: "30 MINS", 
-                  passage: "Values are the moral compass that guides every great champion! This subject helps class 3 students build the inner strength needed to face life's challenges with courage and kindness.",
-                  topics: ["Honesty is the Best Policy", "Helping Others", "Kindness", "Sharing is Caring", "Obedience", "Hard Work", "Respect", "Courage", "Truthfulness", "Inspirational Stories"] }
-            ];
-
-            const monthsData = ["JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER", "JANUARY", "FEBRUARY", "MARCH"];
-
-            subjectsData.forEach(sub => {
-                document.write(`
-                <div class="subject-pane">
-                    <div class="sub-head-row">
-                        <i class="fa-solid ${sub.icon}"></i>
-                        <h3>${sub.id}. ${sub.name}</h3>
-                    </div>
-                    <div class="sub-inspiration">${sub.passage}</div>
-                `);
-
-                sub.topics.forEach((topic, idx) => {
-                    document.write(`
-                    <div class="item-row">
-                        <div class="item-top">
-                            <span class="item-month">${monthsData[idx]}</span>
-                            <div class="item-meta">
-                                <span><i class="fa-solid fa-clock"></i> ${sub.time}</span>
-                                <span><i class="fa-solid fa-file-alt"></i> 30 QS</span>
-                                <span><i class="fa-solid fa-star"></i> 30 MARKS</span>
-                            </div>
-                            <div class="item-scores">
-                                <span class="score-lbl">Attempts:</span>
-                                <div class="box-grid">
-                                    <div class="box-unit scored">${idx === 0 ? '28' : '--'}</div>
-                                    <div class="box-unit">--</div>
-                                    <div class="box-unit">--</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-bottom">
-                            <div class="item-topic-name"><span>Topic:</span> ${topic}</div>
-                            <a href="#" class="btn-take">Take Test</a>
+            <div id="unpaidRegistration" class="registration-box">
+                <div class="form-header"><h2 class="form-title">Express Entry</h2></div>
+                <form id="unpaidForm" onsubmit="handleStep1Submit(event)">
+                    <div class="form-section">
+                        <div class="registration-form">
+                            <div class="form-group"><label>Full Name</label><input type="text" name="fullName" required></div>
+                            <div class="form-group"><label>Class</label><select name="class" required><option value="">Select Class</option><option value="3rd Class">3rd Class</option><option value="4th Class">4th Class</option><option value="5th Class">5th Class</option><option value="6th Class">6th Class</option><option value="7th Class">7th Class</option><option value="8th Class">8th Class</option><option value="9th Class">9th Class</option><option value="10th Class">10th Class</option></select></div>
+                            <div class="form-group"><label>Father Name</label><input type="text" name="parentName" required></div>
+                            <div class="form-group"><label>Mobile Number</label><input type="tel" name="mobile" required></div>
+                            <div class="form-group"><label>School Name</label><input type="text" name="schoolName" required></div>
+                            <div class="form-group"><label>Village</label><input type="text" name="village" required></div>
                         </div>
                     </div>
-                    `);
-                });
-
-                document.write(`</div>`);
-            });
-        </script>
-    </div>
-
-    <!-- SUBJECT PROGRESS SECTION -->
-    <div class="status-panel">
-        <div class="status-header">
-            <div>
-                <h2 style="font-size:18px; margin:0; text-transform:uppercase; font-weight: 900; color: var(--primary-blue);">Subject Progress</h2>
-                <p style="font-size: 11px; margin: 2px 0 0 0; color: #64748b; font-family: 'Inter'; font-weight: 600;">Overall Mastery: 42.5%</p>
+                    <div class="submit-container"><button type="submit" class="review-btn">Submit Entry</button></div>
+                </form>
             </div>
-            <div style="text-align: right;">
-                <span style="font-size: 11px; font-weight: 900; color: var(--success-green); text-transform: uppercase;">Level Up in 5 Tests</span>
-            </div>
+            <div id="unpaidStatus" class="status-container"></div>
         </div>
-        
-        <div class="status-grid">
-            <script>
-                const statusItems = [
-                    { name: "English", count: 8, w: "80%", icon: "fa-book" },
-                    { name: "Maths", count: 5, w: "50%", icon: "fa-calculator" },
-                    { name: "GK", count: 3, w: "30%", icon: "fa-globe" },
-                    { name: "EVS", count: 2, w: "20%", icon: "fa-earth-asia" },
-                    { name: "Technical", count: 0, w: "0%", icon: "fa-laptop-code" },
-                    { name: "Logic", count: 0, w: "0%", icon: "fa-brain" },
-                    { name: "Mental", count: 1, w: "10%", icon: "fa-head-side-virus" },
-                    { name: "Art", count: 0, w: "0%", icon: "fa-palette" },
-                    { name: "Life Skills", count: 2, w: "20%", icon: "fa-star" },
-                    { name: "Moral", count: 0, w: "0%", icon: "fa-book-open" }
-                ];
-                statusItems.forEach(item => {
-                    document.write(`
-                    <div class="progress-card">
-                        <div class="subj-icon"><i class="fa-solid ${item.icon}"></i></div>
-                        <div class="subj-info">
-                            <div class="subj-meta">
-                                <span class="subj-name">${item.name}</span>
-                                <span class="subj-count">${item.count}/10</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: ${item.w}"></div>
+
+        <!-- STEP 2 -->
+        <div id="step2_block">
+            <div class="horizontal-section" id="paidSection" onclick="toggleForm('paid')">
+                <div class="section-info">
+                    <h3><i class="fa-solid fa-circle-check"></i> <span class="step-badge">PAID-1</span> Paid Students Registration</h3>
+                    <p>Register here after completing the payment for full access.</p>
+                </div>
+                <button class="btn-register btn-join-blink">Join</button>
+            </div>
+            <div id="paidRegistration" class="registration-box">
+                <div id="paidVerifyBox" class="verify-container">
+                    <div class="verify-row">
+                        <div class="verify-input-group"><i class="fa-solid fa-mobile-screen-button"></i><input type="tel" id="paidVerifyMobile" placeholder="Enter Mobile Number"></div>
+                        <button type="button" id="paidVerifyBtn" class="btn-verify" onclick="verifyNumber('paid')">Verify</button>
+                    </div>
+                    <div id="paidVerifyError" class="verify-error-box"></div>
+                </div>
+                <div id="paidFullForm" style="display: none;">
+                    <div class="form-header"><h2 class="form-title">Paid Full Profile Registration</h2></div>
+                    <form id="paidForm" onsubmit="prepareReview(event, 'paid')">
+                        <!-- Identical 4 sections with 28 total fields -->
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-address-card"></i> Section 1 (Required)</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Full Name</label><input type="text" name="fullName" required></div>
+                                <div class="form-group"><label>Class</label><select name="class" required><option value="">Select...</option><option value="3rd Class">3rd Class</option><option value="4th Class">4th Class</option><option value="5th Class">5th Class</option><option value="6th Class">6th Class</option><option value="7th Class">7th Class</option><option value="8th Class">8th Class</option><option value="9th Class">9th Class</option><option value="10th Class">10th Class</option></select></div>
+                                <div class="form-group"><label>Mobile</label><input type="tel" name="mobile" id="paidActualMobile" readonly required></div>
+                                <div class="form-group"><label>Number Used by</label><select name="numberUsedBy" required><option value="">Select...</option><option value="Self">Self</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Brother">Brother</option><option value="Sister">Sister</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Whatsapp Number</label><div class="box-selector"><div class="box-option"><input type="radio" name="isWa" value="Yes" id="waYes"><label class="box-label" for="waYes">Yes</label></div><div class="box-option"><input type="radio" name="isWa" value="No" id="waNo"><label class="box-label" for="waNo">No</label></div></div></div>
+                                <div class="form-group"><label>Parent Name</label><input type="text" name="parentName" required></div>
+                                <div class="form-group"><label>Gender</label><div class="box-selector"><div class="box-option"><input type="radio" name="gender" value="Male" id="gMale"><label class="box-label" for="gMale">Male</label></div><div class="box-option"><input type="radio" name="gender" value="Female" id="gFemale"><label class="box-label" for="gFemale">Female</label></div></div></div>
                             </div>
                         </div>
-                    </div>
-                    `);
-                });
-            </script>
-        </div>
-    </div>
-
-    <!-- PERFORMANCE ANALYSIS - 4 ITEMS -->
-    <div class="new-feature-section performance-analysis">
-        <div class="rank-card">
-            <span class="rank-label">Your Current Rank</span>
-            <div class="rank-number">#12</div>
-            <p style="font-size: 10px; font-weight: 700; opacity: 0.9;">Top 5% among Class 3 Students!</p>
-        </div>
-        <div class="recent-activity">
-            <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Activity</div>
-            <div class="activity-list">
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">Mathematics - Place Value</span>
-                        <span class="act-date">Completed on 25 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">28/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">English - Nouns</span>
-                        <span class="act-date">Completed on 22 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">25/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">GK - National Symbols</span>
-                        <span class="act-date">Completed on 20 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">29/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">Art - Paper Folding</span>
-                        <span class="act-date">Completed on 18 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">30/30</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DOWNLOAD CERTIFICATE SECTION -->
-    <div class="cert-section">
-        <div class="cert-content">
-            <h2 class="cert-title">Get Your Achievement Certificate!</h2>
-            <ul class="cert-points">
-                <li><i class="fa-solid fa-circle-check"></i> High Value for school level interviews and admissions.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Validates your strong subject grip and background knowledge.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Proof of enhanced logical reasoning and mathematical ability.</li>
-            </ul>
-        </div>
-        <a href="#" class="btn-download">
-            <i class="fa-solid fa-file-pdf"></i> Download
-        </a>
-    </div>
-
-    <!-- STUDENT & SUBSCRIPTION DETAILS SECTION -->
-    <div class="details-grid">
-        <div class="details-card">
-            <div class="details-header">
-                <i class="fa-solid fa-user-graduate"></i>
-                <h2>Student Profile</h2>
-            </div>
-            <div class="field-container">
-                <div class="value-box"><i class="fa-solid fa-id-card"></i><span class="value-text">SVTC3G</span></div>
-                <div class="value-box"><i class="fa-solid fa-user"></i><span class="value-text">Sri Veda Talent Competitions</span></div>
-                <div class="value-box"><i class="fa-solid fa-user-tie"></i><span class="value-text">KVS SWAMY</span></div>
-                <div class="value-box"><i class="fa-solid fa-mobile-screen"></i><span class="value-text">89XXXXXX00</span></div>
-                <div class="value-box"><i class="fa-solid fa-graduation-cap"></i><span class="value-text v-highlight">3<sup>rd</sup> Class</span></div>
-                <div class="value-box"><i class="fa-solid fa-school"></i><span class="value-text">Sri Veda High School</span></div>
-                <div class="value-box full"><i class="fa-solid fa-check-double"></i><span class="value-text v-success">Agreed & Verified <i class="fa-solid fa-circle-check"></i></span></div>
-            </div>
-        </div>
-        <div class="details-card">
-            <div class="details-header">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-                <h2>Subscription Details</h2>
-            </div>
-            <div class="field-container">
-                <div class="value-box full"><i class="fa-solid fa-file-invoice"></i><span class="value-text">Sri Veda Talent Competitions</span></div>
-                <div class="value-box"><i class="fa-solid fa-crown"></i><span class="value-text v-highlight">Gold Student</span></div>
-                <div class="value-box"><i class="fa-solid fa-sign-in-alt"></i><span class="value-text">14 Times Logged</span></div>
-                <div class="value-box"><i class="fa-solid fa-calendar-check"></i><span class="value-text">26-10-2025</span></div>
-                <div class="value-box"><i class="fa-solid fa-calendar-times"></i><span class="value-text">26-11-2026</span></div>
-                <div class="value-box full"><i class="fa-solid fa-hourglass-half"></i><span class="value-text v-danger">170 Days Remaining</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PARENTS CORNER SECTION -->
-    <div class="new-feature-section parents-corner">
-        <div class="parents-header"><i class="fa-solid fa-user-shield"></i> Parents Corner (Weekly Summary)</div>
-        <div class="parents-stats">
-            <div class="p-stat">
-                <span class="p-lbl">Time Spent this week</span>
-                <div class="p-val">12h 45m</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">Logins this week</span>
-                <div class="p-val">05 Logins</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">New Topics Covered</span>
-                <div class="p-val">08 Topics</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">Average Accuracy</span>
-                <div class="p-val">92%</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODIFIED SECTION: STATE TOPPERS (WITH LIVE FIREWORKS AND GOLD SCROLL) -->
-    <div class="fame-box">
-        <div style="border-left: 5px solid var(--accent-orange); padding-left: 15px; margin-bottom: 10px;">
-            <span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform:uppercase; letter-spacing:1px;">SVTC State Level Toppers</span>
-        </div>
-        <div style="width: 100%; overflow: hidden;">
-            <div class="fame-track">
-                <script>
-                    const logoFallback = "https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png";
-                    const topStars = [
-                        { name: "Rohan Sharma", class: "3rd Class", school: "Holy Cross High School", city: "Hyderabad", uid: "SVTC_03_001", score: "99/100", photo: "" },
-                        { name: "Ananya Reddy", class: "4th Class", school: "Little Angels EM School", city: "Visakhapatnam", uid: "SVTC_04_023", score: "98/100", photo: "" },
-                        { name: "P. Karthik", class: "5th Class", school: "Sri Chaitanya School", city: "Vijayawada", uid: "SVTC_05_102", score: "97/100", photo: "" },
-                        { name: "Sneha Latha", class: "6th Class", school: "Narayana Olympiad", city: "Guntur", uid: "SVTC_06_056", score: "96/100", photo: "" },
-                        { name: "Vikas Kumar", class: "7th Class", school: "Government High School", city: "Tirupati", uid: "SVTC_07_089", score: "95/100", photo: "" }
-                    ];
-
-                    function renderStar(p) {
-                        return `
-                        <div class="topper-unit">
-                            <div class="rank-badge">1st Rank</div>
-                            <div class="card-firework-container">
-                                <div class="mini-rocket" style="left: 20%; animation-delay: 0s;"></div>
-                                <div class="mini-burst" style="left: 20%; top: 30%; animation-delay: 1.5s;"></div>
-                                <div class="mini-rocket" style="left: 50%; animation-delay: 1.5s;"></div>
-                                <div class="mini-burst" style="left: 50%; top: 20%; animation-delay: 3s;"></div>
-                                <div class="mini-rocket" style="left: 80%; animation-delay: 0.5s;"></div>
-                                <div class="mini-burst" style="left: 80%; top: 40%; animation-delay: 2s;"></div>
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-school"></i> Section 2 (Optional)</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Date of Birth</label><div class="dob-container"><select name="dob_day"><option value="">Day</option><script>for(let i=1;i<=31;i++)document.write(`<option value="${i}">${i}</option>`)</script></select><select name="dob_month"><option value="">Month</option><option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="May">May</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option></select><select name="dob_year"><option value="">Year</option><script>for(let i=new Date().getFullYear();i>=2000;i--)document.write(`<option value="${i}">${i}</option>`)</script></select></div></div>
+                                <div class="form-group"><label>School Name</label><input type="text" name="schoolName"></div>
+                                <div class="form-group"><label>School City</label><input type="text" name="schoolCity"></div>
+                                <div class="form-group"><label>Medium</label><select name="medium"><option value="">Select...</option><option value="English">English</option><option value="Telugu">Telugu</option><option value="Hindi">Hindi</option></select></div>
+                                <div class="form-group"><label>School Type</label><select name="schoolType"><option value="">Select...</option><option value="Private">Private</option><option value="Government">Government</option><option value="Residential">Residential</option></select></div>
+                                <div class="form-group"><label>Interesting Subject</label><select name="interestingSubject"><option value="">Select...</option><option value="Maths">Maths</option><option value="English">English</option><option value="Telugu">Telugu</option><option value="Science">Science</option><option value="Social">Social</option><option value="EVS">EVS</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Dream / Ambition</label><input type="text" name="ambition"></div>
                             </div>
-                            
-                            <div class="congrats-txt">CONGRATULATIONS!</div>
-                            <img src="${p.photo || logoFallback}" class="topper-photo" onerror="this.src='${logoFallback}'">
-                            
-                            <!-- INFO ORDER: Name -> Username -> Class -> School -> City -> Score -->
-                            <div style="font-size: 16px; font-weight: 900; color: var(--primary-blue); margin-bottom: 4px; z-index: 5;">${p.name}</div>
-                            <div style="font-family: 'Inter'; font-size: 9px; font-weight: 800; color: var(--accent-orange); margin-bottom: 6px; z-index: 5; text-transform: uppercase;">${p.uid}</div>
-                            <div style="font-size: 12px; font-weight: 800; color: #475569; margin-bottom: 4px; z-index: 5;">${p.class}</div>
-                            <div style="font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 2px; z-index: 5;">${p.school}</div>
-                            <div style="font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; z-index: 5;">${p.city}</div>
-                            
-                            <div class="topper-score">Score: ${p.score}</div>
-                        </div>`;
-                    }
-                    let fameHtml = topStars.map(p => renderStar(p)).join('');
-                    document.write(fameHtml + fameHtml);
-                </script>
+                        </div>
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-language"></i> Section 3 (Payment)</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Know English</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowEnglish" value="Yes" id="engYes"><label class="box-label" for="engYes">Yes</label></div><div class="box-option"><input type="radio" name="knowEnglish" value="No" id="engNo"><label class="box-label" for="engNo">No</label></div></div></div>
+                                <div class="form-group"><label>Know Telugu</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowTelugu" value="Yes" id="telYes"><label class="box-label" for="telYes">Yes</label></div><div class="box-option"><input type="radio" name="knowTelugu" value="No" id="telNo"><label class="box-label" for="telNo">No</label></div></div></div>
+                                <div class="form-group"><label>Know Hindi</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowHindi" value="Yes" id="hinYes"><label class="box-label" for="hinYes">Yes</label></div><div class="box-option"><input type="radio" name="knowHindi" value="No" id="hinNo"><label class="box-label" for="hinNo">No</label></div></div></div>
+                                <div class="form-group"><label>Payment Plan</label><select name="paymentPlan" required><option value="">Select...</option><option value="Gold 499 Plan">Gold 499 Plan</option></select></div>
+                                <div class="form-group"><label>Paid Amount</label><input type="number" name="paidAmount" value="499" required></div>
+                                <div class="form-group"><label>Paid From</label><select name="paidFrom" required><option value="">Select...</option><option value="PhonePe">PhonePe</option><option value="Google Pay">Google Pay</option><option value="Paytm">Paytm</option><option value="Cash">Cash</option><option value="Others">Others</option></select></div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-map-location-dot"></i> Section 4</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Village</label><input type="text" name="village"></div>
+                                <div class="form-group"><label>Mandal</label><input type="text" name="mandal"></div>
+                                <div class="form-group"><label>District</label><input type="text" name="district"></div>
+                                <div class="form-group"><label>State</label><input type="text" name="state" value="Andhra Pradesh"></div>
+                                <div class="form-group"><label>Joined Via</label><select name="joinedFrom"><option value="">Select...</option><option value="Class DEMO">Class DEMO</option><option value="Teacher">Teacher</option><option value="Friends">Friends</option><option value="Family">Family</option><option value="Youtube">Youtube</option><option value="Instagram">Instagram</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Reference Name</label><select name="refName"><option value="">Select...</option><option value="K Narasimha Reddy">K Narasimha Reddy</option><option value="B Satya Narayana">B Satya Narayana</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Reference Number</label><input type="tel" name="refNumber"></div>
+                                <div class="form-group" style="grid-column: span 2; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;"><input type="checkbox" name="agreement" value="Agreed" required style="width:18px; height:18px;"><span style="font-size:11px; font-weight: 800;">I AGREE TO <a href="#" style="color: var(--primary-blue); text-decoration: underline;">TERMS & CONDITIONS</a></span></div>
+                            </div>
+                        </div>
+                        <div class="submit-container"><button type="submit" class="review-btn">Review Details</button></div>
+                    </form>
+                </div>
+            </div>
+            <div id="paidReviewBox" class="review-area">
+                <div class="form-header"><h2 class="form-title">Review Information</h2></div>
+                <div id="paidReviewContent" class="review-grid"></div>
+                <div class="submit-container"><button type="button" class="edit-btn" onclick="editForm('paid')">Edit</button><button type="button" class="review-btn" onclick="finalSubmitProcess('paid')">Confirm & Submit</button></div>
+            </div>
+            <div id="paidStatus" class="status-container"></div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="step3_block">
+            <div class="horizontal-section" id="anotherSection" onclick="toggleForm('another')">
+                <div class="section-info">
+                    <h3><i class="fa-solid fa-user-plus"></i> <span class="step-badge">PAID-2</span> Register Another Student</h3>
+                    <p>Register siblings using the same family number.</p>
+                </div>
+                <button class="btn-register btn-join-blink">Join</button>
+            </div>
+            <div id="anotherRegistration" class="registration-box">
+                 <div id="anotherVerifyBox" class="verify-container">
+                    <div class="verify-row">
+                        <div class="verify-input-group"><i class="fa-solid fa-mobile-screen-button"></i><input type="tel" id="anotherVerifyMobile" placeholder="Family Number"></div>
+                        <button type="button" id="anotherVerifyBtn" class="btn-verify" onclick="verifyNumber('another')">Verify</button>
+                    </div>
+                    <div id="anotherVerifyError" class="verify-error-box"></div>
+                </div>
+                <div id="anotherFullForm" style="display: none;">
+                    <div class="form-header"><h2 class="form-title">Additional Student Profile</h2></div>
+                    <form id="anotherForm" onsubmit="prepareReview(event, 'another')">
+                        <!-- SECTION 1-4 EXACTLY SAME AS PAIDFORM -->
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-address-card"></i> Section 1 (Required)</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Full Name</label><input type="text" name="fullName" required></div>
+                                <div class="form-group"><label>Class</label><select name="class" required><option value="">Select...</option><option value="3rd Class">3rd Class</option><option value="4th Class">4th Class</option><option value="5th Class">5th Class</option><option value="6th Class">6th Class</option><option value="7th Class">7th Class</option><option value="8th Class">8th Class</option><option value="9th Class">9th Class</option><option value="10th Class">10th Class</option></select></div>
+                                <div class="form-group"><label>Mobile</label><input type="tel" name="mobile" id="anotherActualMobile" readonly required></div>
+                                <div class="form-group"><label>Number Used by</label><select name="numberUsedBy" required><option value="">Select...</option><option value="Self">Self</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Brother">Brother</option><option value="Sister">Sister</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Whatsapp Number</label><div class="box-selector"><div class="box-option"><input type="radio" name="isWa_3" value="Yes" id="waYes_3"><label class="box-label" for="waYes_3">Yes</label></div><div class="box-option"><input type="radio" name="isWa_3" value="No" id="waNo_3"><label class="box-label" for="waNo_3">No</label></div></div></div>
+                                <div class="form-group"><label>Parent Name</label><input type="text" name="parentName" required></div>
+                                <div class="form-group"><label>Gender</label><div class="box-selector"><div class="box-option"><input type="radio" name="gender_3" value="Male" id="gMale_3"><label class="box-label" for="gMale_3">Male</label></div><div class="box-option"><input type="radio" name="gender_3" value="Female" id="gFemale_3"><label class="box-label" for="gFemale_3">Female</label></div></div></div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-school"></i> Section 2 (Optional)</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>DOB</label><div class="dob-container"><select name="dob_day"><option value="">Day</option><script>for(let i=1;i<=31;i++)document.write(`<option value="${i}">${i}</option>`)</script></select><select name="dob_month"><option value="">Month</option><option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="May">May</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option></select><select name="dob_year"><option value="">Year</option><script>for(let i=new Date().getFullYear();i>=2000;i--)document.write(`<option value="${i}">${i}</option>`)</script></select></div></div>
+                                <div class="form-group"><label>School Name</label><input type="text" name="schoolName"></div>
+                                <div class="form-group"><label>School City</label><input type="text" name="schoolCity"></div>
+                                <div class="form-group"><label>Medium</label><select name="medium"><option value="">Select...</option><option value="English">English</option><option value="Telugu">Telugu</option><option value="Hindi">Hindi</option></select></div>
+                                <div class="form-group"><label>School Type</label><select name="schoolType"><option value="">Select...</option><option value="Private">Private</option><option value="Government">Government</option><option value="Residential">Residential</option></select></div>
+                                <div class="form-group"><label>Interesting Subject</label><select name="interestingSubject"><option value="">Select...</option><option value="Maths">Maths</option><option value="English">English</option><option value="Telugu">Telugu</option><option value="Science">Science</option><option value="Social">Social</option><option value="EVS">EVS</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Dream / Ambition</label><input type="text" name="ambition"></div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-language"></i> Section 3 (Payment)</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Know English</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowEnglish_3" value="Yes" id="engYes_3"><label class="box-label" for="engYes_3">Yes</label></div><div class="box-option"><input type="radio" name="knowEnglish_3" value="No" id="engNo_3"><label class="box-label" for="engNo_3">No</label></div></div></div>
+                                <div class="form-group"><label>Know Telugu</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowTelugu_3" value="Yes" id="telYes_3"><label class="box-label" for="telYes_3">Yes</label></div><div class="box-option"><input type="radio" name="knowTelugu_3" value="No" id="telNo_3"><label class="box-label" for="telNo_3">No</label></div></div></div>
+                                <div class="form-group"><label>Know Hindi</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowHindi_3" value="Yes" id="hinYes_3"><label class="box-label" for="hinYes_3">Yes</label></div><div class="box-option"><input type="radio" name="knowHindi_3" value="No" id="hinNo_3"><label class="box-label" for="hinNo_3">No</label></div></div></div>
+                                <div class="form-group"><label>Plan</label><select name="paymentPlan" required><option value="">Select...</option><option value="Gold 499 Plan">Gold 499 Plan</option></select></div>
+                                <div class="form-group"><label>Amount</label><input type="number" name="paidAmount" value="499" required></div>
+                                <div class="form-group"><label>Paid From</label><select name="paidFrom" required><option value="">Select...</option><option value="PhonePe">PhonePe</option><option value="Google Pay">Google Pay</option><option value="Paytm">Paytm</option><option value="Cash">Cash</option><option value="Others">Others</option></select></div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <div class="section-name"><i class="fa-solid fa-map-location-dot"></i> Section 4</div>
+                            <div class="registration-form">
+                                <div class="form-group"><label>Village</label><input type="text" name="village"></div>
+                                <div class="form-group"><label>Mandal</label><input type="text" name="mandal"></div>
+                                <div class="form-group"><label>District</label><input type="text" name="district"></div>
+                                <div class="form-group"><label>State</label><input type="text" name="state" value="Andhra Pradesh"></div>
+                                <div class="form-group"><label>Joined Via</label><select name="joinedFrom"><option value="">Select...</option><option value="Class DEMO">Class DEMO</option><option value="Teacher">Teacher</option><option value="Friends">Friends</option><option value="Family">Family</option><option value="Youtube">Youtube</option><option value="Instagram">Instagram</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Reference Name</label><select name="refName"><option value="">Select...</option><option value="K Narasimha Reddy">K Narasimha Reddy</option><option value="B Satya Narayana">B Satya Narayana</option><option value="Others">Others</option></select></div>
+                                <div class="form-group"><label>Reference Number</label><input type="tel" name="refNumber"></div>
+                                <div class="form-group" style="grid-column: span 2; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;"><input type="checkbox" name="agreement" value="Agreed" required style="width:18px; height:18px;"><span style="font-size:11px; font-weight: 800;">I AGREE TO <a href="#" style="color: var(--primary-blue); text-decoration: underline;">TERMS & CONDITIONS</a></span></div>
+                            </div>
+                        </div>
+                        <div class="submit-container"><button type="submit" class="review-btn">Review Details</button></div>
+                    </form>
+                </div>
+            </div>
+            <div id="anotherReviewBox" class="review-area">
+                <div class="form-header"><h2 class="form-title">Review Information</h2></div>
+                <div id="anotherReviewContent" class="review-grid"></div>
+                <div class="submit-container"><button type="button" class="edit-btn" onclick="editForm('another')">Edit</button><button type="button" class="review-btn" onclick="finalSubmitProcess('another')">Confirm & Submit</button></div>
+            </div>
+            <div id="anotherStatus" class="status-container"></div>
+        </div>
+    </div>
+</div>
+
+<div class="security-wrapper">
+    <div class="security-box">
+        <div class="security-header"><i class="fa-solid fa-user-shield"></i> Security & Data Protection</div>
+        <div class="security-grid">
+            <div class="security-item"><i class="fa-solid fa-check-circle"></i><p>We collect only basic personal details required for registration.</p></div>
+            <div class="security-item"><i class="fa-solid fa-check-circle"></i><p>We do not share, sell, or misuse your data in any way.</p></div>
+            <div class="security-item"><i class="fa-solid fa-check-circle"></i><p>We never ask for OTPs. Please stay alert and cautious.</p></div>
+            <div class="security-item"><i class="fa-solid fa-check-circle"></i><p>We do not collect Aadhaar, PAN, or any sensitive documents.</p></div>
+            <div class="security-item"><i class="fa-solid fa-check-circle"></i><p>Your complete data is kept secure and safe with us.</p></div>
+            <div class="security-item"><i class="fa-solid fa-check-circle"></i><p>Please be careful and ensure security while entering your details.</p></div>
+            <div class="security-item" style="grid-column: span 2; background: var(--primary-blue); color: white; text-align: center; border:none; padding:12px; border-radius:10px;">
+                <p style="color:white; width: 100%;">We promise that all registration details remain protected and secure at all times, even after login.</p>
             </div>
         </div>
     </div>
-</main>
+</div>
 
 <footer>
     <div class="footer-content">
@@ -827,30 +406,159 @@
         </div>
         <div class="footer-column">
             <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-            </div>
+            <div class="social-icons"><a href="#"><i class="fab fa-whatsapp"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-facebook"></i></a></div>
             <p style="opacity: 0.7; font-size: 10px;">&copy; 2025 Student Vision TC. All rights reserved.</p>
         </div>
     </div>
 </footer>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let seconds = 45; 
-        setInterval(() => {
-            seconds++;
-            const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-            const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-            const sc = (seconds % 60).toString().padStart(2, '0');
-            const timerEl = document.getElementById('timer');
-            if (timerEl) timerEl.textContent = `${h}:${m}:${sc}`;
-        }, 1000);
-    });
-</script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwAnoUt95Y_3Swh0iBz4ik46QrevxfWLuUmOyZP0NdOVyY9YHQ4Z1Q3ci0Km-3n9CsQ/exec';
+    const step1URL = 'https://script.google.com/macros/s/AKfycbxFkcz0aOakTKWNsZY9c8GzGboruOHCSFBSIiWUUUvSWkTMdUZ0-CiPxkhPEBAR5bU/exec';
+    const verifyURL = 'https://script.google.com/macros/s/AKfycbzf0fWuvVCyCV2TbGyG1BSXEab12mRiHGd77rcCxcfADb7JNe4HWFnsdknOxlBZgaob/exec';
+    const verifyStep3URL = 'https://script.google.com/macros/s/AKfycbyX30gb-02dVBWnahf4gTQfipXOVu9Qoj-Eti3tW0NZ_iMG2HrkIdcY1zW9WO-HdSGn/exec';
+    const step3SubmitURL = 'https://script.google.com/macros/s/AKfycbyw1Qj72a3V3560bZ9QGuXEYC03hYo-Pq9THpC6KvZziHNY4As6a_biUCwQ3dEY8Vus/exec';
 
+    let globalFormData = {};
+    let activeType = '';
+
+    function toggleForm(type) {
+        const group = document.getElementById(type === 'unpaid' ? 'unpaidRegistration' : type + 'Registration');
+        
+        if (activeType === type) {
+            hideAll();
+            activeType = '';
+            return;
+        }
+
+        hideAll();
+        activeType = type;
+        const sectionId = type === 'unpaid' ? 'unpaidSection' : (type === 'another' ? 'anotherSection' : type + 'Section');
+        document.getElementById(sectionId).classList.add('active-path');
+        group.style.display = 'block';
+        
+        if(type !== 'unpaid') {
+            document.getElementById(type + 'VerifyBox').style.display = 'flex';
+            document.getElementById(type + 'FullForm').style.display = 'none';
+        }
+        scrollToTarget(sectionId);
+    }
+
+    function hideAll() {
+        document.querySelectorAll('form').forEach(f => f.reset());
+        document.querySelectorAll('.registration-box, .review-area, .status-container').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.horizontal-section').forEach(el => el.classList.remove('active-path'));
+    }
+
+    function scrollToTarget(id) {
+        const el = document.getElementById(id);
+        if(el) window.scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' });
+    }
+
+    function verifyNumber(type) {
+        const input = document.getElementById(type + 'VerifyMobile');
+        const mobile = input.value.trim();
+        const btn = document.getElementById(type + 'VerifyBtn');
+        const errorBox = document.getElementById(type + 'VerifyError');
+        errorBox.style.display = 'none';
+        if (mobile.length < 10) { errorBox.innerText = 'Invalid mobile number'; errorBox.style.display = 'block'; return; }
+        btn.disabled = true; btn.innerText = 'VERIFYING...';
+        const url = type === 'paid' ? verifyURL : verifyStep3URL;
+        fetch(`${url}?mobile=${mobile}`).then(res => res.json()).then(data => {
+            if (data.status === 'success') {
+                document.getElementById(type + 'ActualMobile').value = mobile;
+                document.getElementById(type + 'VerifyBox').style.display = 'none';
+                document.getElementById(type + 'FullForm').style.display = 'block';
+                scrollToTarget(type + 'FullForm');
+            } else { errorBox.innerText = data.message; errorBox.style.display = 'block'; }
+        }).finally(() => { btn.disabled = false; btn.innerText = 'Verify'; });
+    }
+
+    function prepareReview(e, type) {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target));
+        data.dob = `${data.dob_day}-${data.dob_month}-${data.dob_year}`;
+        globalFormData = data;
+        const reviewContent = document.getElementById(type + 'ReviewContent');
+        reviewContent.innerHTML = '';
+        const labels = {fullName: "Full Name", class: "Class", mobile: "Mobile", parentName: "Parent", paymentPlan: "Plan", paidAmount: "Amount"};
+        for (const [k, v] of Object.entries(data)) {
+            if(v && v !== '--' && labels[k]) reviewContent.innerHTML += `<div class="review-item"><div class="review-label">${labels[k]}</div><div class="review-value">${v}</div></div>`;
+        }
+        document.getElementById(type + 'Registration').style.display = 'none';
+        document.getElementById(type + 'ReviewBox').style.display = 'block';
+        scrollToTarget(type + 'ReviewBox');
+    }
+
+    function editForm(type) {
+        document.getElementById(type + 'ReviewBox').style.display = 'none';
+        document.getElementById(type + 'Registration').style.display = 'block';
+        document.getElementById(type + 'FullForm').style.display = 'block';
+        scrollToTarget(type + 'FullForm');
+    }
+
+    function handleStep1Submit(e) {
+        e.preventDefault();
+        const status = document.getElementById('unpaidStatus');
+        document.getElementById('unpaidRegistration').style.display = 'none';
+        status.style.display = 'block'; 
+        status.innerHTML = `<div class="status-loading-text"><i class="fas fa-spinner fa-spin"></i> YOUR FORM IS SUBMITTING...</div>`;
+        scrollToTarget('unpaidStatus');
+        fetch(step1URL, { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(e.target))) })
+        .then(() => { 
+            status.innerHTML = `
+                <div style="padding:15px;">
+                    <i class="fa-solid fa-circle-check" style="font-size:50px; color:var(--success-green); margin-bottom:10px;"></i>
+                    <h2 style="color:var(--success-green); font-weight:900; margin-bottom:10px;">SUCCESSFUL!</h2>
+                    <p style="font-weight:700; color:#475569;">Your details were successfully submitted.</p>
+                    <p style="font-size:12px; color:#64748b; margin-top:5px;">We will contact you soon. Support: +91 8985170500</p>
+                    <button class="btn-action home-btn" style="margin:20px auto 0 auto;" onclick="location.reload()"><i class="fa-solid fa-house"></i> Home</button>
+                </div>`; 
+        });
+    }
+
+    async function downloadSuccess(name) {
+        const card = document.getElementById('successCard');
+        const canvas = await html2canvas(card, { scale: 2 });
+        const link = document.createElement('a');
+        link.download = `Success_${name}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    }
+
+    function finalSubmitProcess(type) {
+        const status = document.getElementById(type + 'Status');
+        document.getElementById(type + 'ReviewBox').style.display = 'none';
+        status.style.display = 'block'; 
+        status.innerHTML = `<div class="status-loading-text"><i class="fas fa-spinner fa-spin"></i> YOUR DETAILS ARE SUBMITTING...</div>`;
+        scrollToTarget(type + 'Status');
+
+        const url = type === 'paid' ? scriptURL : step3SubmitURL;
+        fetch(url, { method: 'POST', body: JSON.stringify(globalFormData) }).then(res => res.json()).then(data => {
+            const u = data.username || 'N/A'; const p = data.password || 'N/A';
+            const waMsg = `*Student%20Vision%20Talent%20Competition*%0A*See%20your%20Success*%0A%0AFull%20Name:%20${globalFormData.fullName}%0AClass:%20${globalFormData.class}%0ALogin%20Link:%20https://studentvision.in/login%0A%0AUsername:%20${u}%0APassword:%20${p}%0A%0A*DO%20NOT%20SHARE%20THESE%20ARE%20ALL%20CONFIDENTIAL*`;
+            
+            status.innerHTML = `
+                <div id="successCard" style="background:white; padding:30px; border-radius:15px; width: 100%; box-shadow:none;">
+                    <i class="fa-solid fa-circle-check" style="font-size:60px; color:var(--success-green); margin-bottom:15px;"></i>
+                    <h2 style="font-weight:900; margin-bottom:15px;">SUCCESSFUL!</h2>
+                    <div style="text-align:left; max-width:500px; margin:0 auto; font-weight:800; font-size:14px; line-height:1.8; border-top:2px solid #eee; border-bottom:2px solid #eee; padding:15px 0;">
+                        <p>FULL NAME: ${globalFormData.fullName}</p>
+                        <p>CLASS: ${globalFormData.class}</p>
+                        <p>LOGIN: <span style="color:var(--primary-blue)">studentvision.in/login</span></p>
+                        <p>USERNAME: <span class="cred-item">${u}</span></p>
+                        <p>PASSWORD: <span class="cred-item">${p}</span></p>
+                    </div>
+                    <p style="color:var(--error-red); font-size:11px; font-weight:900; margin-top:20px; background:#fff5f5; display:inline-block; padding:5px 15px; border-radius:50px;">DO NOT SHARE THESE ARE ALL CONFIDENTIAL</p>
+                    <div class="action-row">
+                        <a href="https://wa.me/918985170500?text=${waMsg}" class="btn-action wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <button class="btn-action dl-btn" onclick="downloadSuccess('${globalFormData.fullName}')"><i class="fa-solid fa-download"></i> Download</button>
+                        <button class="btn-action home-btn" onclick="location.reload()"><i class="fa-solid fa-house"></i> Home</button>
+                    </div>
+                </div>`;
+            document.querySelectorAll('form').forEach(f => f.reset());
+        });
+    }
+</script>
 </body>
 </html>
