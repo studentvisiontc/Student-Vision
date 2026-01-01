@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Dashboard - Student Vision</title>
+    <style>
+        :root {
+            --primary-blue: #00008B;
+            --accent-yellow: #ffeb3b;
+            --accent-orange: #ffa500;
+            --bg-gray: #f4f7f9;
+            --text-dark: #1e293b;
+            --border-color: #e2e8f0;
+            --success-green: #16a34a;
+            --danger-red: #d00000;
+            --topic-bg: #e0f2fe; 
+        }
+
+        * { font-family: 'Roboto Slab', serif; box-sizing: border-box; }
+        body { margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; background-color: var(--bg-gray); }
+
+        /* --- PROVIDED HEADER STYLES --- */
+        header { 
+            background: var(--primary-blue); 
+            padding: 8px 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 75px; 
+        }
+        .header-scroll-bg { 
+            position: absolute; 
+            top: 0; left: 0; width: 400%; height: 100%; 
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
+            z-index: 1; 
+            animation: scrollGlow 25s linear infinite; 
+            opacity: 0.9; 
+        }
+        @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
+        header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
+        header .header-left { display: flex; align-items: center; gap: 15px; }
+        header .logo { height: 48px; width: 48px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: 20px; font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: 12px; font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
+        header .header-right { display: flex; gap: 15px; align-items: center; }
+        .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
+        header .icon { font-size: 18px; color: var(--accent-orange); }
+        .icon-label { font-size: 8px; margin-top: 3px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .header-corner { position: absolute; top: -10px; left: -10px; height: 60px; opacity: 0.7; pointer-events: none; }
+        .header-corner-right { position: absolute; top: -10px; right: -10px; height: 60px; opacity: 0.7; transform: scaleX(-1); pointer-events: none; }
+
+        /* --- DASHBOARD CONTENT --- */
+        main { flex-grow: 1; padding: 10px 20px 40px 20px; max-width: 1100px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 15px; }
+
+        /* Welcome Section - Positioned High */
+        .welcome-section { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+        .welcome-text h1 { margin: 0; font-size: 24px; font-weight: 800; color: var(--text-dark); }
+        .student-name { color: var(--primary-blue); }
+        .class-label { color: #64748b; font-weight: 700; font-size: 15px; }
+        .premium-status { background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%); color: var(--primary-blue); padding: 5px 12px; border-radius: 6px; display: flex; align-items: center; gap: 6px; font-weight: 900; font-size: 12px; }
+
+        /* Reordered Stats Row with Inter Font */
+        .stats-grid-row {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); 
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .stat-item { display: flex; flex-direction: column; align-items: center; gap: 1px; border-right: 1px solid var(--border-color); }
+        .stat-item:last-child { border-right: none; }
+        .stat-item i { font-size: 14px; color: var(--primary-blue); margin-bottom: 2px; }
+        .stat-label { font-size: 8px; font-weight: 800; color: #94a3b8; text-transform: uppercase; text-align: center; letter-spacing: 0.5px; }
+        .stat-value { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; color: var(--text-dark); }
+        .live-status { width: 6px; height: 6px; background: var(--success-green); border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* SRM Section - Technical Support */
+        .srm-section {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid var(--accent-orange);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .srm-avatar { width: 60px; height: 60px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; flex-shrink: 0; }
+        .srm-title { font-size: 18px; font-weight: 900; color: var(--primary-blue); margin: 0; }
+        .srm-description { font-family: 'Inter', sans-serif; font-size: 11.5px; color: #475569; margin: 6px 0; line-height: 1.6; text-align: justify; }
+        .detail-label { font-size: 8px; font-weight: 800; text-transform: uppercase; color: #94a3b8; }
+        .detail-value { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+        .contact-btn { background: var(--primary-blue); color: white; text-decoration: none; padding: 8px 15px; border-radius: 6px; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px; transition: 0.3s; }
+
+        /* Subjects and Topics Styling */
+        .subject-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+        .subject-title { font-size: 18px; font-weight: 900; color: var(--primary-blue); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .section-benefit { font-family: 'Inter', sans-serif; font-size: 13px; color: #334155; line-height: 1.8; margin-bottom: 20px; padding: 15px 20px; background: #f8fafc; border-radius: 12px; border-left: 5px solid var(--primary-blue); text-align: left; }
+
+        .topics-list { display: flex; flex-direction: column; gap: 15px; }
+        .topic-item { background: #ffffff; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; display: flex; flex-direction: column; }
+
+        /* Row 1 Protocol: RED Color */
+        .topic-row-1 { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; background: #fff; }
+        .meta-left { display: flex; align-items: center; gap: 20px; }
+        .month-name { font-family: 'Inter', sans-serif; font-weight: 900; color: var(--danger-red); font-size: 13px; text-transform: uppercase; min-width: 50px; }
+        .test-meta-time, .test-meta-attempts { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 800; color: var(--danger-red); }
+
+        .attempt-boxes { display: flex; gap: 5px; }
+        .att-box { width: 38px; height: 26px; background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: #94a3b8; }
+        
+        /* Marks Protocol: GREEN Color */
+        .att-box.scored { border-color: var(--success-green); color: var(--success-green); background: #f0fdf4; }
+
+        /* Row 2 Protocol: Blue Background */
+        .topic-row-2 { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; background-color: var(--topic-bg); border-top: 1px solid #bae6fd; }
+        .topic-label-container { font-size: 14px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 4px; }
+        .topic-prefix { color: var(--primary-blue); font-weight: 900; }
+        .take-test-btn { background: var(--primary-blue); color: white; text-decoration: none; padding: 6px 18px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; transition: 0.3s; }
+
+        /* Footer Panels - 4 Column Grid */
+        .details-container { display: flex; flex-direction: column; gap: 20px; margin-top: 20px; margin-bottom: 40px; }
+        .detail-panel { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .panel-header { background: var(--primary-blue); color: white; padding: 12px 20px; font-size: 15px; font-weight: 900; }
+        .panel-body { padding: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .data-field { display: flex; flex-direction: column; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
+        .data-label { color: #94a3b8; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .data-value { color: var(--text-dark); font-size: 13px; font-weight: 700; font-family: 'Inter', sans-serif; }
+
+        /* --- PROVIDED FOOTER STYLES --- */
+        footer { background: var(--primary-blue); color: white; padding: 25px 20px 15px 20px; border-top: 4px solid var(--accent-orange); margin-top: auto; }
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; max-width: 1450px; margin: 0 auto; text-align: left; }
+        .footer-column h4 { color: var(--accent-yellow); border-bottom: 1px solid var(--accent-yellow); display: inline-block; margin-bottom: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; }
+        .footer-column p, .footer-column a { font-size: 11px; color: rgba(255,255,255,0.9); text-decoration: none; display: flex; align-items: center; gap: 10px; margin-bottom: 8px; line-height: 1.4; font-weight: 600; }
+        .social-icons { display: flex; gap: 15px; margin: 10px 0; }
+        .social-icons a { font-size: 20px; color: white; }
+
+        @media (max-width: 850px) {
+            header { flex-direction: column; text-align: center; gap: 15px; }
+            .stats-grid-row { grid-template-columns: repeat(3, 1fr); }
+            .panel-body { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-column { display: flex; flex-direction: column; align-items: center; }
+            .topic-row-1 { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .meta-left { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-scroll-bg"></div>
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner">
+    <img src="https://studentvisiontc.github.io/SVTC-Images/hh%20logo.png" class="header-corner-right">
+    <div class="header-left">
+        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="logo">
+        <div>
+            <div class="main-title">Student Vision Talent Competition</div>
+            <div class="sub-title">“See Your Success”</div>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-house icon"></i><span class="icon-label">Home</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-plus icon"></i><span class="icon-label">Register</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-right-to-bracket icon"></i><span class="icon-label">Login</span></a></div>
+        <div class="menu-item"><a href="#"><i class="fa-solid fa-user-tie icon"></i><span class="icon-label">Admin</span></a></div>
+    </div>
+</header>
+
+<main>
+    <!-- Header Area -->
+    <div class="welcome-section">
+        <div class="welcome-text">
+            <h1>Welcome, <span class="student-name">Student Vision</span> <span class="class-label">(3<sup>rd</sup> Class)</span></h1>
+        </div>
+        <div class="premium-status"><i class="fa-solid fa-crown"></i> Gold Premium</div>
+    </div>
+
+    <!-- Top Stats Bar -->
+    <div class="stats-grid-row">
+        <div class="stat-item"><i class="fa-solid fa-trophy"></i><span class="stat-label">SESSION</span><span class="stat-value" id="session-timer">00:00:00</span></div>
+        <div class="stat-item"><i class="fa-solid fa-clock"></i><span class="stat-label">LOGIN TIME</span><span class="stat-value" id="login-time">00:00 AM</span></div>
+        <div class="stat-item"><i class="fa-solid fa-hourglass-half"></i><span class="stat-label">TOTAL TIME</span><span class="stat-value">45h</span></div>
+        <div class="stat-item"><i class="fa-solid fa-calendar-days"></i><span class="stat-label">DAYS LEFT</span><span class="stat-value">365</span></div>
+        <div class="stat-item"><i class="fa-solid fa-file-circle-check"></i><span class="stat-label">TESTS DONE</span><span class="stat-value">0/70</span></div>
+        <div class="stat-item"><i class="fa-solid fa-chart-line"></i><span class="stat-label">TC SCORE</span><span class="stat-value" style="color:var(--success-green)">85%</span></div>
+    </div>
+
+    <!-- Student Relations Manager Section (SRM) -->
+    <div class="srm-section">
+        <div class="srm-avatar"><i class="fa-solid fa-headset"></i></div>
+        <div class="srm-info">
+            <h2 class="srm-title">Student Relations Manager (SRM)</h2>
+            <p class="srm-description">
+                Your Student Relations Manager (SRM) is a dedicated teacher available specifically to provide <b>technical guidance</b>. If you face any difficulties while using the platform—such as being unable to log in, having trouble navigating through the dashboard, or not understanding how to correctly attempt your monthly tests—this teacher is here to guide you. Simply explain your technical doubt clearly, and the SRM will help resolve it immediately. This personalized support remains active throughout your subscription period, ensuring that your focus stays entirely on learning while we handle all technical complexities for you.
+            </p>
+            <div style="display: flex; gap: 20px;">
+                <div><span class="detail-label">Manager Name</span><div class="detail-value">Student Vision TC</div></div>
+                <div><span class="detail-label">Support Contact</span><div class="detail-value">8985170500</div></div>
+            </div>
+        </div>
+        <a href="tel:8985170500" class="contact-btn"><i class="fa-solid fa-phone"></i> Call SRM</a>
+    </div>
+
+    <!-- 1. ENGLISH SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-language" style="color:var(--accent-orange)"></i> 1. English</h3>
+        <div class="section-benefit">
+            For 3rd-grade students, mastering English is the most essential step toward overall academic excellence and cognitive growth. This section is carefully curated to enhance reading fluency, expand vocabulary, and build a strong foundation in grammar and sentence construction. By regularly attempting these tests, children develop the ability to express their thoughts clearly and creatively, which is vital for both school success and social interaction. Engaging with diverse topics such as story comprehension and picture descriptions helps them visualize concepts and articulate ideas with confidence. Consistent monthly practice ensures that a child builds a superior command over the language, making them more expressive, articulate, and fully prepared for higher-level academic challenges in their future journey.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item">
+                <div class="topic-row-1">
+                    <div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div>
+                    <div class="attempt-boxes"><div class="att-box scored">28</div><div class="att-box">--</div><div class="att-box">--</div></div>
+                </div>
+                <div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Alphabet Revision</div><a href="#" class="take-test-btn">Take Test</a></div>
+            </div>
+            <!-- Repeat 9 more topics for English -->
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> New Words (Vocabulary)</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Opposite Words</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Singular & Plural</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Nouns & Pronouns</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Action Verbs</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Simple Sentences</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Story Comprehension</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Picture Composition</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Speaking Fluency</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- 2. MATHS SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-calculator" style="color:var(--accent-orange)"></i> 2. Maths</h3>
+        <div class="section-benefit">
+            Mathematics is the universal language of logic, and for 3rd-grade students, building a superior numerical foundation is paramount. This section goes beyond traditional calculations to foster deep analytical thinking and creative problem-solving skills. By mastering concepts like multi-digit addition, subtraction, and multiplication tables, children develop the mental discipline required for advanced scientific and engineering studies. These monthly tests are meticulously designed to improve a child's computational speed and logical precision, turning their fear of math into a rewarding intellectual challenge. Furthermore, learning about time, measurement, and money management helps children apply theoretical concepts to real-world scenarios, fostering practical life intelligence. Continuous engagement with these modules ensures that a student develops the mental stamina to tackle complex challenges with absolute ease and accuracy.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Counting Numbers</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <!-- Additional 9 topics follow same structure -->
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Addition Mastery</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Subtraction Logic</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Multiplication Tables</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Long Division</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Basic Geometry</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Measurement Skills</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Time and Calendar</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Fractions Intro</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">60 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Mixed Word Problems</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- 3. GK / EVS SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-earth-americas" style="color:var(--accent-orange)"></i> 3. Subject Knowledge (GK / EVS)</h3>
+        <div class="section-benefit">
+            General Knowledge and Environmental Science provide 3rd-grade students with a broader understanding of the world, fostering curiosity and environmental responsibility. This section explores a vast range of topics including plant life, animal ecosystems, human biology, and the functioning of our society. By understanding their place within the natural world, students develop empathy for living beings and a sense of duty toward preserving our planet. Monthly modules covering festivals, national symbols, and transport systems help children build a sense of identity and cultural awareness. These tests are specifically curated to stimulate an investigative mindset, teaching children to observe, question, and analyze their surroundings. Gaining such diverse knowledge at a young age ensures that a student becomes a well-informed, intelligent, and environmentally conscious citizen who can engage thoughtfully with both global and local matters.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Myself & Body Parts</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <!-- Additional 9 GK Topics -->
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> My Family & Home</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> World of Plants</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Animal Life Cycle</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Food We Eat</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Our Surroundings</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Seasons & Festivals</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Means of Transport</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> National Pride</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> General Awareness</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- 4. TECHNICAL KNOWLEDGE SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-laptop-code" style="color:var(--accent-orange)"></i> 4. Technical Knowledge</h3>
+        <div class="section-benefit">
+            Technical literacy is arguably the most vital 21st-century skill for children growing up in a digitized world. For a 3rd-grade student, understanding how computers work, identifying hardware components, and learning basic software operations is crucial for future readiness. This section teaches students not only how to use input devices like keyboards and mice but also how to navigate technology safely and responsibly. By focusing on internet safety and safe computer use, we empower children to transition from passive consumers to informed, competent users of digital tools. Regularly attempting these tests demystifies complex technology, building the confidence a student needs to explore new software and advanced platforms. This technical edge prepares them for a lifetime of innovation, ensuring they stay ahead in an ever-evolving global technological landscape.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> What is a Computer?</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Parts of a Computer</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Uses of Computer</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Keyboard Mastery</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Mouse Functions</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> CPU and Monitor</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Computer Power-up</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Painting Tools</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Safe Computer Use</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Internet Safety</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- 5. LOGICAL REASONING SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-brain" style="color:var(--accent-orange)"></i> 5. Logical Reasoning</h3>
+        <div class="section-benefit">
+            Logical Reasoning acts as a powerful gymnasium for a child's brain, training them to think critically and analytically beyond traditional classroom textbooks. For a 3rd-grade student, this section is vital because it develops the cognitive ability to recognize complex patterns, establish logical links, and solve multi-step puzzles through systematic thinking. These skills are the essential backbone of advanced studies in science, engineering, and mathematics. Regular engagement with these reasoning tests enhances a child’s mental focus, encourages strategic decision-making, and prepares them to approach life's challenges with a calm and analytical mind. By learning how to think "outside the box" from a young age, students gain a significant intellectual advantage that will benefit them throughout their academic journey and long-term professional life.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Big & Small Logic</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Same & Different</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Odd One Out</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Number Patterns</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Shape Patterns</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Missing Number Logic</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Picture Reasoning</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Matching Logic</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Simple Puzzles</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">50 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Analytical Challeng</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- 6. INTELLIGENCE & MENTAL ABILITY SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-lightbulb" style="color:var(--accent-orange)"></i> 6. Intelligence & Mental Ability</h3>
+        <div class="section-benefit">
+            Developing high-level intelligence and mental acuity at a young age is vital for a child’s long-term cognitive success. This section is dedicated to sharpening a student's observation skills, spatial awareness, and memory capacity through stimulating mental exercises. By identifying subtle differences in pictures, matching shadows, and solving riddles, students learn to process complex information rapidly and accurately. High mental ability directly enhances a child's performance in standard school subjects, making the learning process less stressful and far more enjoyable. These carefully curated monthly tests stimulate different areas of the brain, ensuring that a 3rd-grade student becomes more observant, mentally alert, and highly agile. Building these intellectual muscles early allows children to excel in competitive academic environments and real-world problem-solving with absolute confidence.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Memory Booster</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Observation Skills</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Picture Recognition</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Spot Differences</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Quick Thinking</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Matching Shadows</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Sorting Objects</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Brain Riddles</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Colour Patterns</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Fun IQ Challenge</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- 7. PERSONAL SUCCESS SECTION -->
+    <div class="subject-card">
+        <h3 class="subject-title"><i class="fa-solid fa-star" style="color:var(--accent-orange)"></i> 7. Personal Success</h3>
+        <div class="section-benefit">
+            True success is not just about academic scores; it is about building a strong character, integrity, and lifelong soft skills. For a 3rd-grade child, the Personal Success section is arguably the most vital for long-term well-being. It focuses on teaching essential values such as good manners, personal hygiene, rigorous discipline, and the importance of honesty. Learning time management from a young age helps children develop a structured lifestyle that balances study with play. Moreover, fostering empathy through helping others and respecting elders helps children grow into socially responsible and well-liked individuals. These monthly tests and activities build deep self-confidence and a positive mindset, ensuring that children grow into resilient, capable, and highly respected adults. Investing time in these values now creates a disciplined foundation that leads to unparalleled success and honor in both their personal and professional futures.
+        </div>
+        <div class="topics-list">
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JUNE</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Good Manners</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JULY</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Cleanliness Habit</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">AUG</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Discipline at Home</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">SEPT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Value of Time</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">OCT</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Power of Honesty</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">NOV</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Helping Others</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">DEC</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Self-Confidence</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">JAN</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Respecting Elders</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">FEB</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Positive Thinking</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+            <div class="topic-item"><div class="topic-row-1"><div class="meta-left"><span class="month-name">MAR</span><span class="test-meta-time">45 Mins</span><span class="test-meta-attempts">3 Attempts</span></div><div class="attempt-boxes"><div class="att-box">--</div><div class="att-box">--</div><div class="att-box">--</div></div></div><div class="topic-row-2"><div class="topic-label-container"><span class="topic-prefix">Topic :</span> Healthy Habits</div><a href="#" class="take-test-btn">Take Test</a></div></div>
+        </div>
+    </div>
+
+    <!-- Final Details Section (4-Column) -->
+    <div class="details-container">
+        <!-- Student Profile Panel -->
+        <div class="detail-panel">
+            <div class="panel-header"><i class="fa-solid fa-user-circle"></i> Student Profile</div>
+            <div class="panel-body">
+                <div class="data-field"><span class="data-label">Username</span><span class="data-value">student_vision_2025</span></div>
+                <div class="data-field"><span class="data-label">Full Name</span><span class="data-value">Student Vision</span></div>
+                <div class="data-field"><span class="data-label">Class</span><span class="data-value">3<sup>rd</sup> Class</span></div>
+                <div class="data-field"><span class="data-label">Father Name</span><span class="data-value">Visionary Parent</span></div>
+                <div class="data-field"><span class="data-label">Phone Number</span><span class="data-value">8985170500</span></div>
+                <div class="data-field"><span class="data-label">School Name</span><span class="data-value">SVTC Excellence School</span></div>
+                <div class="data-field"><span class="data-label">Village / City</span><span class="data-value">Hyderabad</span></div>
+                <div class="data-field"><span class="data-label">Legal</span><a href="#" style="color:var(--primary-blue); font-weight:800; font-size:12px;">Terms & Conditions</a></div>
+            </div>
+        </div>
+
+        <!-- Subscription Details Panel -->
+        <div class="detail-panel">
+            <div class="panel-header"><i class="fa-solid fa-wallet"></i> Subscription Details</div>
+            <div class="panel-body">
+                <div class="data-field"><span class="data-label">Plan Name</span><span class="data-value">Gold Premium</span></div>
+                <div class="data-field"><span class="data-label">Start Date</span><span class="data-value">01-Jan-2025</span></div>
+                <div class="data-field"><span class="data-label">Expiry Date</span><span class="data-value">31-Dec-2025</span></div>
+                <div class="data-field"><span class="data-label">Status</span><span class="data-value" style="color:var(--accent-orange)">365 Days Left</span></div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i> Support</h4>
+            <p><i class="fa-solid fa-phone"></i> +91 8985170500</p>
+            <p><i class="fa-solid fa-envelope"></i> contact.studentvision@gmail.com</p>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+            <a href="#"><i class="fa-solid fa-circle-info"></i> About Us</a>
+            <a href="#"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+        </div>
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-share-nodes"></i> Follow Us</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p style="opacity: 0.7; font-size: 10px;">&copy; 2025 Student Vision TC. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // 12-hour Login Time Logic
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        const strTime = (hours < 10 ? '0' + hours : hours) + ':' + minutes + ' ' + ampm;
+        document.getElementById('login-time').textContent = strTime;
+
+        // Session Timer
+        let seconds = 0;
+        const timerElem = document.getElementById('session-timer');
+        setInterval(() => {
+            seconds++;
+            const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+            const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+            const s = (seconds % 60).toString().padStart(2, '0');
+            timerElem.textContent = `${h}:${m}:${s}`;
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
