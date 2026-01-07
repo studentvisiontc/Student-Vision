@@ -24,21 +24,51 @@
         * { font-family: 'Roboto Slab', serif; box-sizing: border-box; }
         body { margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; background-color: var(--bg-gray); scroll-behavior: smooth; }
         
-        header { background: var(--primary-blue); padding: 8px 30px; display: flex; justify-content: space-between; align-items: center; color: white; width: 100%; position: relative; overflow: hidden; min-height: 75px; }
-        .header-scroll-bg { position: absolute; top: 0; left: 0; width: 400%; height: 100%; background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); z-index: 1; animation: scrollGlow 25s linear infinite; opacity: 0.9; }
+        /* UPDATED HEADER SECTION */
+        header { 
+            background: var(--primary-blue); 
+            padding: 0 30px; /* Fixed Horizontal Padding */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 75px; /* Fixed Minimum Height */
+        }
+        
+        .header-scroll-bg { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 400%; 
+            height: 100%; 
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1) 15%, transparent 20%); 
+            z-index: 1; 
+            animation: scrollGlow 25s linear infinite; 
+            opacity: 0.9; 
+        }
         @keyframes scrollGlow { 0% { transform: translateX(-100%); } 100% { transform: translateX(25%); } }
+        
         header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
         header .header-left { display: flex; align-items: center; gap: 15px; }
-        header .logo { height: 48px; width: 48px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
-        header .main-title { font-size: 20px; font-weight: 900; line-height: 1.1; }
-        header .sub-title { font-size: 12px; font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
-        header .header-right { display: flex; gap: 15px; align-items: center; }
+        
+        /* Logo and Brand Typography */
+        header .logo { height: 46px; width: 46px; border-radius: 50%; border: 2px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: 18px; font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: 11px; font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
+        
+        /* Header Navigation */
+        header .header-right { display: flex; gap: 18px; align-items: center; } /* Fixed 18px gap */
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
-        header .icon { font-size: 18px; color: var(--accent-orange); }
+        
+        header .icon { font-size: clamp(12px, 2.2vw, 16px); color: var(--accent-orange); } /* Responsive Icon Scaling */
         .icon-label { font-size: 8px; margin-top: 3px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        .header-corner { position: absolute; top: -10px; left: -10px; height: 60px; opacity: 0.7; pointer-events: none; }
-        .header-corner-right { position: absolute; top: -10px; right: -10px; height: 60px; opacity: 0.7; transform: scaleX(-1); pointer-events: none; }
+        /* Corner Icons */
+        .header-corner { position: absolute; top: 0; left: 0; height: 45px; opacity: 0.7; pointer-events: none; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 45px; opacity: 0.7; transform: scaleX(-1); pointer-events: none; }
 
         .marquee-container { background: #fff; border-bottom: 2px solid var(--border-color); overflow: hidden; white-space: nowrap; padding: 4px 0; }
         .marquee-text { display: inline-block; padding-left: 100%; animation: marqueeScroll 45s linear infinite; font-size: 13px; font-weight: 700; color: #d32f2f; }
@@ -110,13 +140,30 @@
         .home-btn { background: var(--primary-blue); color: white; }
         .btn-action:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 
-        .security-wrapper { max-width: 1450px; margin: 15px auto; padding: 0 20px; }
-        .security-box { background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%); border-radius: 16px; padding: 20px; border: 1px solid #dbeafe; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
-        .security-header { color: var(--primary-blue); font-size: 18px; font-weight: 900; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; border-bottom: 2px solid var(--accent-orange); padding-bottom: 8px; width: fit-content; }
+        /* SECURITY SECTION UPDATED TO FULL WIDTH */
+        .security-wrapper { 
+            width: 100%; 
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%); 
+            border-top: 1px solid #dbeafe; 
+            border-bottom: 1px solid #dbeafe; 
+            margin: 30px 0; 
+            padding: 40px 0; 
+        }
+        .security-box { 
+            max-width: 1450px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        .security-header { color: var(--primary-blue); font-size: 18px; font-weight: 900; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; border-bottom: 2px solid var(--accent-orange); padding-bottom: 8px; width: fit-content; }
         .security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .security-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.7); padding: 12px; border-radius: 12px; border: 1px solid #edf2f7; }
+        .security-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px; border: 1px solid #edf2f7; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .security-item i { color: var(--primary-blue); font-size: 16px; margin-top: 2px; }
         .security-item p { margin: 0; font-size: 11px; font-weight: 700; color: #334155; line-height: 1.5; }
+
+        /* EMPLOYEE SECTION - NEW */
+        .employee-wrapper { width: 100%; background: #fff; padding: 40px 0; border-bottom: 4px solid var(--accent-orange); }
+        .employee-container { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
+        .employee-status-box { display: none; margin-top: 20px; }
 
         .submit-container { display: flex; justify-content: center; width: 100%; margin-top: 10px; gap: 10px; }
         .review-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 25px; font-size: 11px; font-weight: 900; border-radius: 50px; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 0 #000044; }
@@ -130,7 +177,7 @@
         .social-icons { display: flex; gap: 15px; margin: 10px 0; }
         .social-icons a { font-size: 20px; color: white; }
 
-        /* MOBILE OPTIMIZATIONS - UPDATED FOR CENTERED LOGO */
+        /* Responsive Logic */
         @media (max-width: 850px) {
             header { flex-direction: column; height: auto; padding: 20px 15px; text-align: center; gap: 15px; }
             header .header-left { flex-direction: column; align-items: center; justify-content: center; width: 100%; text-align: center; gap: 10px; }
@@ -231,7 +278,6 @@
                 <div id="paidFullForm" style="display: none;">
                     <div class="form-header"><h2 class="form-title">Paid Full Profile Registration</h2></div>
                     <form id="paidForm" onsubmit="prepareReview(event, 'paid')">
-                        <!-- Identical 4 sections with 28 total fields -->
                         <div class="form-section">
                             <div class="section-name"><i class="fa-solid fa-address-card"></i> Section 1 (Required)</div>
                             <div class="registration-form">
@@ -291,90 +337,10 @@
             </div>
             <div id="paidStatus" class="status-container"></div>
         </div>
-
-        <!-- STEP 3 -->
-        <div id="step3_block">
-            <div class="horizontal-section" id="anotherSection" onclick="toggleForm('another')">
-                <div class="section-info">
-                    <h3><i class="fa-solid fa-user-plus"></i> <span class="step-badge">PAID-2</span> Register Another Student</h3>
-                    <p>Register siblings using the same family number.</p>
-                </div>
-                <button class="btn-register btn-join-blink">Join</button>
-            </div>
-            <div id="anotherRegistration" class="registration-box">
-                 <div id="anotherVerifyBox" class="verify-container">
-                    <div class="verify-row">
-                        <div class="verify-input-group"><i class="fa-solid fa-mobile-screen-button"></i><input type="tel" id="anotherVerifyMobile" placeholder="Family Number"></div>
-                        <button type="button" id="anotherVerifyBtn" class="btn-verify" onclick="verifyNumber('another')">Verify</button>
-                    </div>
-                    <div id="anotherVerifyError" class="verify-error-box"></div>
-                </div>
-                <div id="anotherFullForm" style="display: none;">
-                    <div class="form-header"><h2 class="form-title">Additional Student Profile</h2></div>
-                    <form id="anotherForm" onsubmit="prepareReview(event, 'another')">
-                        <!-- SECTION 1-4 EXACTLY SAME AS PAIDFORM -->
-                        <div class="form-section">
-                            <div class="section-name"><i class="fa-solid fa-address-card"></i> Section 1 (Required)</div>
-                            <div class="registration-form">
-                                <div class="form-group"><label>Full Name</label><input type="text" name="fullName" required></div>
-                                <div class="form-group"><label>Class</label><select name="class" required><option value="">Select...</option><option value="3rd Class">3rd Class</option><option value="4th Class">4th Class</option><option value="5th Class">5th Class</option><option value="6th Class">6th Class</option><option value="7th Class">7th Class</option><option value="8th Class">8th Class</option><option value="9th Class">9th Class</option><option value="10th Class">10th Class</option></select></div>
-                                <div class="form-group"><label>Mobile</label><input type="tel" name="mobile" id="anotherActualMobile" readonly required></div>
-                                <div class="form-group"><label>Number Used by</label><select name="numberUsedBy" required><option value="">Select...</option><option value="Self">Self</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Brother">Brother</option><option value="Sister">Sister</option><option value="Others">Others</option></select></div>
-                                <div class="form-group"><label>Whatsapp Number</label><div class="box-selector"><div class="box-option"><input type="radio" name="isWa_3" value="Yes" id="waYes_3"><label class="box-label" for="waYes_3">Yes</label></div><div class="box-option"><input type="radio" name="isWa_3" value="No" id="waNo_3"><label class="box-label" for="waNo_3">No</label></div></div></div>
-                                <div class="form-group"><label>Parent Name</label><input type="text" name="parentName" required></div>
-                                <div class="form-group"><label>Gender</label><div class="box-selector"><div class="box-option"><input type="radio" name="gender_3" value="Male" id="gMale_3"><label class="box-label" for="gMale_3">Male</label></div><div class="box-option"><input type="radio" name="gender_3" value="Female" id="gFemale_3"><label class="box-label" for="gFemale_3">Female</label></div></div></div>
-                            </div>
-                        </div>
-                        <div class="form-section">
-                            <div class="section-name"><i class="fa-solid fa-school"></i> Section 2 (Optional)</div>
-                            <div class="registration-form">
-                                <div class="form-group"><label>DOB</label><div class="dob-container"><select name="dob_day"><option value="">Day</option><script>for(let i=1;i<=31;i++)document.write(`<option value="${i}">${i}</option>`)</script></select><select name="dob_month"><option value="">Month</option><option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="May">May</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option></select><select name="dob_year"><option value="">Year</option><script>for(let i=new Date().getFullYear();i>=2000;i--)document.write(`<option value="${i}">${i}</option>`)</script></select></div></div>
-                                <div class="form-group"><label>School Name</label><input type="text" name="schoolName"></div>
-                                <div class="form-group"><label>School City</label><input type="text" name="schoolCity"></div>
-                                <div class="form-group"><label>Medium</label><select name="medium"><option value="">Select...</option><option value="English">English</option><option value="Telugu">Telugu</option><option value="Hindi">Hindi</option></select></div>
-                                <div class="form-group"><label>School Type</label><select name="schoolType"><option value="">Select...</option><option value="Private">Private</option><option value="Government">Government</option><option value="Residential">Residential</option></select></div>
-                                <div class="form-group"><label>Interesting Subject</label><select name="interestingSubject"><option value="">Select...</option><option value="Maths">Maths</option><option value="English">English</option><option value="Telugu">Telugu</option><option value="Science">Science</option><option value="Social">Social</option><option value="EVS">EVS</option><option value="Others">Others</option></select></div>
-                                <div class="form-group"><label>Dream / Ambition</label><input type="text" name="ambition"></div>
-                            </div>
-                        </div>
-                        <div class="form-section">
-                            <div class="section-name"><i class="fa-solid fa-language"></i> Section 3 (Payment)</div>
-                            <div class="registration-form">
-                                <div class="form-group"><label>Know English</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowEnglish_3" value="Yes" id="engYes_3"><label class="box-label" for="engYes_3">Yes</label></div><div class="box-option"><input type="radio" name="knowEnglish_3" value="No" id="engNo_3"><label class="box-label" for="engNo_3">No</label></div></div></div>
-                                <div class="form-group"><label>Know Telugu</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowTelugu_3" value="Yes" id="telYes_3"><label class="box-label" for="telYes_3">Yes</label></div><div class="box-option"><input type="radio" name="knowTelugu_3" value="No" id="telNo_3"><label class="box-label" for="telNo_3">No</label></div></div></div>
-                                <div class="form-group"><label>Know Hindi</label><div class="box-selector"><div class="box-option"><input type="radio" name="knowHindi_3" value="Yes" id="hinYes_3"><label class="box-label" for="hinYes_3">Yes</label></div><div class="box-option"><input type="radio" name="knowHindi_3" value="No" id="hinNo_3"><label class="box-label" for="hinNo_3">No</label></div></div></div>
-                                <div class="form-group"><label>Plan</label><select name="paymentPlan" required><option value="">Select...</option><option value="Gold 499 Plan">Gold 499 Plan</option></select></div>
-                                <div class="form-group"><label>Amount</label><input type="number" name="paidAmount" value="499" required></div>
-                                <div class="form-group"><label>Paid From</label><select name="paidFrom" required><option value="">Select...</option><option value="PhonePe">PhonePe</option><option value="Google Pay">Google Pay</option><option value="Paytm">Paytm</option><option value="Cash">Cash</option><option value="Others">Others</option></select></div>
-                            </div>
-                        </div>
-                        <div class="form-section">
-                            <div class="section-name"><i class="fa-solid fa-map-location-dot"></i> Section 4</div>
-                            <div class="registration-form">
-                                <div class="form-group"><label>Village</label><input type="text" name="village"></div>
-                                <div class="form-group"><label>Mandal</label><input type="text" name="mandal"></div>
-                                <div class="form-group"><label>District</label><input type="text" name="district"></div>
-                                <div class="form-group"><label>State</label><input type="text" name="state" value="Andhra Pradesh"></div>
-                                <div class="form-group"><label>Joined Via</label><select name="joinedFrom"><option value="">Select...</option><option value="Class DEMO">Class DEMO</option><option value="Teacher">Teacher</option><option value="Friends">Friends</option><option value="Family">Family</option><option value="Youtube">Youtube</option><option value="Instagram">Instagram</option><option value="Others">Others</option></select></div>
-                                <div class="form-group"><label>Reference Name</label><select name="refName"><option value="">Select...</option><option value="K Narasimha Reddy">K Narasimha Reddy</option><option value="B Satya Narayana">B Satya Narayana</option><option value="Others">Others</option></select></div>
-                                <div class="form-group"><label>Reference Number</label><input type="tel" name="refNumber"></div>
-                                <div class="form-group" style="grid-column: span 2; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px;"><input type="checkbox" name="agreement" value="Agreed" required style="width:18px; height:18px;"><span style="font-size:11px; font-weight: 800;">I AGREE TO <a href="#" style="color: var(--primary-blue); text-decoration: underline;">TERMS & CONDITIONS</a></span></div>
-                            </div>
-                        </div>
-                        <div class="submit-container"><button type="submit" class="review-btn">Review Details</button></div>
-                    </form>
-                </div>
-            </div>
-            <div id="anotherReviewBox" class="review-area">
-                <div class="form-header"><h2 class="form-title">Review Information</h2></div>
-                <div id="anotherReviewContent" class="review-grid"></div>
-                <div class="submit-container"><button type="button" class="edit-btn" onclick="editForm('another')">Edit</button><button type="button" class="review-btn" onclick="finalSubmitProcess('another')">Confirm & Submit</button></div>
-            </div>
-            <div id="anotherStatus" class="status-container"></div>
-        </div>
     </div>
 </div>
 
+<!-- FULL WIDTH SECURITY AREA -->
 <div class="security-wrapper">
     <div class="security-box">
         <div class="security-header"><i class="fa-solid fa-user-shield"></i> Security & Data Protection</div>
@@ -389,6 +355,60 @@
                 <p style="color:white; width: 100%;">We promise that all registration details remain protected and secure at all times, even after login.</p>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- EMPLOYEE ONLY ACCESS SECTION -->
+<div class="employee-wrapper">
+    <div class="employee-container">
+        <div class="horizontal-section" id="employeeToggle" onclick="toggleEmployeeSection()">
+            <div class="section-info">
+                <h3><i class="fa-solid fa-user-lock"></i> <span class="step-badge" style="background: #333;">STAFF</span> Employee Only Access</h3>
+                <p>Authorized access for internal payment verification and updates.</p>
+            </div>
+            <button class="btn-register" style="background: #333;">Click</button>
+        </div>
+
+        <div id="employeeRegistration" class="registration-box">
+            <!-- ID Verification Phase -->
+            <div id="employeeVerifyBox" class="verify-container" style="margin-top: 20px;">
+                <div class="verify-row">
+                    <div class="verify-input-group">
+                        <i class="fa-solid fa-id-badge"></i>
+                        <input type="text" id="employeeIdInput" placeholder="Enter Employee ID">
+                    </div>
+                    <button type="button" class="btn-verify" style="background: #333;" onclick="verifyEmployee()">Verify</button>
+                </div>
+                <div id="employeeVerifyError" class="verify-error-box"></div>
+            </div>
+
+            <!-- Data Entry Phase -->
+            <div id="employeeFullForm" style="display: none; margin-top: 20px;">
+                <div class="form-header"><h2 class="form-title" style="color:#333; border-bottom-color:#333;">Update Payment Status</h2></div>
+                <form id="employeeForm" onsubmit="handleEmployeeSubmit(event)">
+                    <div class="form-section">
+                        <div class="registration-form" style="grid-template-columns: 1fr;">
+                            <div class="form-group">
+                                <label>Student Mobile Number</label>
+                                <input type="tel" name="studentMobile" required placeholder="Enter student's registered number">
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Status</label>
+                                <select name="paymentStatus" required>
+                                    <option value="">Select Status...</option>
+                                    <option value="Paid">PAID</option>
+                                    <option value="Unpaid">UNPAID</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-container">
+                        <button type="submit" class="review-btn" style="background: #333; box-shadow: 0 4px 0 #111;">Submit Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="employeeStatus" class="status-container" style="margin-top: 20px;"></div>
     </div>
 </div>
 
@@ -416,8 +436,10 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwAnoUt95Y_3Swh0iBz4ik46QrevxfWLuUmOyZP0NdOVyY9YHQ4Z1Q3ci0Km-3n9CsQ/exec';
     const step1URL = 'https://script.google.com/macros/s/AKfycbxFkcz0aOakTKWNsZY9c8GzGboruOHCSFBSIiWUUUvSWkTMdUZ0-CiPxkhPEBAR5bU/exec';
     const verifyURL = 'https://script.google.com/macros/s/AKfycbzf0fWuvVCyCV2TbGyG1BSXEab12mRiHGd77rcCxcfADb7JNe4HWFnsdknOxlBZgaob/exec';
-    const verifyStep3URL = 'https://script.google.com/macros/s/AKfycbyX30gb-02dVBWnahf4gTQfipXOVu9Qoj-Eti3tW0NZ_iMG2HrkIdcY1zW9WO-HdSGn/exec';
-    const step3SubmitURL = 'https://script.google.com/macros/s/AKfycbyw1Qj72a3V3560bZ9QGuXEYC03hYo-Pq9THpC6KvZziHNY4As6a_biUCwQ3dEY8Vus/exec';
+    
+    // NEW URLs for Employee Access
+    const employeeVerifyURL = 'https://script.google.com/macros/s/AKfycbzf0fWuvVCyCV2TbGyG1BSXEab12mRiHGd77rcCxcfADb7JNe4HWFnsdknOxlBZgaob/exec'; // Example
+    const employeeSubmitURL = 'https://script.google.com/macros/s/AKfycbwAnoUt95Y_3Swh0iBz4ik46QrevxfWLuUmOyZP0NdOVyY9YHQ4Z1Q3ci0Km-3n9CsQ/exec'; // Example
 
     let globalFormData = {};
     let activeType = '';
@@ -433,7 +455,7 @@
 
         hideAll();
         activeType = type;
-        const sectionId = type === 'unpaid' ? 'unpaidSection' : (type === 'another' ? 'anotherSection' : type + 'Section');
+        const sectionId = type === 'unpaid' ? 'unpaidSection' : type + 'Section';
         document.getElementById(sectionId).classList.add('active-path');
         group.style.display = 'block';
         
@@ -442,6 +464,25 @@
             document.getElementById(type + 'FullForm').style.display = 'none';
         }
         scrollToTarget(sectionId);
+    }
+
+    function toggleEmployeeSection() {
+        const group = document.getElementById('employeeRegistration');
+        const toggle = document.getElementById('employeeToggle');
+        
+        if (activeType === 'employee') {
+            hideAll();
+            activeType = '';
+            return;
+        }
+
+        hideAll();
+        activeType = 'employee';
+        toggle.classList.add('active-path');
+        group.style.display = 'block';
+        document.getElementById('employeeVerifyBox').style.display = 'flex';
+        document.getElementById('employeeFullForm').style.display = 'none';
+        scrollToTarget('employeeToggle');
     }
 
     function hideAll() {
@@ -463,8 +504,8 @@
         errorBox.style.display = 'none';
         if (mobile.length < 10) { errorBox.innerText = 'Invalid mobile number'; errorBox.style.display = 'block'; return; }
         btn.disabled = true; btn.innerText = 'VERIFYING...';
-        const url = type === 'paid' ? verifyURL : verifyStep3URL;
-        fetch(`${url}?mobile=${mobile}`).then(res => res.json()).then(data => {
+        
+        fetch(`${verifyURL}?mobile=${mobile}`).then(res => res.json()).then(data => {
             if (data.status === 'success') {
                 document.getElementById(type + 'ActualMobile').value = mobile;
                 document.getElementById(type + 'VerifyBox').style.display = 'none';
@@ -472,6 +513,45 @@
                 scrollToTarget(type + 'FullForm');
             } else { errorBox.innerText = data.message; errorBox.style.display = 'block'; }
         }).finally(() => { btn.disabled = false; btn.innerText = 'Verify'; });
+    }
+
+    // NEW EMPLOYEE FUNCTIONS
+    function verifyEmployee() {
+        const id = document.getElementById('employeeIdInput').value.trim();
+        const errorBox = document.getElementById('employeeVerifyError');
+        errorBox.style.display = 'none';
+
+        if(!id) {
+            errorBox.innerText = "Please enter Employee ID";
+            errorBox.style.display = 'block';
+            return;
+        }
+
+        // Logic for employee verification (using same verify URL as sample)
+        document.getElementById('employeeVerifyBox').style.display = 'none';
+        document.getElementById('employeeFullForm').style.display = 'block';
+        scrollToTarget('employeeFullForm');
+    }
+
+    function handleEmployeeSubmit(e) {
+        e.preventDefault();
+        const status = document.getElementById('employeeStatus');
+        document.getElementById('employeeRegistration').style.display = 'none';
+        status.style.display = 'block';
+        status.innerHTML = `<div class="status-loading-text"><i class="fas fa-spinner fa-spin"></i> UPDATING STATUS...</div>`;
+        
+        const data = Object.fromEntries(new FormData(e.target));
+        
+        fetch(employeeSubmitURL, { method: 'POST', body: JSON.stringify(data) })
+        .then(() => {
+            status.innerHTML = `
+                <div style="padding:20px;">
+                    <i class="fa-solid fa-check-circle" style="font-size:50px; color:var(--success-green);"></i>
+                    <h3 style="margin-top:15px; font-weight:900;">STATUS UPDATED</h3>
+                    <p style="font-size:12px; font-weight:700; color:#64748b;">Payment for ${data.studentMobile} marked as ${data.paymentStatus.toUpperCase()}</p>
+                    <button class="btn-action home-btn" style="margin:20px auto 0 auto; background:#333;" onclick="location.reload()">Return Home</button>
+                </div>`;
+        });
     }
 
     function prepareReview(e, type) {
@@ -533,8 +613,7 @@
         status.innerHTML = `<div class="status-loading-text"><i class="fas fa-spinner fa-spin"></i> YOUR DETAILS ARE SUBMITTING...</div>`;
         scrollToTarget(type + 'Status');
 
-        const url = type === 'paid' ? scriptURL : step3SubmitURL;
-        fetch(url, { method: 'POST', body: JSON.stringify(globalFormData) }).then(res => res.json()).then(data => {
+        fetch(scriptURL, { method: 'POST', body: JSON.stringify(globalFormData) }).then(res => res.json()).then(data => {
             const u = data.username || 'N/A'; const p = data.password || 'N/A';
             const waMsg = `*Student%20Vision%20Talent%20Competition*%0A*See%20your%20Success*%0A%0AFull%20Name:%20${globalFormData.fullName}%0AClass:%20${globalFormData.class}%0ALogin%20Link:%20https://studentvision.in/login%0A%0AUsername:%20${u}%0APassword:%20${p}%0A%0A*DO%20NOT%20SHARE%20THESE%20ARE%20ALL%20CONFIDENTIAL*`;
             
