@@ -47,11 +47,9 @@
         header .header-right { display: flex; gap: 18px; align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
         
-        /* UPDATED: Decreased icon size slightly as requested */
         header .icon { font-size: clamp(12px, 2.2vw, 16px); color: var(--accent-orange); }
         .icon-label { font-size: 8px; margin-top: 3px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        /* Size Spec: Corner Icons 45px Fixed */
         .header-corner { position: absolute; top: 0; left: 0; height: 45px; opacity: 0.7; pointer-events: none; }
         .header-corner-right { position: absolute; top: 0; right: 0; height: 45px; opacity: 0.7; transform: scaleX(-1); pointer-events: none; }
 
@@ -148,7 +146,6 @@
             header .header-left div { display: flex; flex-direction: column; align-items: center; }
             header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 12px; flex-wrap: wrap; }
             
-            /* Footer 3-column middle centered on mobile */
             .footer-content { 
                 grid-template-columns: 1fr; 
                 text-align: center;
@@ -257,32 +254,88 @@
         </div>
     </div>
 
-    <!-- 2. SECONDARY PORTALS -->
+    <!-- 2. SECONDARY PORTALS - EACH GRADE SEPARATE -->
     <div class="separator-container"><div class="separator-text">SECONDARY PORTALS</div></div>
     <div class="column-grid">
-        <script>
-            const secondaryList = [
-                {n: "5", s: "th", i: "fa-school", text: "5th Grade is your entry point into high-level competition. We focus on building mental agility for JNVST and APR school exams. This portal turns primary concepts into solid foundations for your secondary journey."},
-                {n: "6", s: "th", i: "fa-book", text: "In 6th Grade, we elevate your learning standards. Master critical thinking through our Navodaya and Gurukul preparation modules. Start bench-marking your skills against state and national peers right here."},
-                {n: "7", s: "th", i: "fa-book-open", text: "7th Grade is where curiosity meets competition. Dive deeper into Science and Math, preparing for the NSTSE and Olympiads. This portal is designed to nurture your analytical mind for national recognition."},
-                {n: "8", s: "th", i: "fa-user-graduate", text: "8th Grade marks the start of your professional foundation. We begin intensive tracking for the NTSE and building the conceptual framework for Science Talent Searches. Sharpen your competitive edge early."},
-                {n: "9", s: "th", i: "fa-microchip", text: "9th Grade is the launchpad for your long-term goals. Resources are specifically aligned with NTSE Stage-1 and the KVPY track. Bridge the gap between textbooks and advanced competitive application."}
-            ];
-            secondaryList.forEach(item => {
-                document.write(`
-                    <div class="class-column">
-                        <div class="column-header"><i class="fa-solid ${item.i}"></i><h3>${item.n}<sup>${item.s}</sup> Class</h3></div>
-                        <div class="column-body">
-                            <div class="motivation-text">${item.text}</div>
-                            <div class="login-row">
-                                <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">STUDENT PORTAL</span></div>
-                                <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                `);
-            });
-        </script>
+        <!-- BOX: 5th Class -->
+        <div class="class-column">
+            <div class="column-header"><i class="fa-solid fa-school"></i><h3>5<sup>th</sup> Class</h3></div>
+            <div class="column-body">
+                <div class="motivation-text">5th Grade is your entry point into high-level competition. We focus on building mental agility for JNVST and APR school exams. This portal turns primary concepts into solid foundations for your secondary journey.</div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Genaral Studies</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Navodaya</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOX: 6th Class -->
+        <div class="class-column">
+            <div class="column-header"><i class="fa-solid fa-book-open"></i><h3>6<sup>th</sup> Class</h3></div>
+            <div class="column-body">
+                <div class="motivation-text">Step into the world of logic and advanced inquiry. 6th Grade is where we refine your analytical thinking. Prepare for state-level competitions with resources that make learning both intensive and rewarding.</div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Subject Portal</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Entrance Exams</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOX: 7th Class -->
+        <div class="class-column">
+            <div class="column-header"><i class="fa-solid fa-microscope"></i><h3>7<sup>th</sup> Class</h3></div>
+            <div class="column-body">
+                <div class="motivation-text">Intermediate secondary education requires a sharp focus. In 7th Grade, we bridge the gap between basic concepts and competitive applications. Dominate your internal assessments and external talent hunts here.</div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Subject Portal</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Entrance Exams</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOX: 8th Class -->
+        <div class="class-column">
+            <div class="column-header"><i class="fa-solid fa-brain"></i><h3>8<sup>th</sup> Class</h3></div>
+            <div class="column-body">
+                <div class="motivation-text">8th Grade is the foundation for your high school excellence. We emphasize deep subject knowledge and strategic exam-taking skills. Start visualizing your future career through our specialized preparation modules.</div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Subject Portal</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Entrance Exams</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOX: 9th Class -->
+        <div class="class-column">
+            <div class="column-header"><i class="fa-solid fa-vial"></i><h3>9<sup>th</sup> Class</h3></div>
+            <div class="column-body">
+                <div class="motivation-text">The precursor to your board exams. 9th Grade is about precision and mastery. Our resources are designed to help you excel in the toughest subjects while preparing you for the high-stakes journey of the 10th grade.</div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Subject Portal</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+                <div class="login-row">
+                    <div class="row-left-content"><i class="fa-solid fa-circle-chevron-right special-icon"></i><span class="row-label">Entrance Exams</span></div>
+                    <a href="https://studentvisiontc.github.io/Student-Vision/login.html" class="mini-orange-btn">LOGIN <i class="fa-solid fa-right-to-bracket"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- 3. PRIMARY PORTALS -->
