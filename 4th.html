@@ -32,7 +32,7 @@
         /* HEADER SECTION */
         header { 
             background: var(--primary-blue); 
-            padding: 8px clamp(10px, 3vw, 25px); 
+            padding: 12px clamp(10px, 3vw, 25px); 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -40,7 +40,7 @@
             width: 100%; 
             position: relative; 
             overflow: hidden; 
-            min-height: 55px; 
+            min-height: 65px; 
             z-index: 100;
         }
         .header-scroll-bg { 
@@ -56,17 +56,17 @@
         
         header .header-left, header .header-right, .header-corner, .header-corner-right { z-index: 10; }
         header .header-left { display: flex; align-items: center; gap: 10px; }
-        header .logo { height: 34px; width: 34px; border-radius: 50%; border: 1.5px solid #ffffff; background: white; flex-shrink: 0; }
-        header .main-title { font-size: clamp(11px, 2.8vw, 16px); font-weight: 900; line-height: 1.1; }
-        header .sub-title { font-size: clamp(7.5px, 1.8vw, 10px); font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
+        header .logo { height: 38px; width: 38px; border-radius: 50%; border: 1.5px solid #ffffff; background: white; flex-shrink: 0; }
+        header .main-title { font-size: clamp(12px, 2.8vw, 17px); font-weight: 900; line-height: 1.1; }
+        header .sub-title { font-size: clamp(8px, 1.8vw, 11px); font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
         
-        header .header-right { display: flex; gap: clamp(6px, 1.8vw, 12px); align-items: center; }
+        header .header-right { display: flex; gap: clamp(5px, 1.5vw, 10px); align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
-        header .icon { font-size: clamp(14px, 2.8vw, 18px); color: var(--accent-orange); }
-        .icon-label { font-size: 6px; margin-top: 1px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2px; }
+        header .icon { font-size: clamp(12px, 2.4vw, 15px); color: var(--accent-orange); }
+        .icon-label { font-size: 5.5px; margin-top: 1px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2px; }
         
-        .header-corner { position: absolute; top: 0; left: 0; height: 35px; opacity: 0.8; pointer-events: none; z-index: 15; }
-        .header-corner-right { position: absolute; top: 0; right: 0; height: 35px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
+        .header-corner { position: absolute; top: 0; left: 0; height: 38px; opacity: 0.8; pointer-events: none; z-index: 15; }
+        .header-corner-right { position: absolute; top: 0; right: 0; height: 38px; opacity: 0.8; transform: scaleX(-1); pointer-events: none; z-index: 15; }
 
         /* DYNAMIC MAIN LAYOUT */
         main { 
@@ -104,7 +104,6 @@
         .welcome-content { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
         .welcome-text h1 { margin: 0; font-size: clamp(10px, 2.5vw, 14px); font-weight: 900; color: #1e293b; white-space: nowrap; }
         .student-name { color: var(--primary-blue); font-weight: 900; }
-        .class-badge { font-size: clamp(8px, 1.8vw, 11px); font-weight: 800; color: #475569; text-transform: uppercase; border-left: 1px solid #cbd5e1; padding-left: 8px; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
         .premium-status { display: flex; align-items: center; gap: 4px; font-size: clamp(7.5px, 1.6vw, 8.5px); font-weight: 900; color: var(--accent-orange); background: #fff7ed; padding: 2px 6px; border-radius: 50px; border: 1px solid #ffedd5; white-space: nowrap; }
         .premium-status i { animation: pulseIcon 2s infinite; }
         @keyframes pulseIcon { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
@@ -132,34 +131,6 @@
         .stat-value { font-family: 'Inter', sans-serif; font-size: clamp(9px, 1.5vw, 11px); font-weight: 900; color: var(--text-dark); }
         .stat-box.highlight i { color: var(--accent-orange); }
         .stat-box.highlight .stat-value { color: var(--accent-orange); }
-
-        /* DAILY CHALLENGE SECTION */
-        .daily-challenge-box {
-            background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
-            border: 1px solid #fef3c7;
-            display: flex; align-items: center; justify-content: space-between; gap: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            margin: 10px 0;
-        }
-        .challenge-info { display: flex; align-items: center; gap: 15px; }
-        .challenge-icon { font-size: 24px; color: var(--accent-orange); animation: bounceIcon 2s infinite; }
-        @keyframes bounceIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        .challenge-text h4 { margin: 0; font-size: 14px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
-        .challenge-text p { margin: 2px 0 0 0; font-size: 11px; color: #64748b; font-weight: 600; line-height: 1.4; }
-        .btn-challenge { 
-            background: var(--accent-orange); 
-            color: white; 
-            text-decoration: none; 
-            padding: 8px 20px; 
-            border-radius: 8px; 
-            font-size: 10px; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            box-shadow: 0 4px 10px rgba(255,165,0,0.25);
-            transition: 0.3s;
-            white-space: nowrap;
-        }
 
         /* SRM BANNER */
         .srm-banner {
@@ -200,7 +171,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ACHIEVEMENTS */
+        /* ACHIEVEMENTS (ACADEMIC MASTERY) */
         .achievements-premium {
             background: linear-gradient(135deg, #000428 0%, #004e92 100%);
             color: white;
@@ -224,7 +195,7 @@
         .sub-head-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
         .sub-head-row i { font-size: clamp(20px, 3.5vw, 26px); color: var(--accent-orange); }
         .sub-head-row h3 { font-size: clamp(18px, 3.5vw, 22px); font-weight: 900; color: var(--primary-blue); margin: 0; }
-        .sub-inspiration { padding: 0 0 15px 0; font-size: clamp(12px, 2.2vw, 14px); line-height: 1.6; color: #334155; text-align: justify; font-weight: 500; }
+        .sub-inspiration { padding: 15px; font-size: clamp(12px, 2.2vw, 14px); line-height: 1.7; color: #334155; text-align: justify; font-weight: 500; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--accent-orange); margin-bottom: 15px; }
         
         .item-row { background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-bottom: 6px; width: 100%; transition: 0.3s ease; }
         .item-top { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; width: 100%; flex-wrap: nowrap; }
@@ -240,7 +211,7 @@
         .item-topic-name { font-size: 12px; font-weight: 800; text-align: left; }
         .btn-take { background: var(--primary-blue); color: white; text-decoration: none; padding: 4px 15px; border-radius: 5px; font-size: 8.5px; font-weight: 900; text-transform: uppercase; transition: 0.3s; margin-left: auto; }
 
-        /* STATUS PANEL */
+        /* STATUS PANEL (ACADEMY PROGRESS) */
         .status-panel { background: white; padding-top: 15px !important; padding-bottom: 15px !important; }
         .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; flex-wrap: wrap; gap: 6px; }
         .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; }
@@ -310,43 +281,30 @@
         .p-lbl { font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; }
         .p-val { font-size: 13px; font-weight: 900; color: var(--text-dark); margin-top: 2px; }
 
-        /* STATE TOPPERS - MODIFIED WITH GOLD SCROLL AND FIREWORKS */
-        .fame-box { padding: 25px 0; background: white; width: 100%; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
-        .fame-track { display: flex; gap: 15px; width: max-content; animation: liveScroll 85s linear infinite; padding: 10px 0; }
+        /* STATE TOPPERS */
+        .fame-box { padding: 20px 0; background: white; width: 100%; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+        .fame-track { display: flex; gap: 12px; width: max-content; animation: liveScroll 95s linear infinite; padding: 10px 0; }
         
         .topper-unit { 
-            background: white; 
-            border: 2px solid #bae6fd; 
-            width: 290px; 
-            min-height: 330px; 
-            flex-shrink: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            position: relative; 
-            overflow: hidden; 
-            border-radius: 15px;
-            /* GOLD SCROLL EFFECT BACKGROUND */
-            background-image: linear-gradient(135deg, #fff 0%, #fff 40%, rgba(255, 215, 0, 0.1) 50%, #fff 60%, #fff 100%);
-            background-size: 200% 200%;
-            animation: goldScrollBG 5s infinite linear;
+            background: white; border: 1.5px solid #bae6fd; width: 230px; min-height: 280px; flex-shrink: 0; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; 
+            position: relative; overflow: hidden; border-radius: 12px;
+            background-image: linear-gradient(135deg, #fff 0%, #fff 40%, rgba(255, 215, 0, 0.08) 50%, #fff 60%, #fff 100%);
+            background-size: 200% 200%; animation: goldScrollBG 5s infinite linear; padding: 10px;
         }
         @keyframes goldScrollBG { 0% { background-position: -100% -100%; } 100% { background-position: 100% 100%; } }
 
-        .rank-badge { position: absolute; top: 10px; left: 10px; background: linear-gradient(135deg, var(--primary-blue), #3b82f6); color: white; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 900; z-index: 10; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .topper-photo { width: 75px; height: 75px; border-radius: 50%; border: 3px solid var(--accent-orange); object-fit: cover; margin-bottom: 12px; z-index: 5; position: relative; }
-        .topper-score { font-size: 13px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 6px 15px; border-radius: 40px; margin-top: 8px; border: 1px solid var(--success-green); width: 80%; z-index: 5; position: relative; }
-        .congrats-txt { font-size: 18px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 1.5px; margin-bottom: 8px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite, congratsPulse 1.5s ease-in-out infinite alternate; z-index: 5; position: relative; }
+        .rank-badge { position: absolute; top: 8px; left: 8px; background: linear-gradient(135deg, var(--primary-blue), #3b82f6); color: white; padding: 3px 8px; border-radius: 4px; font-size: 7.5px; font-weight: 900; z-index: 10; text-transform: uppercase; }
+        .topper-photo { width: 60px; height: 60px; border-radius: 50%; border: 2.5px solid var(--accent-orange); object-fit: cover; margin-bottom: 10px; z-index: 5; position: relative; }
+        .topper-score { font-size: 11px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 5px 12px; border-radius: 40px; margin-top: 6px; border: 1px solid var(--success-green); width: 85%; z-index: 5; }
+        .congrats-txt { font-size: 15px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 1px; margin-bottom: 5px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite; z-index: 5; }
 
-        /* LIVE FIREWORKS INSIDE CARD */
         .card-firework-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .mini-rocket { position: absolute; bottom: -20px; width: 2px; height: 10px; background: var(--accent-orange); opacity: 0; animation: rocketFlight 3s infinite; }
-        .mini-burst { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: burstPop 3s infinite; }
+        .mini-rocket { position: absolute; bottom: -20px; width: 2px; height: 8px; background: var(--accent-orange); opacity: 0; animation: rocketFlight 3.5s infinite; }
+        .mini-burst { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: burstPop 3.5s infinite; }
         
-        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-150px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-orange); } 70% { opacity: 0; transform: scale(3); } 100% { opacity: 0; } }
+        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-120px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
+        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 8px var(--accent-yellow), 0 0 15px var(--accent-orange); } 70% { opacity: 0; transform: scale(2.5); } 100% { opacity: 0; } }
 
         /* FOOTER */
         footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
@@ -360,30 +318,9 @@
             header { flex-direction: column; height: auto; padding: 8px 10px; text-align: center; gap: 5px; }
             header .header-left { flex-direction: column; align-items: center; width: 100%; gap: 3px; }
             header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 5px; flex-wrap: wrap; }
-            
-            .welcome-section { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; padding: 4px 12px; }
-            .welcome-text h1 { font-size: clamp(8.5px, 3.2vw, 12px); }
-            
             .performance-analysis { grid-template-columns: 1fr; }
-            .srm-banner { flex-direction: column; text-align: center; padding: 15px 10px; }
-            .srm-icon-box { margin: 0 auto 10px auto; }
-            
-            .srm-main-container { flex-direction: column; gap: 10px; text-align: center; }
-            .srm-contact-hd-text { border-left: none; padding-left: 0; align-items: center; border-top: 1px dashed rgba(0,0,139,0.1); padding-top: 10px; margin-top: 5px; width: 100%; }
-            .srm-contact-hd-text div { align-items: center; }
-
-            .cert-section { flex-direction: column; text-align: center; gap: 15px; }
-            .btn-download { width: 100%; justify-content: center; }
-
-            .item-top { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; }
-            .item-month { flex: 0 0 auto; min-width: 50px; text-align: left; font-size: 7.5px; }
-            .item-meta { flex: 1; justify-content: center; gap: 3px; font-size: 5.5px; }
-            .item-scores { flex: 0 0 auto; justify-content: flex-end; }
         }
 
-        /* CARD FIREWORKS ANIMATIONS */
-        @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-150px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-orange); } 70% { opacity: 0; transform: scale(3); } 100% { opacity: 0; } }
         @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
@@ -410,153 +347,99 @@
 </header>
 
 <main>
-    <!-- WELCOME DASHBOARD SECTION -->
     <div class="welcome-section">
         <div class="welcome-content">
             <div class="welcome-text">
                 <h1>Welcome, <span class="student-name">Student Vision</span>! 👋</h1>
             </div>
-            <div class="class-badge">
-                <i class="fa-solid fa-star" style="color:var(--accent-orange)"></i> 4<sup>th</sup> Class
-            </div>
         </div>
-        <div class="premium-status">
-            <i class="fa-solid fa-crown"></i>
-            <span>GOLD</span>
-        </div>
+        <div class="premium-status"><i class="fa-solid fa-crown"></i><span>GOLD</span></div>
     </div>
 
-    <!-- STATS CONTAINER SECTION - MINI 5 ICONS -->
     <div class="stats-container">
-        <div class="stat-box">
-            <i class="fa-solid fa-stopwatch"></i>
-            <span class="stat-label">SESSION</span>
-            <span class="stat-value" id="timer">00:00:45</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <span class="stat-label">LOGINS</span>
-            <span class="stat-value">14</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-hourglass-half"></i>
-            <span class="stat-label">TOTAL TIME</span>
-            <span class="stat-value">128h</span>
-        </div>
-        <div class="stat-box">
-            <i class="fa-solid fa-tasks"></i>
-            <span class="stat-label">TESTS DONE</span>
-            <span class="stat-value">45/120</span>
-        </div>
-        <div class="stat-box highlight">
-            <i class="fa-solid fa-star"></i>
-            <span class="stat-label">TC SCORE</span>
-            <span class="stat-value">92%</span>
-        </div>
+        <div class="stat-box"><i class="fa-solid fa-stopwatch"></i><span class="stat-label">SESSION</span><span class="stat-value" id="timer">00:00:45</span></div>
+        <div class="stat-box"><i class="fa-solid fa-right-to-bracket"></i><span class="stat-label">LOGINS</span><span class="stat-value">14</span></div>
+        <div class="stat-box"><i class="fa-solid fa-hourglass-half"></i><span class="stat-label">TOTAL TIME</span><span class="stat-value">128h</span></div>
+        <div class="stat-box"><i class="fa-solid fa-tasks"></i><span class="stat-label">TESTS DONE</span><span class="stat-value">4/120</span></div>
+        <div class="stat-box highlight"><i class="fa-solid fa-star"></i><span class="stat-label">TC SCORE</span><span class="stat-value">92%</span></div>
     </div>
 
-    <!-- DAILY CHALLENGE SECTION -->
-    <div class="new-feature-section daily-challenge-box">
-        <div class="challenge-info">
-            <i class="fa-solid fa-lightbulb challenge-icon"></i>
-            <div class="challenge-text">
-                <h4>Question of the Day</h4>
-                <p>If today is Monday, what will be the day after tomorrow? Solve to earn 5 Vision Coins!</p>
-            </div>
-        </div>
-        <a href="#" class="btn-challenge">Solve Now</a>
-    </div>
-
-    <!-- SECTION: Dedicated Student Relationship Manager (SRM) -->
     <div class="srm-banner">
-        <div class="srm-icon-box">
-            <i class="fa-solid fa-user-tie"></i>
-        </div>
+        <div class="srm-icon-box"><i class="fa-solid fa-user-tie"></i></div>
         <div class="srm-main-container">
             <div class="srm-content">
                 <div class="srm-title">Dedicated Student Relationship Manager (SRM)</div>
-                <p class="srm-desc">
-                    We are committed to your success! Your dedicated Student Relations Manager (SRM) acts as a bridge between you and academic excellence, providing tailored roadmaps, consistent guidance for competitive preparation, and swift resolution to any technical or subscription-related queries. We believe every student has a unique vision; your SRM is here to ensure that vision translates into a reality.
-                </p>
+                <p class="srm-desc">Navigating high-stakes exams like Navodaya and Sainik requires a precise strategy. Your Dedicated SRM acts as your academic navigator, providing expert insights, resolving technical bottlenecks, and ensuring you maintain peak performance throughout your competitive journey.</p>
             </div>
-            <!-- HD BLOCK TEXT FOR INFO -->
             <div class="srm-contact-hd-text">
-                <div>
-                    <span class="label">Manager Name :</span>
-                    <span class="value">Sri Veda TC</span>
-                </div>
-                <div>
-                    <span class="label">Direct Contact :</span>
-                    <span class="value">8985170500</span>
-                </div>
+                <div><span class="label">Manager Name :</span><span class="value">Sri Veda TC</span></div>
+                <div><span class="label">Direct Contact :</span><span class="value">8985170500</span></div>
             </div>
         </div>
     </div>
 
-    <!-- MASTERY BADGES SECTION -->
     <div class="achievements-premium">
         <div class="achiever-header">
-            <h3><i class="fa-solid fa-medal"></i> Mastery Badges</h3>
-            <p>Perform well in tests to unlock academic badges.</p>
+            <h3><i class="fa-solid fa-medal"></i> Academic Mastery</h3>
+            <p>Master competitive tracks to unlock elite badges.</p>
         </div>
         <div class="badge-row">
             <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-book-open"></i></div>
-                <span class="badge-lbl">Literacy</span>
-            </div>
-            <div class="badge-unit active">
                 <div class="badge-glow"><i class="fa-solid fa-square-root-variable"></i></div>
-                <span class="badge-lbl">Math Guru</span>
+                <span class="badge-lbl">Number Pro</span>
             </div>
             <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-lightbulb"></i></div>
-                <span class="badge-lbl">Logic</span>
+                <div class="badge-glow"><i class="fa-solid fa-brain"></i></div>
+                <span class="badge-lbl">Logic Wiz</span>
+            </div>
+            <div class="badge-unit active">
+                <div class="badge-glow"><i class="fa-solid fa-landmark"></i></div>
+                <span class="badge-lbl">History</span>
             </div>
             <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-microchip"></i></div>
-                <span class="badge-lbl">Tech Wiz</span>
+                <div class="badge-glow"><i class="fa-solid fa-dna"></i></div>
+                <span class="badge-lbl">Science</span>
             </div>
             <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-earth-asia"></i></div>
-                <span class="badge-lbl">EVS Pro</span>
+                <div class="badge-glow"><i class="fa-solid fa-language"></i></div>
+                <span class="badge-lbl">English</span>
             </div>
         </div>
     </div>
 
-    <!-- SUBJECT WISE TESTS SECTION (All 10 Subjects) -->
     <div id="subjects-container">
         <script>
             const subjectsData = [
-                { id: 1, name: "English", icon: "fa-book", time: "30 MINS", 
-                  passage: "English is the global key that unlocks endless opportunities for class 3 students! Building a strong foundation in phonics, reading, and vocabulary at this early stage is absolutely essential for long-term academic excellence. Elite entrance examinations like Navodaya and Sainik Schools place a massive emphasis on English proficiency. By mastering these 10 core topics, children develop the critical thinking skills needed to understand complex texts and communicate effectively. In the future, this literacy will empower you to shine on international platforms, excel in high-stakes interviews, and become a global leader.",
-                  topics: ["Alphabet Revision", "Phonics Sounds", "New Words (Vocabulary)", "Opposite Words", "Nouns", "Verbs", "Articles (a, an, the)", "Simple Sentences", "Reading Short Stories", "Speaking Simple English"] },
-                { id: 2, name: "Mathematics", icon: "fa-calculator", time: "30 MINS", 
-                  passage: "Mathematics is the secret language of logic and the universe! For a class 3 student, playing with numbers builds a brain that is exceptionally fast and sharp. These 10 essential topics are modeled after International Math Olympiads (IMO) and prestigious scholarship foundation exams. Why is this section a must? Because a strong grip on addition, shapes, and multiplication tables today creates a 'Math Brain' that solves real-world problems 10x faster than others.",
-                  topics: ["Numbers up to 1000", "Place Value", "Addition", "Subtraction", "Multiplication Tables", "Division", "Shapes", "Measurement", "Time & Clock", "Word Problems"] },
-                { id: 3, name: "Environmental Studies (EVS)", icon: "fa-earth-asia", time: "30 MINS", 
-                  passage: "Knowing about our world makes class 3 students wise global explorers! Environmental Studies (EVS) helps children understand how nature works and our role in protecting it. This subject is the early foundation for high-level competitive exams like the UPSC Civil Services. Learning about plants, animals, and our neighbourhood makes you an informed and responsible citizen from a young age.",
-                  topics: ["Myself", "My Family", "My School", "Plants Around Us", "Animals Around Us", "Food We Eat", "Water", "Air", "Our Neighbourhood", "Cleanliness"] },
-                { id: 4, name: "General Knowledge (GK)", icon: "fa-trophy", time: "30 MINS", 
-                  passage: "General Knowledge is the light that illuminates the path to leadership! For a 4th-grade student, staying aware of our national symbols, leaders, and sports is the first step toward becoming a global influencer. This section is a crucial part of all competitive foundation courses.",
-                  topics: ["India – Our Country", "National Symbols", "Our Leaders", "Festivals", "Animals & Birds", "Sports", "Important Days", "Famous Places", "World Facts", "Current GK"] },
-                { id: 5, name: "Technical Knowledge", icon: "fa-laptop-code", time: "30 MINS", 
-                  passage: "Welcome to the era of digital superpowers! In the modern world, digital literacy is as critical as reading and writing. For a class 3 student, understanding computer parts, keyboard functions, and internet safety is the key to staying ahead in the 21st century.",
-                  topics: ["What is a Computer?", "Parts of a Computer", "Uses of Computer", "Keyboard Keys", "Mouse Functions", "Monitor, CPU, Printer", "Starting & Shutting Down", "Drawing in Paint", "Computer Safety", "Internet Safety"] },
-                { id: 6, name: "Logical Reasoning", icon: "fa-brain", time: "30 MINS", 
-                  passage: "Logical Reasoning is the ultimate mental gymnasium for your brain! Great detectives, scientists, and engineers use logic to solve the world's toughest mysteries, and you can too. Practice patterns and recognition skills.",
-                  topics: ["Big & Small", "Same & Different", "Odd One Out", "Number Patterns", "Shape Patterns", "Find the Missing Number", "Picture Reasoning", "Matching", "Simple Puzzles", "Think & Answer"] },
-                { id: 7, name: "Mental Ability / Intelligence", icon: "fa-head-side-virus", time: "30 MINS", 
-                  passage: "Unlock the hidden potential of your mind with Brain Gymnastics! Mental Ability exercises boost your memory, focus, and visual processing speed. Students who excel in this category at a young age consistently become the top scorers.",
-                  topics: ["Memory Games", "Observation Skills", "Find the Differences", "Identify Pictures", "Quick Thinking", "Sorting Objects", "Matching Shadows", "Colour Patterns", "Simple Riddles", "Fun IQ Activities"] },
-                { id: 8, name: "Art & Craft", icon: "fa-palette", time: "30 MINS", 
-                  passage: "Creativity is the most valuable currency in the future world! For a class 3 student, Art & Craft is not just about drawing; it is about building fine motor skills and creative thinking. Completing these 10 projects builds your patience.",
-                  topics: ["Free Hand Drawing", "Colouring", "Paper Folding", "Paper Cutting", "Clay Modelling", "Leaf Art", "Greeting Card Making", "Mask Making", "Best Out of Waste", "Simple Craft Projects"] },
-                { id: 9, name: "Life Skills / Personal Development", icon: "fa-star", time: "30 MINS", 
-                  passage: "Real winners are defined by their character as much as their grades! Personal Development builds your heart and leadership qualities. Success is a habit—start practicing time management today.",
-                  topics: ["Good Manners", "Clean Habits", "Discipline", "Time Management", "Honesty", "Helping Others", "Respect Elders", "Self-Confidence", "Positive Thinking", "Healthy Habits"] },
-                { id: 10, name: "Moral Stories & Values", icon: "fa-book-open", time: "30 MINS", 
-                  passage: "Values are the moral compass that guides every great champion! This subject helps class 3 students build the inner strength needed to face life's challenges with courage and kindness.",
-                  topics: ["Honesty is the Best Policy", "Helping Others", "Kindness", "Sharing is Caring", "Obedience", "Hard Work", "Respect", "Courage", "Truthfulness", "Inspirational Stories"] }
+                { id: 1, name: "Number Systems", icon: "fa-hashtag", time: "45 MINS", 
+                  passage: "Numbers are the fundamental vocabulary of the universe! To conquer competitive gateways like JNVST, you must develop a profound intuition for how numbers interact. Mastering Roman Numerals, Place Value, and Divisibility isn't just about solving equations—it's about training your brain to see patterns and logic where others see chaos. This section builds the raw mathematical precision required for top-tier engineering and scientific careers in your future. Embrace the power of digits and become a numerical master!",
+                  topics: ["Place Value Mastery", "Number Types & Logic", "Roman Numerals", "Rounding Off Rules", "Successor & Predecessor", "Expanded Form Mastery", "Number Comparison", "Digit Formation Puzzles", "Fundamental Arithmetic Rules", "Divisibility Tests"] },
+                { id: 2, name: "Mental Ability", icon: "fa-eye", time: "60 MINS", 
+                  passage: "Mental Ability represents the absolute peak of cognitive agility. It constitutes 50% of the Navodaya entrance score because it measures your 'Intellectual Potential'—your ability to process visual data, recognize symmetry, and visualize 3D spaces in your mind. By mastering Mirror Imaging, Pattern Completion, and Space Visualization, you are literally restructuring your neural pathways to think faster and more accurately. This is the mental gymnasium where future innovators and problem-solvers are forged. Unleash your visual intelligence today!",
+                  topics: ["Odd-Man Out Logic", "Figure Matching", "Pattern Completion", "Figure Series Analysis", "Analogy Puzzles", "Mirror Imaging", "Paper Folding Logic", "Embedded Figures", "Space Visualization", "Geometrical Completion"] },
+                { id: 3, name: "Applied Arithmetic", icon: "fa-calculator", time: "45 MINS", 
+                  passage: "Arithmetic is the engine of the global economy! Understanding Profit & Loss, Simple Interest, and Speed-Distance relationships is the key to mastering real-world challenges. This module transforms abstract math into a high-performance toolset. Whether you are aiming for an elite Sainik School seat or preparing for a future in economics and leadership, these applied concepts are non-negotiable. Learn to calculate with surgical precision and develop the strategic mindset needed to stay ahead in the competitive race of the 21st century.",
+                  topics: ["Unitary Method", "Profit & Loss Logic", "Simple Interest Mastery", "Time & Work Dynamics", "Speed & Distance", "Percentage Basics", "Average Calculation", "Area & Perimeter", "Volume Basics", "Decimal Operations"] },
+                { id: 4, name: "Verbal Logic", icon: "fa-brain", time: "45 MINS", 
+                  passage: "Logic is the ultimate weapon of the wise. In this section, you will learn to navigate the complexities of human relationships and linguistic patterns. Mastering Direction Sense, Blood Relations, and Coding-Decoding isn't just about cracking a test—it's about developing the analytical sharpness that world-class lawyers, strategists, and executives use every day. By training your mind to identify logical fallacies and hidden connections, you become a person of high clarity and unbreakable reasoning skills.",
+                  topics: ["Coding-Decoding", "Direction Sense", "Blood Relations", "Ranking Tests", "Alphabet Series", "Number Ranking Logic", "Venn Diagrams", "Syllogism Basics", "Clock & Calendar", "Dictionary Order"] },
+                { id: 5, name: "English Grammar", icon: "fa-spell-check", time: "40 MINS", 
+                  passage: "Language is the currency of leadership. To influence the world, you must first master the structure of the world's most powerful language. This module refines your understanding of tenses, subject-verb agreement, and preposition logic, turning you into a sophisticated communicator. Flawless grammar builds immediate authority in your writing and speaking. Whether you are drafting a competitive essay or preparing for a Sainik interview, your grammatical precision will be the hallmark of your excellence. Speak with confidence, write with power!",
+                  topics: ["Parts Identification", "Adjective Degrees", "Tense Mastery", "Article Usage", "Preposition Logic", "Conjunction Mastery", "Subject-Verb Agreement", "Punctuation Rules", "Sentence Types", "Pronoun Reference"] },
+                { id: 6, name: "Reading Comprehension", icon: "fa-book-open", time: "45 MINS", 
+                  passage: "Reading is the art of deep interpretation. In a world drowning in information, the person who can retrieve facts, infer deeper meanings, and analyze character motivations is the true intellectual leader. This section develops your stamina to handle complex texts and identifies your ability to filter essential data from noise. By mastering synonym searches and inference skills, you build a high-level vocabulary and a critical mind. Every great book you read and every passage you master expands your horizon of knowledge!",
+                  topics: ["Main Idea Extraction", "Direct Retrieval", "Inference Skills", "Vocabulary Context", "Synonym Search", "Antonym Search", "Title Selection", "Sequence of Events", "Character Analysis", "Fact vs. Opinion"] },
+                { id: 7, name: "General Science", icon: "fa-microscope", time: "45 MINS", 
+                  passage: "Science is the quest to understand the mechanics of reality. From the intricate biology of human anatomy to the vast, mysterious expanses of space science, this module ignites your curiosity. Understanding simple machines and the water cycle isn't just for school—it's for becoming a person who understands how the world works. We nurture your inner scientist, encouraging you to ask 'Why?' and 'How?'. In the high-stakes intelligence papers of competitive exams, your scientific awareness will distinguish you as a candidate of high potential.",
+                  topics: ["Plant Life Cycles", "Animal Kingdom", "Human Anatomy", "Nutrition Science", "The Water Cycle", "Simple Machines", "States of Matter", "Space Science", "Health & Hygiene", "Forces & Motion"] },
+                { id: 8, name: "Static GK", icon: "fa-landmark", time: "30 MINS", 
+                  passage: "To lead a nation, you must first know its heart and heritage. General Knowledge is the hallmark of a well-rounded scholar. This section ensures you are a master of India's symbols, famous personalities, and the first milestones of our great history. A person with high GK is always the most informed person in the room. This track prepares you to dominate the general awareness sections of every prestigious scholarship and entrance exam, building a library of facts that will stay with you for a lifetime of success.",
+                  topics: ["National Symbols", "Famous Personalities", "Important Days", "Indian States & Maps", "First in India", "Awards & Honors", "World Wonders", "Books & Authors", "Sports Awareness", "Religious Sites"] },
+                { id: 9, name: "Social Studies", icon: "fa-globe-asia", time: "45 MINS", 
+                  passage: "History is the blueprint of our future, and Geography is the stage upon which we act. This module takes you through the heroic struggle for freedom, the structure of local governments, and the fascinating landforms of our planet. By understanding civic duties and ancient civilizations, you develop a sense of global identity and historical responsibility. Social Studies turns you into a citizen of the world—one who understands the roots of our society and the vast geography that connects us all. Become a scholar of humanity!",
+                  topics: ["Earth Structure", "Freedom Struggle", "Civic Duties", "Landforms & Terrain", "Climate Zones", "Transport History", "Communication Modes", "Ancient Civilizations", "Local Government", "Maps & Globes"] },
+                { id: 10, name: "Data Handling", icon: "fa-chart-bar", time: "40 MINS", 
+                  passage: "We live in the age of big data! The ability to interpret pictographs, bar graphs, and tally marks is one of the most in-demand skills in the modern professional world. This section teaches you to translate numbers into stories and visual information into actionable conclusions. Mastering statistical logic and probability prepares you for a future in data science, engineering, and high-level management. Learn to read between the lines of charts and master the logic that drives the modern information economy. The future belongs to those who master data!",
+                  topics: ["Pictograph Reading", "Bar Graphs Mastery", "Tally Marks Logic", "Table Interpretation", "Circle Graphs (Pie)", "Mean/Average Logic", "Range Discovery", "Pattern Analysis", "Recording Data", "Probability Basics"] }
             ];
 
             const monthsData = ["JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER", "JANUARY", "FEBRUARY", "MARCH"];
@@ -564,13 +447,9 @@
             subjectsData.forEach(sub => {
                 document.write(`
                 <div class="subject-pane">
-                    <div class="sub-head-row">
-                        <i class="fa-solid ${sub.icon}"></i>
-                        <h3>${sub.id}. ${sub.name}</h3>
-                    </div>
+                    <div class="sub-head-row"><i class="fa-solid ${sub.icon}"></i><h3>${sub.id}. ${sub.name}</h3></div>
                     <div class="sub-inspiration">${sub.passage}</div>
                 `);
-
                 sub.topics.forEach((topic, idx) => {
                     document.write(`
                     <div class="item-row">
@@ -594,40 +473,38 @@
                             <div class="item-topic-name"><span>Topic:</span> ${topic}</div>
                             <a href="#" class="btn-take">Take Test</a>
                         </div>
-                    </div>
-                    `);
+                    </div>`);
                 });
-
                 document.write(`</div>`);
             });
         </script>
     </div>
 
-    <!-- SUBJECT PROGRESS SECTION -->
+    <!-- Academy Progress (Status Panel) moved after subject sections -->
     <div class="status-panel">
         <div class="status-header">
             <div>
-                <h2 style="font-size:18px; margin:0; text-transform:uppercase; font-weight: 900; color: var(--primary-blue);">Subject Progress</h2>
-                <p style="font-size: 11px; margin: 2px 0 0 0; color: #64748b; font-family: 'Inter'; font-weight: 600;">Overall Mastery: 42.5%</p>
+                <h2 style="font-size:18px; margin:0; text-transform:uppercase; font-weight: 900; color: var(--primary-blue);">Academy Progress</h2>
+                <p style="font-size: 11px; margin: 2px 0 0 0; color: #64748b; font-family: 'Inter'; font-weight: 600;">Overall Prep Mastery: 42.5%</p>
             </div>
             <div style="text-align: right;">
-                <span style="font-size: 11px; font-weight: 900; color: var(--success-green); text-transform: uppercase;">Level Up in 5 Tests</span>
+                <span style="font-size: 11px; font-weight: 900; color: var(--success-green); text-transform: uppercase;">Next Rank in 5 Tests</span>
             </div>
         </div>
         
         <div class="status-grid">
             <script>
                 const statusItems = [
-                    { name: "English", count: 8, w: "80%", icon: "fa-book" },
-                    { name: "Maths", count: 5, w: "50%", icon: "fa-calculator" },
-                    { name: "GK", count: 3, w: "30%", icon: "fa-globe" },
-                    { name: "EVS", count: 2, w: "20%", icon: "fa-earth-asia" },
-                    { name: "Technical", count: 0, w: "0%", icon: "fa-laptop-code" },
-                    { name: "Logic", count: 0, w: "0%", icon: "fa-brain" },
-                    { name: "Mental", count: 1, w: "10%", icon: "fa-head-side-virus" },
-                    { name: "Art", count: 0, w: "0%", icon: "fa-palette" },
-                    { name: "Life Skills", count: 2, w: "20%", icon: "fa-star" },
-                    { name: "Moral", count: 0, w: "0%", icon: "fa-book-open" }
+                    { name: "Numbers", count: 8, w: "80%", icon: "fa-hashtag" },
+                    { name: "Mental Ability", count: 5, w: "50%", icon: "fa-eye" },
+                    { name: "Arithmetic", count: 3, w: "30%", icon: "fa-calculator" },
+                    { name: "Grammar", count: 2, w: "20%", icon: "fa-spell-check" },
+                    { name: "Science", count: 0, w: "0%", icon: "fa-microscope" },
+                    { name: "Logic", count: 1, w: "10%", icon: "fa-brain" },
+                    { name: "Social", count: 0, w: "0%", icon: "fa-globe-asia" },
+                    { name: "GK", count: 2, w: "20%", icon: "fa-landmark" },
+                    { name: "Data", count: 0, w: "0%", icon: "fa-chart-bar" },
+                    { name: "Reading", count: 0, w: "0%", icon: "fa-book-open" }
                 ];
                 statusItems.forEach(item => {
                     document.write(`
@@ -649,166 +526,92 @@
         </div>
     </div>
 
-    <!-- PERFORMANCE ANALYSIS - 4 ITEMS -->
     <div class="new-feature-section performance-analysis">
         <div class="rank-card">
             <span class="rank-label">Your Current Rank</span>
             <div class="rank-number">#12</div>
-            <p style="font-size: 10px; font-weight: 700; opacity: 0.9;">Top 5% among Class 3 Students!</p>
+            <p style="font-size: 10px; font-weight: 700; opacity: 0.9;">Top 5% among Academy Aspirants!</p>
         </div>
         <div class="recent-activity">
             <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Activity</div>
             <div class="activity-list">
                 <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">Mathematics - Place Value</span>
-                        <span class="act-date">Completed on 25 Dec, 2025</span>
-                    </div>
+                    <div class="activity-info"><span class="act-name">Arithmetic - Profit & Loss</span><span class="act-date">Completed on 25 Dec, 2025</span></div>
                     <span class="act-score">28/30</span>
                 </div>
                 <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">English - Nouns</span>
-                        <span class="act-date">Completed on 22 Dec, 2025</span>
-                    </div>
+                    <div class="activity-info"><span class="act-name">Logic - Coding-Decoding</span><span class="act-date">Completed on 22 Dec, 2025</span></div>
                     <span class="act-score">25/30</span>
                 </div>
                 <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">GK - National Symbols</span>
-                        <span class="act-date">Completed on 20 Dec, 2025</span>
-                    </div>
-                    <span class="act-score">29/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info">
-                        <span class="act-name">Art - Paper Folding</span>
-                        <span class="act-date">Completed on 18 Dec, 2025</span>
-                    </div>
+                    <div class="activity-info"><span class="act-name">Numbers - Place Value Mastery</span><span class="act-date">Completed on 20 Dec, 2025</span></div>
                     <span class="act-score">30/30</span>
                 </div>
+                <div class="activity-item">
+                    <div class="activity-info"><span class="act-name">Science - Animal Kingdom</span><span class="act-date">Completed on 18 Dec, 2025</span></div>
+                    <span class="act-score">27/30</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- DOWNLOAD CERTIFICATE SECTION -->
     <div class="cert-section">
         <div class="cert-content">
-            <h2 class="cert-title">Get Your Achievement Certificate!</h2>
+            <h2 class="cert-title">Prep-Excellence Certificate!</h2>
             <ul class="cert-points">
                 <li><i class="fa-solid fa-circle-check"></i> High Value for school level interviews and admissions.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Validates your strong subject grip and background knowledge.</li>
-                <li><i class="fa-solid fa-circle-check"></i> Proof of enhanced logical reasoning and mathematical ability.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Validates your strong subject grip and knowledge.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Acts as a foundational pillar for future resume building.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Recognized by the Student Vision Academic Council.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Proof of disciplined preparation and consistent effort.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Provides a significant edge in elite entrance benchmarks.</li>
             </ul>
         </div>
-        <a href="#" class="btn-download">
-            <i class="fa-solid fa-file-pdf"></i> Download
-        </a>
+        <a href="#" class="btn-download"><i class="fa-solid fa-file-pdf"></i> Download</a>
     </div>
 
-    <!-- STUDENT & SUBSCRIPTION DETAILS SECTION -->
-    <div class="details-grid">
-        <div class="details-card">
-            <div class="details-header">
-                <i class="fa-solid fa-user-graduate"></i>
-                <h2>Student Profile</h2>
-            </div>
-            <div class="field-container">
-                <div class="value-box"><i class="fa-solid fa-id-card"></i><span class="value-text">SVTC3G</span></div>
-                <div class="value-box"><i class="fa-solid fa-user"></i><span class="value-text">Sri Veda Talent Competitions</span></div>
-                <div class="value-box"><i class="fa-solid fa-user-tie"></i><span class="value-text">KVS SWAMY</span></div>
-                <div class="value-box"><i class="fa-solid fa-mobile-screen"></i><span class="value-text">89XXXXXX00</span></div>
-                <div class="value-box"><i class="fa-solid fa-graduation-cap"></i><span class="value-text v-highlight">3<sup>rd</sup> Class</span></div>
-                <div class="value-box"><i class="fa-solid fa-school"></i><span class="value-text">Sri Veda High School</span></div>
-                <div class="value-box full"><i class="fa-solid fa-check-double"></i><span class="value-text v-success">Agreed & Verified <i class="fa-solid fa-circle-check"></i></span></div>
-            </div>
-        </div>
-        <div class="details-card">
-            <div class="details-header">
-                <i class="fa-solid fa-file-invoice-dollar"></i>
-                <h2>Subscription Details</h2>
-            </div>
-            <div class="field-container">
-                <div class="value-box full"><i class="fa-solid fa-file-invoice"></i><span class="value-text">Sri Veda Talent Competitions</span></div>
-                <div class="value-box"><i class="fa-solid fa-crown"></i><span class="value-text v-highlight">Gold Student</span></div>
-                <div class="value-box"><i class="fa-solid fa-sign-in-alt"></i><span class="value-text">14 Times Logged</span></div>
-                <div class="value-box"><i class="fa-solid fa-calendar-check"></i><span class="value-text">26-10-2025</span></div>
-                <div class="value-box"><i class="fa-solid fa-calendar-times"></i><span class="value-text">26-11-2026</span></div>
-                <div class="value-box full"><i class="fa-solid fa-hourglass-half"></i><span class="value-text v-danger">170 Days Remaining</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PARENTS CORNER SECTION -->
     <div class="new-feature-section parents-corner">
-        <div class="parents-header"><i class="fa-solid fa-user-shield"></i> Parents Corner (Weekly Summary)</div>
+        <div class="parents-header"><i class="fa-solid fa-user-shield"></i> Parents Portal</div>
         <div class="parents-stats">
-            <div class="p-stat">
-                <span class="p-lbl">Time Spent this week</span>
-                <div class="p-val">12h 45m</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">Logins this week</span>
-                <div class="p-val">05 Logins</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">New Topics Covered</span>
-                <div class="p-val">08 Topics</div>
-            </div>
-            <div class="p-stat">
-                <span class="p-lbl">Average Accuracy</span>
-                <div class="p-val">92%</div>
-            </div>
+            <div class="p-stat"><span class="p-lbl">Prep Time this week</span><div class="p-val">12h 45m</div></div>
+            <div class="p-stat"><span class="p-lbl">Test Accuracy</span><div class="p-val">92%</div></div>
+            <div class="p-stat"><span class="p-lbl">Tests Completed</span><div class="p-val">4 Tests Done</div></div>
+            <div class="p-stat"><span class="p-lbl">Login History</span><div class="p-val">14 Total Logins</div></div>
         </div>
     </div>
 
-    <!-- MODIFIED SECTION: STATE TOPPERS (WITH LIVE FIREWORKS AND GOLD SCROLL) -->
     <div class="fame-box">
-        <div style="border-left: 5px solid var(--accent-orange); padding-left: 15px; margin-bottom: 10px;">
-            <span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform:uppercase; letter-spacing:1px;">SVTC State Level Toppers</span>
-        </div>
-        <div style="width: 100%; overflow: hidden;">
-            <div class="fame-track">
-                <script>
-                    const logoFallback = "https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png";
-                    const topStars = [
-                        { name: "Rohan Sharma", class: "4th Class", school: "Holy Cross High School", city: "Hyderabad", uid: "SVTC_03_001", score: "99/100", photo: "" },
-                        { name: "Ananya Reddy", class: "4th Class", school: "Little Angels EM School", city: "Visakhapatnam", uid: "SVTC_04_023", score: "98/100", photo: "" },
-                        { name: "P. Karthik", class: "5th Class", school: "Sri Chaitanya School", city: "Vijayawada", uid: "SVTC_05_102", score: "97/100", photo: "" },
-                        { name: "Sneha Latha", class: "6th Class", school: "Narayana Olympiad", city: "Guntur", uid: "SVTC_06_056", score: "96/100", photo: "" },
-                        { name: "Vikas Kumar", class: "7th Class", school: "Government High School", city: "Tirupati", uid: "SVTC_07_089", score: "95/100", photo: "" }
-                    ];
-
-                    function renderStar(p) {
-                        return `
-                        <div class="topper-unit">
-                            <div class="rank-badge">1st Rank</div>
-                            <div class="card-firework-container">
-                                <div class="mini-rocket" style="left: 20%; animation-delay: 0s;"></div>
-                                <div class="mini-burst" style="left: 20%; top: 30%; animation-delay: 1.5s;"></div>
-                                <div class="mini-rocket" style="left: 50%; animation-delay: 1.5s;"></div>
-                                <div class="mini-burst" style="left: 50%; top: 20%; animation-delay: 3s;"></div>
-                                <div class="mini-rocket" style="left: 80%; animation-delay: 0.5s;"></div>
-                                <div class="mini-burst" style="left: 80%; top: 40%; animation-delay: 2s;"></div>
-                            </div>
-                            
-                            <div class="congrats-txt">CONGRATULATIONS!</div>
-                            <img src="${p.photo || logoFallback}" class="topper-photo" onerror="this.src='${logoFallback}'">
-                            
-                            <!-- INFO ORDER: Name -> Username -> Class -> School -> City -> Score -->
-                            <div style="font-size: 16px; font-weight: 900; color: var(--primary-blue); margin-bottom: 4px; z-index: 5;">${p.name}</div>
-                            <div style="font-family: 'Inter'; font-size: 9px; font-weight: 800; color: var(--accent-orange); margin-bottom: 6px; z-index: 5; text-transform: uppercase;">${p.uid}</div>
-                            <div style="font-size: 12px; font-weight: 800; color: #475569; margin-bottom: 4px; z-index: 5;">${p.class}</div>
-                            <div style="font-size: 10px; font-weight: 700; color: #64748b; margin-bottom: 2px; z-index: 5;">${p.school}</div>
-                            <div style="font-size: 9px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; z-index: 5;">${p.city}</div>
-                            
-                            <div class="topper-score">Score: ${p.score}</div>
-                        </div>`;
-                    }
-                    let fameHtml = topStars.map(p => renderStar(p)).join('');
-                    document.write(fameHtml + fameHtml);
-                </script>
-            </div>
+        <div style="border-left: 5px solid var(--accent-orange); padding-left: 15px; margin-bottom: 10px;"><span style="font-size:16px; font-weight:900; color:var(--primary-blue); text-transform:uppercase; letter-spacing:1px;">SVTC State Level Toppers</span></div>
+        <div class="fame-track">
+            <script>
+                const toppers = [
+                    { name: "R. Sharma", class: "3rd Class", city: "Hyderabad", id: "SVTC_03_001", score: "99/100" },
+                    { name: "A. Reddy", class: "4th Class", city: "Vizag", id: "SVTC_04_023", score: "98/100" },
+                    { name: "P. Karthik", class: "5th Class", city: "Vijayawada", id: "SVTC_05_102", score: "97/100" },
+                    { name: "S. Latha", class: "6th Class", city: "Guntur", id: "SVTC_06_056", score: "96/100" },
+                    { name: "V. Kumar", class: "7th Class", city: "Tirupati", id: "SVTC_07_089", score: "95/100" },
+                    { name: "M. Arjun", class: "8th Class", city: "Warangal", id: "SVTC_08_012", score: "98/100" },
+                    { name: "K. Kavya", class: "9th Class", city: "Kurnool", id: "SVTC_09_044", score: "97/100" },
+                    { name: "J. Sai", class: "10th Class", city: "Nellore", id: "SVTC_10_201", score: "99/100" }
+                ];
+                function render(p) {
+                    return `<div class="topper-unit">
+                        <div class="rank-badge">1st Rank</div>
+                        <div class="card-firework-container">
+                            <div class="mini-rocket" style="left: 20%; animation-delay: 0s;"></div>
+                            <div class="mini-burst" style="left: 20%; top: 30%; animation-delay: 1.5s;"></div>
+                        </div>
+                        <div class="congrats-txt">CONGRATULATIONS!</div>
+                        <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="topper-photo">
+                        <div style="font-size: 14px; font-weight: 900; color: var(--primary-blue); margin-bottom: 3px;">${p.name}</div>
+                        <div style="font-size: 8px; font-weight: 800; color: var(--accent-orange); text-transform: uppercase;">${p.id}</div>
+                        <div style="font-size: 10px; font-weight: 800; color: #475569; margin-bottom: 3px;">${p.class}</div>
+                        <div style="font-size: 7.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase;">${p.city}</div>
+                        <div class="topper-score">Score: ${p.score}</div>
+                    </div>`;
+                }
+                document.write(toppers.map(render).join('') + toppers.map(render).join(''));
+            </script>
         </div>
     </div>
 </main>
@@ -840,17 +643,16 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        let seconds = 45; 
+        let s = 45; 
         setInterval(() => {
-            seconds++;
-            const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-            const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-            const sc = (seconds % 60).toString().padStart(2, '0');
-            const timerEl = document.getElementById('timer');
-            if (timerEl) timerEl.textContent = `${h}:${m}:${sc}`;
+            s++;
+            const h = Math.floor(s/3600).toString().padStart(2,'0'), 
+                  m = Math.floor((s%3600)/60).toString().padStart(2,'0'), 
+                  sc = (s%60).toString().padStart(2,'0');
+            const el = document.getElementById('timer');
+            if(el) el.textContent = `${h}:${m}:${sc}`;
         }, 1000);
     });
 </script>
-
 </body>
 </html>
