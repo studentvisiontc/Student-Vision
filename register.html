@@ -160,11 +160,6 @@
         .security-item i { color: var(--primary-blue); font-size: 16px; margin-top: 2px; }
         .security-item p { margin: 0; font-size: 11px; font-weight: 700; color: #334155; line-height: 1.5; }
 
-        /* EMPLOYEE SECTION - NEW */
-        .employee-wrapper { width: 100%; background: #fff; padding: 40px 0; border-bottom: 4px solid var(--accent-orange); }
-        .employee-container { max-width: 1450px; margin: 0 auto; padding: 0 20px; }
-        .employee-status-box { display: none; margin-top: 20px; }
-
         .submit-container { display: flex; justify-content: center; width: 100%; margin-top: 10px; gap: 10px; }
         .review-btn { background: var(--primary-blue); color: white; border: none; padding: 10px 25px; font-size: 11px; font-weight: 900; border-radius: 50px; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 0 #000044; }
         .edit-btn { background: #64748b; color: white; border: none; padding: 10px 20px; font-size: 10px; font-weight: 800; border-radius: 50px; cursor: pointer; text-transform: uppercase; }
@@ -358,60 +353,6 @@
     </div>
 </div>
 
-<!-- EMPLOYEE ONLY ACCESS SECTION -->
-<div class="employee-wrapper">
-    <div class="employee-container">
-        <div class="horizontal-section" id="employeeToggle" onclick="toggleEmployeeSection()">
-            <div class="section-info">
-                <h3><i class="fa-solid fa-user-lock"></i> <span class="step-badge" style="background: #333;">STAFF</span> Employee Only Access</h3>
-                <p>Authorized access for internal payment verification and updates.</p>
-            </div>
-            <button class="btn-register" style="background: #333;">Click</button>
-        </div>
-
-        <div id="employeeRegistration" class="registration-box">
-            <!-- ID Verification Phase -->
-            <div id="employeeVerifyBox" class="verify-container" style="margin-top: 20px;">
-                <div class="verify-row">
-                    <div class="verify-input-group">
-                        <i class="fa-solid fa-id-badge"></i>
-                        <input type="text" id="employeeIdInput" placeholder="Enter Employee ID">
-                    </div>
-                    <button type="button" class="btn-verify" style="background: #333;" onclick="verifyEmployee()">Verify</button>
-                </div>
-                <div id="employeeVerifyError" class="verify-error-box"></div>
-            </div>
-
-            <!-- Data Entry Phase -->
-            <div id="employeeFullForm" style="display: none; margin-top: 20px;">
-                <div class="form-header"><h2 class="form-title" style="color:#333; border-bottom-color:#333;">Update Payment Status</h2></div>
-                <form id="employeeForm" onsubmit="handleEmployeeSubmit(event)">
-                    <div class="form-section">
-                        <div class="registration-form" style="grid-template-columns: 1fr;">
-                            <div class="form-group">
-                                <label>Student Mobile Number</label>
-                                <input type="tel" name="studentMobile" required placeholder="Enter student's registered number">
-                            </div>
-                            <div class="form-group">
-                                <label>Payment Status</label>
-                                <select name="paymentStatus" required>
-                                    <option value="">Select Status...</option>
-                                    <option value="Paid">PAID</option>
-                                    <option value="Unpaid">UNPAID</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="submit-container">
-                        <button type="submit" class="review-btn" style="background: #333; box-shadow: 0 4px 0 #111;">Submit Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div id="employeeStatus" class="status-container" style="margin-top: 20px;"></div>
-    </div>
-</div>
-
 <footer>
     <div class="footer-content">
         <div class="footer-column">
@@ -437,10 +378,6 @@
     const step1URL = 'https://script.google.com/macros/s/AKfycbxFkcz0aOakTKWNsZY9c8GzGboruOHCSFBSIiWUUUvSWkTMdUZ0-CiPxkhPEBAR5bU/exec';
     const verifyURL = 'https://script.google.com/macros/s/AKfycbzf0fWuvVCyCV2TbGyG1BSXEab12mRiHGd77rcCxcfADb7JNe4HWFnsdknOxlBZgaob/exec';
     
-    // NEW URLs for Employee Access
-    const employeeVerifyURL = 'https://script.google.com/macros/s/AKfycbzf0fWuvVCyCV2TbGyG1BSXEab12mRiHGd77rcCxcfADb7JNe4HWFnsdknOxlBZgaob/exec'; // Example
-    const employeeSubmitURL = 'https://script.google.com/macros/s/AKfycbwAnoUt95Y_3Swh0iBz4ik46QrevxfWLuUmOyZP0NdOVyY9YHQ4Z1Q3ci0Km-3n9CsQ/exec'; // Example
-
     let globalFormData = {};
     let activeType = '';
 
@@ -464,25 +401,6 @@
             document.getElementById(type + 'FullForm').style.display = 'none';
         }
         scrollToTarget(sectionId);
-    }
-
-    function toggleEmployeeSection() {
-        const group = document.getElementById('employeeRegistration');
-        const toggle = document.getElementById('employeeToggle');
-        
-        if (activeType === 'employee') {
-            hideAll();
-            activeType = '';
-            return;
-        }
-
-        hideAll();
-        activeType = 'employee';
-        toggle.classList.add('active-path');
-        group.style.display = 'block';
-        document.getElementById('employeeVerifyBox').style.display = 'flex';
-        document.getElementById('employeeFullForm').style.display = 'none';
-        scrollToTarget('employeeToggle');
     }
 
     function hideAll() {
@@ -513,45 +431,6 @@
                 scrollToTarget(type + 'FullForm');
             } else { errorBox.innerText = data.message; errorBox.style.display = 'block'; }
         }).finally(() => { btn.disabled = false; btn.innerText = 'Verify'; });
-    }
-
-    // NEW EMPLOYEE FUNCTIONS
-    function verifyEmployee() {
-        const id = document.getElementById('employeeIdInput').value.trim();
-        const errorBox = document.getElementById('employeeVerifyError');
-        errorBox.style.display = 'none';
-
-        if(!id) {
-            errorBox.innerText = "Please enter Employee ID";
-            errorBox.style.display = 'block';
-            return;
-        }
-
-        // Logic for employee verification (using same verify URL as sample)
-        document.getElementById('employeeVerifyBox').style.display = 'none';
-        document.getElementById('employeeFullForm').style.display = 'block';
-        scrollToTarget('employeeFullForm');
-    }
-
-    function handleEmployeeSubmit(e) {
-        e.preventDefault();
-        const status = document.getElementById('employeeStatus');
-        document.getElementById('employeeRegistration').style.display = 'none';
-        status.style.display = 'block';
-        status.innerHTML = `<div class="status-loading-text"><i class="fas fa-spinner fa-spin"></i> UPDATING STATUS...</div>`;
-        
-        const data = Object.fromEntries(new FormData(e.target));
-        
-        fetch(employeeSubmitURL, { method: 'POST', body: JSON.stringify(data) })
-        .then(() => {
-            status.innerHTML = `
-                <div style="padding:20px;">
-                    <i class="fa-solid fa-check-circle" style="font-size:50px; color:var(--success-green);"></i>
-                    <h3 style="margin-top:15px; font-weight:900;">STATUS UPDATED</h3>
-                    <p style="font-size:12px; font-weight:700; color:#64748b;">Payment for ${data.studentMobile} marked as ${data.paymentStatus.toUpperCase()}</p>
-                    <button class="btn-action home-btn" style="margin:20px auto 0 auto; background:#333;" onclick="location.reload()">Return Home</button>
-                </div>`;
-        });
     }
 
     function prepareReview(e, type) {
