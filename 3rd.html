@@ -22,6 +22,8 @@
             --topic-bg: #e0f2fe; 
             --white: #ffffff;
             --gold-metallic: #d4af37;
+            /* New Vars for Portal */
+            --portal-id-bg: #fef08a;
         }
 
         /* Fluid Typography & Box Sizing */
@@ -60,7 +62,8 @@
         header .main-title { font-size: clamp(12px, 2.8vw, 17px); font-weight: 900; line-height: 1.1; }
         header .sub-title { font-size: clamp(8px, 1.8vw, 11px); font-weight: 600; color: var(--accent-yellow); margin-top: 1px; }
         
-        header .header-right { display: flex; gap: clamp(5px, 1.5vw, 10px); align-items: center; }
+        /* Modified: Increased gap for header icons */
+        header .header-right { display: flex; gap: clamp(10px, 2.5vw, 20px); align-items: center; }
         .menu-item a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: white; transition: transform 0.2s; }
         header .icon { font-size: clamp(12px, 2.4vw, 15px); color: var(--accent-orange); }
         .icon-label { font-size: 5.5px; margin-top: 1px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2px; }
@@ -80,7 +83,7 @@
             gap: 0; 
         }
 
-        section, div[id="subjects-container"] > div, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .details-grid, .fame-box, .cert-section, .new-feature-section {
+        section, .welcome-section, .stats-container, .srm-banner, .achievements-premium, .status-panel, .details-grid, .fame-box, .cert-section, .new-feature-section, .subjects-replacement, .portal-container-wrapper {
             width: 100%;
             padding: clamp(10px, 2vw, 15px) clamp(15px, 5vw, 40px); 
             margin: 0;
@@ -112,7 +115,7 @@
         .stats-container {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: clamp(3px, 0.8vw, 6px);
+            gap: clamp(8px, 2vw, 15px); 
             background: white;
             padding-top: 5px !important;
             padding-bottom: 5px !important;
@@ -126,7 +129,16 @@
             text-align: center; 
             border: none;
         }
-        .stat-box i { font-size: 11px; color: var(--primary-blue); margin-bottom: 1px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+        .stat-box i { 
+            font-size: 9px;
+            color: var(--primary-blue); 
+            margin-bottom: 1px; 
+            width: 18px; 
+            height: 18px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
         .stat-label { font-size: 6px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 0px; }
         .stat-value { font-family: 'Inter', sans-serif; font-size: clamp(9px, 1.5vw, 11px); font-weight: 900; color: var(--text-dark); }
         .stat-box.highlight i { color: var(--accent-orange); }
@@ -136,27 +148,35 @@
         .srm-banner {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: clamp(10px, 2vw, 20px);
             background: linear-gradient(to right, #fff, #f9fbff);
             position: relative;
             flex-wrap: wrap;
         }
-        .srm-banner::before { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--primary-blue); }
-        .srm-icon-box { width: clamp(35px, 6vw, 50px); height: clamp(35px, 6vw, 50px); background: #f0f7ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: clamp(16px, 2vw, 20px); color: var(--primary-blue); flex-shrink: 0; border: 1px solid #e0efff; }
+        .srm-banner::before { content: none; display: none; }
         
-        .srm-main-container { display: flex; flex: 1; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .srm-content { flex: 2; min-width: 250px; }
+        .srm-main-container { display: flex; flex: 1; align-items: center; gap: 15px; flex-wrap: wrap; justify-content: space-between; }
+        .srm-content { flex: 2; min-width: 200px; }
         .srm-title { font-size: clamp(11px, 2vw, 14px); font-weight: 900; color: var(--primary-blue); margin-bottom: 1px; text-transform: uppercase; }
         .srm-desc { font-size: clamp(8px, 1.5vw, 10.5px); color: #64748b; line-height: 1.4; font-family: 'Inter'; margin: 0; text-align: justify; }
         
+        .srm-profile-photo {
+            width: 45px; height: 45px; border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            object-fit: cover;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
         .srm-contact-hd-text { 
             flex: 1;
-            min-width: 220px;
+            min-width: 180px;
             display: flex; 
             flex-direction: column; 
             gap: 8px;
             align-items: flex-start;
-            border-left: 1.5px solid rgba(0,0,139,0.1);
+            border-left: 1.5px solid rgba(0,0,139,0.1); 
             padding-left: 15px;
         }
         .srm-contact-hd-text div { display: flex; align-items: baseline; gap: 8px; }
@@ -190,26 +210,130 @@
         .badge-unit.active .badge-glow { background: linear-gradient(135deg, #fceabb 0%, #f8b500 50%, #fceabb 100%); color: var(--primary-blue); border-color: #fff; }
         .badge-lbl { font-size: clamp(6.5px, 1.4vw, 7.5px); font-weight: 800; text-transform: uppercase; color: rgba(255,255,255,0.9); }
 
-        /* SUBJECT PANES */
-        .subject-pane { background: white; padding-bottom: 15px !important; }
-        .sub-head-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .sub-head-row i { font-size: clamp(20px, 3.5vw, 26px); color: var(--accent-orange); }
-        .sub-head-row h3 { font-size: clamp(18px, 3.5vw, 22px); font-weight: 900; color: var(--primary-blue); margin: 0; }
-        .sub-inspiration { padding: 15px; font-size: clamp(12px, 2.2vw, 14px); line-height: 1.7; color: #334155; text-align: justify; font-weight: 500; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--accent-orange); margin-bottom: 15px; }
+        /* --- PORTAL STYLES (Integrated) --- */
+        .subject-pane { padding: 10px 0; border-bottom: 2px solid #f1f5f9; margin-bottom: 10px; }
+        .sub-head-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        .sub-head-row i { font-size: 20px; color: var(--accent-orange); }
+        .sub-head-row h3 { font-size: 22px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; margin: 0; }
         
-        .item-row { background: white; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-bottom: 6px; width: 100%; transition: 0.3s ease; }
-        .item-top { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px; width: 100%; flex-wrap: nowrap; }
-        .item-month { font-weight: 900; color: var(--danger-red); font-size: 10px; text-transform: uppercase; flex: 0 0 auto; min-width: 80px; text-align: left; }
-        .item-meta { display: flex; gap: 10px; align-items: center; color: var(--primary-blue); font-size: 8.5px; font-weight: 900; flex: 1; justify-content: center; }
-        .item-meta span { background: #e0f2fe; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
-        .item-scores { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; justify-content: flex-end; }
-        .score-lbl { font-size: 9px; font-weight: 800; color: #64748b; margin-right: 4px; }
+        .sub-inspiration { font-size: 14.5px; line-height: 1.7; color: #475569; margin-bottom: 8px; text-align: left; }
+
+        .item-row { 
+            display: flex; flex-direction: column; background: white; 
+            border: 1px solid var(--border-color); border-radius: 6px; 
+            margin-bottom: 8px; overflow: hidden; width: 100%; 
+        }
+        .item-top { 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 8px 15px; background: #fafafa; border-bottom: 1px solid #f1f5f9;
+        }
+        .item-month { font-size: 11px; font-weight: 900; color: var(--danger-red); width: 80px; }
+        
+        .item-meta { display: flex; gap: 12px; flex: 1; justify-content: center; flex-wrap: wrap; }
+        .item-meta span { font-size: 10px; font-weight: 700; color: var(--primary-blue); display: flex; align-items: center; gap: 5px; }
+        
+        .item-scores { display: flex; align-items: center; gap: 8px; }
         .box-grid { display: flex; gap: 4px; }
-        .box-unit { width: 30px; height: 24px; border: 1.2px solid var(--border-color); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 10px; }
+        .box-unit { width: 28px; height: 20px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; background: white; color: var(--primary-blue); }
+        .score-lbl { font-size: 11px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; }
+
+        .item-bottom { padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; border-top: 1px solid #e2e8f0; }
+        .item-topic-name { font-size: 14.5px; font-weight: 700; color: #1e293b; }
+        .item-topic-name span { color: var(--primary-blue); font-size: 11px; text-transform: uppercase; margin-right: 6px; opacity: 0.7; }
         
-        .item-bottom { background: var(--topic-bg); padding: 8px 18px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #bae6fd; width: 100%; }
-        .item-topic-name { font-size: 12px; font-weight: 800; text-align: left; }
-        .btn-take { background: var(--primary-blue); color: white; text-decoration: none; padding: 4px 15px; border-radius: 5px; font-size: 8.5px; font-weight: 900; text-transform: uppercase; transition: 0.3s; margin-left: auto; }
+        .btn-take { 
+            background: var(--primary-blue); color: white; border: none; padding: 8px 20px; 
+            border-radius: 5px; font-size: 11px; font-weight: 800; text-transform: uppercase; 
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-take:hover { background: #0000cd; transform: scale(1.02); }
+
+        #exam-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: none; z-index: 9999; flex-direction: column; }
+        .exam-header { 
+            padding: 10px 15px; border-bottom: 2px solid var(--primary-blue); 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: white; position: sticky; top: 0;
+        }
+        .exam-header h2 { font-size: 14px; color: #64748b; font-weight: 600; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 40%; margin: 0; }
+
+        .timer-wrapper { display: flex; align-items: center; gap: 8px; }
+        .timer-label { font-size: 12px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; }
+        .timer-box { display: flex; gap: 2px; background: #0f172a; padding: 4px 8px; border-radius: 6px; align-items: center; border: 1px solid var(--primary-blue); }
+        .digit { color: white; font-size: 16px; font-weight: 900; width: 14px; text-align: center; }
+        .timer-sep { color: white; font-weight: 900; font-size: 16px; margin: 0 2px; }
+        .timer-urgent .digit { color: var(--danger-red); animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .exit-icon { font-size: 24px; color: var(--danger-red); cursor: pointer; margin-left: 12px; transition: 0.2s; }
+        .exit-icon:hover { transform: scale(1.15); }
+
+        .exam-content { padding: 20px; flex: 1; overflow-y: auto; background: #fbfcfd; }
+        .question-card { 
+            background: white; padding: 15px; border-radius: 8px; margin-bottom: 12px; 
+            border: 1px solid var(--border-color);
+        }
+        
+        .q-num-badge {
+            background-color: var(--portal-id-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 900;
+            margin-right: 8px;
+            color: var(--primary-blue);
+            border: 1px solid #eab308;
+        }
+
+        .q-text { font-size: 16px; font-weight: 700; margin-bottom: 12px; line-height: 1.6; color: var(--text-dark); }
+        .options-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .option-item { 
+            padding: 12px; border: 1.5px solid var(--border-color); border-radius: 8px; 
+            cursor: pointer; font-size: 14px; font-weight: 600; transition: 0.2s;
+        }
+        .option-item:hover { border-color: var(--primary-blue); background: #f0f7ff; }
+        .option-item.selected { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+        
+        .footer-action-area { padding: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-submit { 
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+            color: white; border: none; padding: 15px 50px; border-radius: 50px; 
+            font-weight: 900; cursor: pointer; font-size: 18px; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); transition: 0.3s; 
+        }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4); }
+
+        .result-screen { text-align: center; padding: 40px 15px; max-width: 650px; margin: 0 auto; }
+        .score-circle { 
+            width: 140px; height: 140px; border-radius: 50%; border: 10px solid var(--success-green); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            margin: 0 auto 20px; background: white; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .score-val { font-size: 36px; font-weight: 900; color: var(--success-green); }
+        .feedback-text { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+        .feedback-msg { font-size: 15px; color: #475569; margin-bottom: 30px; line-height: 1.6; }
+
+        .result-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-res-action { 
+            padding: 14px 30px; border-radius: 50px; font-weight: 800; cursor: pointer; border: none; font-size: 15px; transition: 0.2s;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .btn-res-review { background: var(--primary-blue); color: white; }
+        .btn-res-review:hover { background: #0000cd; transform: translateY(-2px); }
+        .btn-res-close { background: #64748b; color: white; }
+        .btn-res-close:hover { background: #475569; transform: translateY(-2px); }
+
+        .review-card { background: white; padding: 12px; border-bottom: 1px solid var(--border-color); text-align: left; }
+        .ans-row { font-size: 13px; margin-top: 5px; }
+        .ans-correct { color: var(--success-green); font-weight: 800; }
+        .ans-wrong { color: var(--danger-red); font-weight: 800; text-decoration: line-through; }
+        .explanation-box { background: #fffbeb; border-left: 5px solid var(--accent-orange); padding: 12px; font-size: 13px; margin-top: 10px; color: #92400e; border-radius: 4px; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .options-list { grid-template-columns: 1fr; }
+            .item-meta { justify-content: center; gap: 6px; }
+            .timer-label { display: none; }
+            .item-top { flex-direction: column; gap: 8px; }
+            .item-meta { width: 100%; }
+        }
 
         /* STATUS PANEL (ACADEMY PROGRESS) */
         .status-panel { background: white; padding-top: 15px !important; padding-bottom: 15px !important; }
@@ -229,10 +353,28 @@
             background: #fff;
         }
         .rank-card {
-            background: linear-gradient(135deg, var(--primary-blue), #000050);
-            border-radius: 15px; padding: 20px; color: white; text-align: center;
+            background: transparent;
+            padding: 20px; 
+            color: var(--text-dark); 
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: none;
+            box-shadow: none;
         }
-        .rank-number { font-size: 36px; font-weight: 900; color: var(--accent-yellow); margin: 10px 0; font-family: 'Bebas Neue'; }
+        .rank-text-box {
+            background: linear-gradient(135deg, var(--primary-blue), #000050);
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .rank-number { font-size: 28px; font-weight: 900; color: var(--accent-yellow); margin: 0; font-family: 'Bebas Neue'; line-height: 1; }
+        .rank-label { font-size: 10px; opacity: 0.9; display: block; margin-bottom: 2px;}
+        .rank-sub { font-size: 10px; font-weight: 700; color: var(--text-dark); margin-top: 8px; display: block; }
         
         .recent-activity { flex: 1; }
         .activity-header { font-size: 13px; font-weight: 900; color: var(--primary-blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
@@ -242,7 +384,6 @@
             display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0;
         }
         .act-name { font-size: 11px; font-weight: 800; color: var(--text-dark); }
-        .act-date { font-size: 9px; color: #64748b; font-weight: 600; }
         .act-score { font-size: 11px; font-weight: 900; color: var(--success-green); }
 
         /* DOWNLOAD CERTIFICATE */
@@ -250,25 +391,13 @@
             background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
             display: flex; align-items: center; justify-content: space-between; gap: 15px;
             padding-top: 20px !important; padding-bottom: 20px !important;
+            flex-wrap: wrap; 
         }
-        .cert-content { flex: 1; }
+        .cert-content { flex: 1; min-width: 250px; }
         .cert-title { font-size: 18px; font-weight: 900; color: var(--primary-blue); margin-bottom: 6px; text-transform: uppercase; }
         .cert-points { list-style: none; padding: 0; margin: 0; }
         .cert-points li { font-size: 11px; font-weight: 700; color: #475569; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; line-height: 1.4; }
         .btn-download { background: linear-gradient(135deg, var(--accent-orange), #ff8c00); color: var(--primary-blue); text-decoration: none; padding: 10px 25px; border-radius: 12px; font-weight: 900; font-size: 12px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(255,165,0,0.25); text-transform: uppercase; transition: 0.3s; }
-
-        /* DETAILS GRID */
-        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); background: white; padding: 20px clamp(15px, 5vw, 40px) !important; }
-        .details-card { padding: 10px 0 !important; border-right: 1px solid var(--border-color); margin: 0 10px; }
-        .details-card:last-child { border-right: none; }
-        .details-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .details-header i { width: 32px; height: 32px; background: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 16px; }
-        .details-header h2 { font-size: 16px; font-weight: 900; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.5px; }
-        .field-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .value-box { background: #f8fafc; padding: 8px 12px; border-radius: 10px; border: 1px solid #f1f5f9; display: flex; align-items: center; gap: 12px; }
-        .value-box.full { grid-column: span 2; }
-        .value-box i { font-size: 14px; color: var(--primary-blue); width: 20px; text-align: center; flex-shrink: 0; }
-        .value-text { font-size: 12px; font-weight: 800; color: var(--text-dark); font-family: 'Inter', sans-serif; word-break: break-word; }
 
         /* PARENTS CORNER SECTION */
         .parents-corner {
@@ -276,7 +405,7 @@
             display: flex; flex-direction: column; gap: 10px;
         }
         .parents-header { font-size: 14px; font-weight: 900; color: var(--danger-red); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .parents-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+        .parents-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; width: 100%; }
         .p-stat { background: white; padding: 10px 15px; border-radius: 8px; border: 1px solid #fee2e2; }
         .p-lbl { font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; }
         .p-val { font-size: 13px; font-weight: 900; color: var(--text-dark); margin-top: 2px; }
@@ -286,25 +415,59 @@
         .fame-track { display: flex; gap: 12px; width: max-content; animation: liveScroll 95s linear infinite; padding: 10px 0; }
         
         .topper-unit { 
-            background: white; border: 1.5px solid #bae6fd; width: 230px; min-height: 280px; flex-shrink: 0; 
+            background: white; border: 1.5px solid #bae6fd; 
+            width: 190px; min-height: 240px; 
+            flex-shrink: 0; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; 
             position: relative; overflow: hidden; border-radius: 12px;
             background-image: linear-gradient(135deg, #fff 0%, #fff 40%, rgba(255, 215, 0, 0.08) 50%, #fff 60%, #fff 100%);
-            background-size: 200% 200%; animation: goldScrollBG 5s infinite linear; padding: 10px;
+            background-size: 200% 200%; animation: goldScrollBG 5s infinite linear; padding: 8px;
         }
         @keyframes goldScrollBG { 0% { background-position: -100% -100%; } 100% { background-position: 100% 100%; } }
 
         .rank-badge { position: absolute; top: 8px; left: 8px; background: linear-gradient(135deg, var(--primary-blue), #3b82f6); color: white; padding: 3px 8px; border-radius: 4px; font-size: 7.5px; font-weight: 900; z-index: 10; text-transform: uppercase; }
-        .topper-photo { width: 60px; height: 60px; border-radius: 50%; border: 2.5px solid var(--accent-orange); object-fit: cover; margin-bottom: 10px; z-index: 5; position: relative; }
-        .topper-score { font-size: 11px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 5px 12px; border-radius: 40px; margin-top: 6px; border: 1px solid var(--success-green); width: 85%; z-index: 5; }
-        .congrats-txt { font-size: 15px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 1px; margin-bottom: 5px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite; z-index: 5; }
+        .topper-photo { width: 50px; height: 50px; border-radius: 50%; border: 2.5px solid var(--accent-orange); object-fit: cover; margin-bottom: 8px; z-index: 5; position: relative; }
+        .topper-score { font-size: 10px; font-weight: 900; color: var(--success-green); background: #f0fdf4; padding: 4px 10px; border-radius: 40px; margin-top: 6px; border: 1px solid var(--success-green); width: 85%; z-index: 5; }
+        .congrats-txt { font-size: 13px; font-weight: 900; font-family: 'Bebas Neue', cursive; letter-spacing: 1px; margin-bottom: 4px; background: linear-gradient(135deg, #d00000 0%, #ffa500 50%, #d00000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: congratsShine 3s linear infinite; z-index: 5; }
 
         .card-firework-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
         .mini-rocket { position: absolute; bottom: -20px; width: 2px; height: 8px; background: var(--accent-orange); opacity: 0; animation: rocketFlight 3.5s infinite; }
-        .mini-burst { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: burstPop 3.5s infinite; }
+        /* Burst Animation */
+        .mini-burst { position: absolute; width: 4px; height: 4px; border-radius: 50%; opacity: 0; animation: burstPop 3.5s infinite; }
         
         @keyframes rocketFlight { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 50% { transform: translateY(-120px); opacity: 1; } 51% { opacity: 0; } 100% { opacity: 0; } }
-        @keyframes burstPop { 0%, 50% { opacity: 0; transform: scale(0); } 55% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 8px var(--accent-yellow), 0 0 15px var(--accent-orange); } 70% { opacity: 0; transform: scale(2.5); } 100% { opacity: 0; } }
+        /* Explosion Animation */
+        @keyframes burstPop { 
+            0%, 50% { opacity: 0; transform: scale(0); box-shadow: none; } 
+            55% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 var(--accent-yellow); } 
+            65% { 
+                opacity: 1; 
+                transform: scale(1);
+                box-shadow: 
+                    -15px -15px 0 var(--accent-yellow), 
+                    15px -15px 0 var(--accent-orange), 
+                    -15px 15px 0 var(--accent-orange), 
+                    15px 15px 0 var(--accent-yellow),
+                    0 -20px 0 var(--primary-blue),
+                    0 20px 0 var(--danger-red),
+                    -20px 0 0 var(--danger-red),
+                    20px 0 0 var(--primary-blue);
+            } 
+            80% {
+                opacity: 0.5;
+                transform: scale(1.2);
+                box-shadow: 
+                    -30px -30px 0 rgba(255, 235, 59, 0), 
+                    30px -30px 0 rgba(255, 165, 0, 0), 
+                    -30px 30px 0 rgba(255, 165, 0, 0), 
+                    30px 30px 0 rgba(255, 235, 59, 0),
+                    0 -40px 0 rgba(0, 0, 139, 0),
+                    0 40px 0 rgba(208, 0, 0, 0),
+                    -40px 0 0 rgba(208, 0, 0, 0),
+                    40px 0 0 rgba(0, 0, 139, 0);
+            }
+            100% { opacity: 0; } 
+        }
 
         /* FOOTER */
         footer { background: var(--primary-blue); color: white; padding: 15px 20px; border-top: 3px solid var(--accent-orange); margin-top: auto; width: 100%; }
@@ -319,6 +482,9 @@
             header .header-left { flex-direction: column; align-items: center; width: 100%; gap: 3px; }
             header .header-right { border-top: 1px solid rgba(255, 255, 255, 0.1); width: 100%; justify-content: center; padding-top: 5px; flex-wrap: wrap; }
             .performance-analysis { grid-template-columns: 1fr; }
+            
+            .cert-section { justify-content: center; }
+            .btn-download { width: 100%; justify-content: center; margin-top: 10px; }
         }
 
         @keyframes liveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -350,7 +516,7 @@
     <div class="welcome-section">
         <div class="welcome-content">
             <div class="welcome-text">
-                <h1>Welcome, <span class="student-name">Student Vision</span>! 👋</h1>
+                <h1>Welcome, <span class="student-name">Student Vision</span>!</h1>
             </div>
         </div>
         <div class="premium-status"><i class="fa-solid fa-crown"></i><span>GOLD</span></div>
@@ -365,12 +531,14 @@
     </div>
 
     <div class="srm-banner">
-        <div class="srm-icon-box"><i class="fa-solid fa-user-tie"></i></div>
         <div class="srm-main-container">
             <div class="srm-content">
                 <div class="srm-title">Dedicated Student Relationship Manager (SRM)</div>
                 <p class="srm-desc">Navigating high-stakes exams like Navodaya and Sainik requires a precise strategy. Your Dedicated SRM acts as your academic navigator, providing expert insights, resolving technical bottlenecks, and ensuring you maintain peak performance throughout your competitive journey.</p>
             </div>
+            
+            <img src="https://studentvisiontc.github.io/SVTC-Images/SV%20Circle%20logo.png" class="srm-profile-photo" alt="SRM Profile">
+
             <div class="srm-contact-hd-text">
                 <div><span class="label">Manager Name :</span><span class="value">Sri Veda TC</span></div>
                 <div><span class="label">Direct Contact :</span><span class="value">8985170500</span></div>
@@ -384,103 +552,19 @@
             <p>Master competitive tracks to unlock elite badges.</p>
         </div>
         <div class="badge-row">
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-square-root-variable"></i></div>
-                <span class="badge-lbl">Number Pro</span>
-            </div>
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-brain"></i></div>
-                <span class="badge-lbl">Logic Wiz</span>
-            </div>
-            <div class="badge-unit active">
-                <div class="badge-glow"><i class="fa-solid fa-landmark"></i></div>
-                <span class="badge-lbl">History</span>
-            </div>
-            <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-dna"></i></div>
-                <span class="badge-lbl">Science</span>
-            </div>
-            <div class="badge-unit locked">
-                <div class="badge-glow"><i class="fa-solid fa-language"></i></div>
-                <span class="badge-lbl">English</span>
-            </div>
+            <div class="badge-unit active"><div class="badge-glow"><i class="fa-solid fa-square-root-variable"></i></div><span class="badge-lbl">Number Pro</span></div>
+            <div class="badge-unit active"><div class="badge-glow"><i class="fa-solid fa-brain"></i></div><span class="badge-lbl">Logic Wiz</span></div>
+            <div class="badge-unit active"><div class="badge-glow"><i class="fa-solid fa-landmark"></i></div><span class="badge-lbl">History</span></div>
+            <div class="badge-unit locked"><div class="badge-glow"><i class="fa-solid fa-dna"></i></div><span class="badge-lbl">Science</span></div>
+            <div class="badge-unit locked"><div class="badge-glow"><i class="fa-solid fa-language"></i></div><span class="badge-lbl">English</span></div>
         </div>
     </div>
 
-    <div id="subjects-container">
-        <script>
-            const subjectsData = [
-                { id: 1, name: "Number Systems", icon: "fa-hashtag", time: "45 MINS", 
-                  passage: "Numbers are the fundamental vocabulary of the universe! To conquer competitive gateways like JNVST, you must develop a profound intuition for how numbers interact. Mastering Roman Numerals, Place Value, and Divisibility isn't just about solving equations—it's about training your brain to see patterns and logic where others see chaos. This section builds the raw mathematical precision required for top-tier engineering and scientific careers in your future. Embrace the power of digits and become a numerical master!",
-                  topics: ["Place Value Mastery", "Number Types & Logic", "Roman Numerals", "Rounding Off Rules", "Successor & Predecessor", "Expanded Form Mastery", "Number Comparison", "Digit Formation Puzzles", "Fundamental Arithmetic Rules", "Divisibility Tests"] },
-                { id: 2, name: "Mental Ability", icon: "fa-eye", time: "60 MINS", 
-                  passage: "Mental Ability represents the absolute peak of cognitive agility. It constitutes 50% of the Navodaya entrance score because it measures your 'Intellectual Potential'—your ability to process visual data, recognize symmetry, and visualize 3D spaces in your mind. By mastering Mirror Imaging, Pattern Completion, and Space Visualization, you are literally restructuring your neural pathways to think faster and more accurately. This is the mental gymnasium where future innovators and problem-solvers are forged. Unleash your visual intelligence today!",
-                  topics: ["Odd-Man Out Logic", "Figure Matching", "Pattern Completion", "Figure Series Analysis", "Analogy Puzzles", "Mirror Imaging", "Paper Folding Logic", "Embedded Figures", "Space Visualization", "Geometrical Completion"] },
-                { id: 3, name: "Applied Arithmetic", icon: "fa-calculator", time: "45 MINS", 
-                  passage: "Arithmetic is the engine of the global economy! Understanding Profit & Loss, Simple Interest, and Speed-Distance relationships is the key to mastering real-world challenges. This module transforms abstract math into a high-performance toolset. Whether you are aiming for an elite Sainik School seat or preparing for a future in economics and leadership, these applied concepts are non-negotiable. Learn to calculate with surgical precision and develop the strategic mindset needed to stay ahead in the competitive race of the 21st century.",
-                  topics: ["Unitary Method", "Profit & Loss Logic", "Simple Interest Mastery", "Time & Work Dynamics", "Speed & Distance", "Percentage Basics", "Average Calculation", "Area & Perimeter", "Volume Basics", "Decimal Operations"] },
-                { id: 4, name: "Verbal Logic", icon: "fa-brain", time: "45 MINS", 
-                  passage: "Logic is the ultimate weapon of the wise. In this section, you will learn to navigate the complexities of human relationships and linguistic patterns. Mastering Direction Sense, Blood Relations, and Coding-Decoding isn't just about cracking a test—it's about developing the analytical sharpness that world-class lawyers, strategists, and executives use every day. By training your mind to identify logical fallacies and hidden connections, you become a person of high clarity and unbreakable reasoning skills.",
-                  topics: ["Coding-Decoding", "Direction Sense", "Blood Relations", "Ranking Tests", "Alphabet Series", "Number Ranking Logic", "Venn Diagrams", "Syllogism Basics", "Clock & Calendar", "Dictionary Order"] },
-                { id: 5, name: "English Grammar", icon: "fa-spell-check", time: "40 MINS", 
-                  passage: "Language is the currency of leadership. To influence the world, you must first master the structure of the world's most powerful language. This module refines your understanding of tenses, subject-verb agreement, and preposition logic, turning you into a sophisticated communicator. Flawless grammar builds immediate authority in your writing and speaking. Whether you are drafting a competitive essay or preparing for a Sainik interview, your grammatical precision will be the hallmark of your excellence. Speak with confidence, write with power!",
-                  topics: ["Parts Identification", "Adjective Degrees", "Tense Mastery", "Article Usage", "Preposition Logic", "Conjunction Mastery", "Subject-Verb Agreement", "Punctuation Rules", "Sentence Types", "Pronoun Reference"] },
-                { id: 6, name: "Reading Comprehension", icon: "fa-book-open", time: "45 MINS", 
-                  passage: "Reading is the art of deep interpretation. In a world drowning in information, the person who can retrieve facts, infer deeper meanings, and analyze character motivations is the true intellectual leader. This section develops your stamina to handle complex texts and identifies your ability to filter essential data from noise. By mastering synonym searches and inference skills, you build a high-level vocabulary and a critical mind. Every great book you read and every passage you master expands your horizon of knowledge!",
-                  topics: ["Main Idea Extraction", "Direct Retrieval", "Inference Skills", "Vocabulary Context", "Synonym Search", "Antonym Search", "Title Selection", "Sequence of Events", "Character Analysis", "Fact vs. Opinion"] },
-                { id: 7, name: "General Science", icon: "fa-microscope", time: "45 MINS", 
-                  passage: "Science is the quest to understand the mechanics of reality. From the intricate biology of human anatomy to the vast, mysterious expanses of space science, this module ignites your curiosity. Understanding simple machines and the water cycle isn't just for school—it's for becoming a person who understands how the world works. We nurture your inner scientist, encouraging you to ask 'Why?' and 'How?'. In the high-stakes intelligence papers of competitive exams, your scientific awareness will distinguish you as a candidate of high potential.",
-                  topics: ["Plant Life Cycles", "Animal Kingdom", "Human Anatomy", "Nutrition Science", "The Water Cycle", "Simple Machines", "States of Matter", "Space Science", "Health & Hygiene", "Forces & Motion"] },
-                { id: 8, name: "Static GK", icon: "fa-landmark", time: "30 MINS", 
-                  passage: "To lead a nation, you must first know its heart and heritage. General Knowledge is the hallmark of a well-rounded scholar. This section ensures you are a master of India's symbols, famous personalities, and the first milestones of our great history. A person with high GK is always the most informed person in the room. This track prepares you to dominate the general awareness sections of every prestigious scholarship and entrance exam, building a library of facts that will stay with you for a lifetime of success.",
-                  topics: ["National Symbols", "Famous Personalities", "Important Days", "Indian States & Maps", "First in India", "Awards & Honors", "World Wonders", "Books & Authors", "Sports Awareness", "Religious Sites"] },
-                { id: 9, name: "Social Studies", icon: "fa-globe-asia", time: "45 MINS", 
-                  passage: "History is the blueprint of our future, and Geography is the stage upon which we act. This module takes you through the heroic struggle for freedom, the structure of local governments, and the fascinating landforms of our planet. By understanding civic duties and ancient civilizations, you develop a sense of global identity and historical responsibility. Social Studies turns you into a citizen of the world—one who understands the roots of our society and the vast geography that connects us all. Become a scholar of humanity!",
-                  topics: ["Earth Structure", "Freedom Struggle", "Civic Duties", "Landforms & Terrain", "Climate Zones", "Transport History", "Communication Modes", "Ancient Civilizations", "Local Government", "Maps & Globes"] },
-                { id: 10, name: "Data Handling", icon: "fa-chart-bar", time: "40 MINS", 
-                  passage: "We live in the age of big data! The ability to interpret pictographs, bar graphs, and tally marks is one of the most in-demand skills in the modern professional world. This section teaches you to translate numbers into stories and visual information into actionable conclusions. Mastering statistical logic and probability prepares you for a future in data science, engineering, and high-level management. Learn to read between the lines of charts and master the logic that drives the modern information economy. The future belongs to those who master data!",
-                  topics: ["Pictograph Reading", "Bar Graphs Mastery", "Tally Marks Logic", "Table Interpretation", "Circle Graphs (Pie)", "Mean/Average Logic", "Range Discovery", "Pattern Analysis", "Recording Data", "Probability Basics"] }
-            ];
-
-            const monthsData = ["JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER", "JANUARY", "FEBRUARY", "MARCH"];
-
-            subjectsData.forEach(sub => {
-                document.write(`
-                <div class="subject-pane">
-                    <div class="sub-head-row"><i class="fa-solid ${sub.icon}"></i><h3>${sub.id}. ${sub.name}</h3></div>
-                    <div class="sub-inspiration">${sub.passage}</div>
-                `);
-                sub.topics.forEach((topic, idx) => {
-                    document.write(`
-                    <div class="item-row">
-                        <div class="item-top">
-                            <span class="item-month">${monthsData[idx]}</span>
-                            <div class="item-meta">
-                                <span><i class="fa-solid fa-clock"></i> ${sub.time}</span>
-                                <span><i class="fa-solid fa-file-alt"></i> 30 QS</span>
-                                <span><i class="fa-solid fa-star"></i> 30 MARKS</span>
-                            </div>
-                            <div class="item-scores">
-                                <span class="score-lbl">Attempts:</span>
-                                <div class="box-grid">
-                                    <div class="box-unit scored">${idx === 0 ? '28' : '--'}</div>
-                                    <div class="box-unit">--</div>
-                                    <div class="box-unit">--</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item-bottom">
-                            <div class="item-topic-name"><span>Topic:</span> ${topic}</div>
-                            <a href="#" class="btn-take">Take Test</a>
-                        </div>
-                    </div>`);
-                });
-                document.write(`</div>`);
-            });
-        </script>
+    <!-- REPLACED SECTIONS -->
+    <div class="portal-container-wrapper" style="padding: 0 !important; border-bottom: none;">
+        <div id="subjects-container" style="width: 100%; padding: 0 10px;"></div>
     </div>
 
-    <!-- Academy Progress (Status Panel) moved after subject sections -->
     <div class="status-panel">
         <div class="status-header">
             <div>
@@ -511,13 +595,8 @@
                     <div class="progress-card">
                         <div class="subj-icon"><i class="fa-solid ${item.icon}"></i></div>
                         <div class="subj-info">
-                            <div class="subj-meta">
-                                <span class="subj-name">${item.name}</span>
-                                <span class="subj-count">${item.count}/10</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill" style="width: ${item.w}"></div>
-                            </div>
+                            <div class="subj-meta"><span class="subj-name">${item.name}</span><span class="subj-count">${item.count}/10</span></div>
+                            <div class="bar-container"><div class="bar-fill" style="width: ${item.w}"></div></div>
                         </div>
                     </div>
                     `);
@@ -528,29 +607,19 @@
 
     <div class="new-feature-section performance-analysis">
         <div class="rank-card">
-            <span class="rank-label">Your Current Rank</span>
-            <div class="rank-number">#12</div>
-            <p style="font-size: 10px; font-weight: 700; opacity: 0.9;">Top 5% among Academy Aspirants!</p>
+            <div class="rank-text-box">
+                <span class="rank-label">Your Current Rank</span>
+                <div class="rank-number">#12</div>
+            </div>
+            <span class="rank-sub">Top 5% among Academy Aspirants!</span>
         </div>
         <div class="recent-activity">
             <div class="activity-header"><i class="fa-solid fa-history"></i> Recent Activity</div>
             <div class="activity-list">
-                <div class="activity-item">
-                    <div class="activity-info"><span class="act-name">Arithmetic - Profit & Loss</span><span class="act-date">Completed on 25 Dec, 2025</span></div>
-                    <span class="act-score">28/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info"><span class="act-name">Logic - Coding-Decoding</span><span class="act-date">Completed on 22 Dec, 2025</span></div>
-                    <span class="act-score">25/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info"><span class="act-name">Numbers - Place Value Mastery</span><span class="act-date">Completed on 20 Dec, 2025</span></div>
-                    <span class="act-score">30/30</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-info"><span class="act-name">Science - Animal Kingdom</span><span class="act-date">Completed on 18 Dec, 2025</span></div>
-                    <span class="act-score">27/30</span>
-                </div>
+                <div class="activity-item"><div class="activity-info"><span class="act-name">Arithmetic - Profit & Loss</span><!-- Date removed --></div><span class="act-score">28/30</span></div>
+                <div class="activity-item"><div class="activity-info"><span class="act-name">Logic - Coding-Decoding</span></div><span class="act-score">25/30</span></div>
+                <div class="activity-item"><div class="activity-info"><span class="act-name">Numbers - Place Value Mastery</span></div><span class="act-score">30/30</span></div>
+                <div class="activity-item"><div class="activity-info"><span class="act-name">Science - Animal Kingdom</span></div><span class="act-score">27/30</span></div>
             </div>
         </div>
     </div>
@@ -641,7 +710,26 @@
     </div>
 </footer>
 
+<div id="exam-overlay">
+    <div class="exam-header">
+        <h2 id="modal-topic-title">Loading...</h2>
+        <div class="timer-wrapper">
+            <span class="timer-label">Time Remaining:</span>
+            <div id="timer-group" class="timer-box">
+                <div class="digit" id="m1">0</div>
+                <div class="digit" id="m2">0</div>
+                <div class="timer-sep">:</div>
+                <div class="digit" id="s1">0</div>
+                <div class="digit" id="s2">0</div>
+            </div>
+            <i class="fa-solid fa-circle-xmark exit-icon" title="Exit Exam" onclick="closeExam()"></i>
+        </div>
+    </div>
+    <div id="modal-body" class="exam-content"></div>
+</div>
+
 <script>
+    /* SESSION TIMER */
     document.addEventListener('DOMContentLoaded', () => {
         let s = 45; 
         setInterval(() => {
@@ -653,6 +741,241 @@
             if(el) el.textContent = `${h}:${m}:${sc}`;
         }, 1000);
     });
+
+    /* TEST PORTAL LOGIC */
+    const API_URL = "https://script.google.com/macros/s/AKfycbxJpqsKOrkKLD2k40wip1hH0IJ0h2VFTz6VTFjPRmYcLTo2mPrBEv-meBWoGe05CbPT/exec";
+
+    const subjectsData = [
+        { id: 1, name: "Number Systems", icon: "fa-hashtag", time: "45 MINS", 
+          passage: "Numbers are the incredible building blocks of our reality! By mastering Number Systems in Grade 3, you are learning the secret code that scientists, astronauts, and engineers use every day to solve the world's biggest mysteries. This skill is your ticket to future high-tech careers like Data Science and Artificial Intelligence, where understanding the logic of thousands and millions makes you a superhero. It trains your brain to be super-precise and organized, helping you handle any complex challenge with ease and confidence. Learning this now ensures that your mathematical foundation is strong enough to build a brilliant future in any field you choose. Every number you understand today opens a door to a new discovery tomorrow. Let's start this journey of becoming a number genius together and pave the way for a world where you lead with logic and precision. This knowledge will set you apart as a detail-oriented individual in any future professional endeavor.",
+          topics: ["Place Value Mastery", "Number Types & Logic", "Roman Numerals", "Rounding Off Rules", "Successor & Predecessor", "Expanded Form Mastery", "Number Comparison", "Digit Formation Puzzles", "Fundamental Arithmetic Rules", "Divisibility Tests"] },
+        { id: 2, name: "Mental Ability", icon: "fa-eye", time: "45 MINS", 
+          passage: "Mental Ability is the ultimate 'Brain Gym' designed for the world's sharpest 3rd graders! This subject trains your eyes to see patterns that others miss and your mind to solve difficult puzzles in a flash. Mastering these logic skills is essential for future innovators like Game Designers, Master Detectives, and Creative Architects. Every challenge you face here expands your brain's processing speed, making you a faster thinker and a smarter problem-solver in school and beyond. It teaches you how to look at the world differently, finding solutions where others only see confusion. Start your brain training today and become a logic champion! With constant practice, you will notice that your brain can handle multiple thoughts at once, helping you multi-task like a pro. Your future as a sharp-minded leader begins with these visual and logical exercises that build incredible cognitive resilience.",
+          topics: ["Odd-Man Out Logic", "Figure Matching", "Pattern Completion", "Figure Series Analysis", "Analogy Puzzles", "Mirror Imaging", "Paper Folding Logic", "Embedded Figures", "Space Visualization", "Geometrical Completion"] },
+        { id: 3, name: "Applied Arithmetic", icon: "fa-calculator", time: "45 MINS", 
+          passage: "Applied Arithmetic is where math meets the real, exciting world around you! For 3rd-grade students, this is the toolkit you need to lead successful businesses, build massive bridges, or manage global resources. This subject prepares you for future roles as successful Entrepreneurs, Civil Engineers, and top-tier CEOs who make big decisions every day. It improves your practical sense of money, time, and measurement, giving you the power to handle real-life situations with perfect accuracy. By learning how numbers work in the real world, you become a confident leader who can build anything and manage everything with mathematical brilliance. Your journey into the world of finance and construction starts here, where every calculation you make brings a new idea to life and solves a practical problem for the community. These skills ensure you grow into a person who can navigate life's complexities with ease.",
+          topics: ["Unitary Method", "Profit & Loss Logic", "Simple Interest Mastery", "Time & Work Dynamics", "Speed & Distance", "Percentage Basics", "Average Calculation", "Area & Perimeter", "Volume Basics", "Decimal Operations"] },
+        { id: 4, name: "Verbal Logic", icon: "fa-brain", time: "45 MINS", 
+          passage: "Verbal Logic is the art of thinking like a master strategist and a clear communicator! It helps you understand the deep connections between words and ideas, sharpening your mind to find the absolute truth in every situation. This subject is the essential training ground for future Lawyers, Management Consultants, and strategic Diplomats who solve global problems through reasoning. By practicing logic, your mind learns how to filter through noise and present clear, powerful arguments that everyone respects. It gives you the power to influence others and lead important conversations with confidence. Sharpen your logic today and become a master of clear thinking! Understanding connections between people and events through words is a skill that will set you apart as a wise and influential person in your future professional circle. Master the art of persuasion and reasoning through this engaging topic.",
+          topics: ["Coding-Decoding", "Direction Sense", "Blood Relations", "Ranking Tests", "Alphabet Series", "Number Ranking Logic", "Venn Diagrams", "Syllogism Basics", "Clock & Calendar", "Dictionary Order"] },
+        { id: 5, name: "English Grammar", icon: "fa-spell-check", time: "40 MINS", 
+          passage: "Grammar is the magnificent instruction manual that helps you build a powerful castle of words! In Grade 3, mastering English Grammar gives you the ability to express your biggest dreams and best ideas so perfectly that the whole world stops to listen. This skill is vital for future world-class Authors, Global Leaders, and Inspiring Speakers who change hearts and minds through their words. Every rule you master builds your inner confidence, turning you into a polished communicator who can connect with anyone, anywhere. By learning to speak and write correctly, you gain the most important tool for leadership: the power to be understood by everyone. Your ability to tell stories and share information will be your greatest asset as you grow into a leader who inspires millions with clarity and elegance. Perfect grammar is the foundation of clear communication and lifelong success.",
+          topics: ["Parts Identification", "Adjective Degrees", "Tense Mastery", "Article Usage", "Preposition Logic", "Conjunction Mastery", "Subject-Verb Agreement", "Punctuation Rules", "Sentence Types", "Pronoun Reference"] },
+        { id: 6, name: "Reading Comprehension", icon: "fa-book-open", time: "45 MINS", 
+          passage: "Reading is a magical portal that allows you to travel through time and space from your classroom! Comprehension is the golden key that lets you understand the deepest secrets of every story, building a wise mind and an empathetic heart. These skills are essential for future Researchers, Strategic Analysts, and world-changing Journalists who seek the truth. As you practice understanding complex ideas, your mind becomes a vast library of knowledge, helping you navigate life's challenges better than anyone else. It teaches you to understand human behavior and hidden meanings, making you a more thoughtful and successful person in every walk of life. Every book you read and understand adds a new perspective to your character, helping you become a well-rounded and deeply knowledgeable global citizen of tomorrow. Dive deep into stories and learn to interpret the world with wisdom.",
+          topics: ["Main Idea Extraction", "Direct Retrieval", "Inference Skills", "Vocabulary Context", "Synonym Search", "Antonym Search", "Title Selection", "Sequence of Events", "Character Analysis", "Fact vs. Opinion"] },
+        { id: 7, name: "General Science", icon: "fa-microscope", time: "45 MINS", 
+          passage: "Science is the grandest adventure of discovering exactly how our beautiful universe works! It nurtures your natural curiosity to understand life, space, and energy like a true scientific explorer. This subject is the launchpad for future Doctors, Aerospace Engineers, and Environmental Pioneers who will discover new cures and explore unknown planets. By asking 'How?' and 'Why?', your brain becomes an engine of discovery, teaching you how to respect nature and find creative solutions for a healthy planet. Every experiment and fact you learn today brings you closer to becoming a person who finds the answers to the world's most difficult questions. Your future in innovation and discovery starts with a single question about the world around you; never stop asking, never stop exploring. Science empowers you to change the world through knowledge and experiments.",
+          topics: ["Plant Life Cycles", "Animal Kingdom", "Human Anatomy", "Nutrition Science", "The Water Cycle", "Simple Machines", "States of Matter", "Space Science", "Health & Hygiene", "Forces & Motion"] },
+        { id: 8, name: "Static GK", icon: "fa-landmark", time: "30 MINS", 
+          passage: "General Knowledge is the sturdy bridge that connects you to our glorious history and the wide, global family! Knowing about brave heroes, national symbols, and world wonders builds immense pride and a broad perspective on life. This foundation is essential for future Civil Servants, World Historians, and top Administrative Leaders who serve their country with wisdom and honor. Every fact you learn here adds a new lens to your eyes, helping you understand global events and preparing you for a life of leadership. Being well-informed makes you a respected citizen who can contribute meaningfully to the growth of our nation and the world. Your broad awareness will be the secret to your success in interviews and leadership roles, making you a person people turn to for guidance and knowledge. Awareness is the key to unlocking global opportunities.",
+          topics: ["National Symbols", "Famous Personalities", "Important Days", "Indian States & Maps", "First in India", "Awards & Honors", "World Wonders", "Books & Authors", "Sports Awareness", "Religious Sites"] },
+        { id: 9, name: "Social Studies", icon: "fa-globe-asia", time: "45 MINS", 
+          passage: "Social Studies is the inspiring story of how humanity lives, works, and grows together in harmony! It teaches you about communities, civic responsibility, and the struggles of our ancestors, helping you grow into a kind and responsible world leader. These lessons are the root for future Social Policy Makers, Urban Planners, and Administrative Officers who bring positive change to society. By understanding our shared past and present, your mind learns the value of cooperation and justice, making you a person who knows exactly how to help everyone thrive. It builds your character and teaches you how to be a part of something bigger than yourself. Your understanding of diversity and community will help you create a world where every person feels valued and connected. Discover the beauty of human connections and societal growth.",
+          topics: ["Earth Structure", "Freedom Struggle", "Civic Duties", "Landforms & Terrain", "Climate Zones", "Transport History", "Communication Modes", "Ancient Civilizations", "Local Government", "Maps & Globes"] },
+        { id: 10, name: "Data Handling", icon: "fa-chart-bar", time: "45 MINS", 
+          passage: "We live in an age of 'Big Data', and knowing how to handle it is like having a real-life superpower! For 3rd graders, learning to organize information into charts and graphs teaches you how to visualize big truths and make smart, fact-based choices every single day. This skill is critical for future AI Specialists, Statisticians, and Business Strategy Analysts who drive the modern world's economy. Every chart you read sharpens your ability to filter through noise and see the core facts, ensuring you always make the most intelligent decisions. Mastering data today means you will be the one who leads the digital technology revolution of tomorrow! Your ability to translate numbers into stories and decisions will make you an indispensable asset in the data-driven world of the future. Learn to harness the power of information to create a better tomorrow.",
+          topics: ["Pictograph Reading", "Bar Graphs Mastery", "Tally Marks Logic", "Table Interpretation", "Circle Graphs (Pie)", "Mean/Average Logic", "Range Discovery", "Pattern Analysis", "Recording Data", "Probability Basics"] }
+    ];
+
+    const monthsData = ["JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER", "JANUARY", "FEBRUARY", "MARCH"];
+    
+    const container = document.getElementById('subjects-container');
+    if (container) {
+        subjectsData.forEach(sub => {
+            let subjectHtml = `
+                <div class="subject-pane">
+                    <div class="sub-head-row">
+                        <i class="fa-solid ${sub.icon}"></i>
+                        <h3>${sub.id}. ${sub.name}</h3>
+                    </div>
+                    <div class="sub-inspiration">${sub.passage}</div>
+            `;
+
+            sub.topics.forEach((topic, idx) => {
+                const sheetName = `3S${sub.id}T${idx + 1}`;
+                subjectHtml += `
+                    <div class="item-row">
+                        <div class="item-top">
+                            <span class="item-month">${monthsData[idx]}</span>
+                            <div class="item-meta">
+                                <span><i class="fa-solid fa-clock"></i> ${sub.time}</span>
+                                <span><i class="fa-solid fa-list-ol"></i> 30 QS</span>
+                                <span><i class="fa-solid fa-star"></i> 30 MARKS</span>
+                                <span><i class="fa-solid fa-redo"></i> 3 ATTEMPTS</span>
+                            </div>
+                            <div class="item-scores">
+                                <span class="score-lbl">Results:</span>
+                                <div class="box-grid">
+                                    <div class="box-unit">--</div>
+                                    <div class="box-unit">--</div>
+                                    <div class="box-unit">--</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-bottom">
+                            <div class="item-topic-name"><span>Topic:</span> ${topic}</div>
+                            <button onclick="openExam('${sheetName}', '${topic}', '${sub.time}')" class="btn-take">EXAM</button>
+                        </div>
+                    </div>`;
+            });
+            subjectHtml += `</div>`;
+            container.innerHTML += subjectHtml;
+        });
+    }
+
+    let currentQuestions = [];
+    let userSelections = {};
+    let timerInterval = null;
+    let secondsLeft = 0;
+
+    async function openExam(sheetName, topic, durationStr) {
+        document.getElementById('exam-overlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        document.getElementById('modal-topic-title').innerText = topic;
+        document.getElementById('modal-body').innerHTML = `<div style="text-align:center; padding-top:50px;"><i class="fas fa-circle-notch fa-spin" style="font-size:30px; color:#00008B;"></i><p style="margin-top:10px; font-weight:700;">Preparing Questions...</p></div>`;
+        
+        userSelections = {};
+        const mins = parseInt(durationStr);
+        secondsLeft = mins * 60;
+        updateTimerDisplay();
+
+        try {
+            const response = await fetch(`${API_URL}?action=getQuestions&sheetName=${sheetName}`);
+            const data = await response.json();
+            currentQuestions = data; 
+            renderQuestions();
+            startTimer();
+        } catch (error) {
+            document.getElementById('modal-body').innerHTML = `<p style="color:red; text-align:center; padding:20px;">Error Loading Data. Please check connection.</p>`;
+        }
+    }
+
+    function renderQuestions() {
+        let html = '';
+        currentQuestions.forEach((q, qIdx) => {
+            html += `
+                <div class="question-card">
+                    <div class="q-text"><span class="q-num-badge">${q.id}</span> ${q.question}</div>
+                    <div class="options-list">
+                        ${q.options.map((opt, oIdx) => `
+                            <div class="option-item" id="q${qIdx}o${oIdx}" onclick="selectOption(${qIdx}, ${oIdx}, '${opt}')">
+                                ${String.fromCharCode(65 + oIdx)}. ${opt}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+        html += `
+            <div class="footer-action-area">
+                <button class="btn-submit" onclick="submitTest()">Submit Exam</button>
+            </div>
+        `;
+        document.getElementById('modal-body').innerHTML = html;
+        document.getElementById('modal-body').scrollTo(0,0);
+    }
+
+    function selectOption(qIdx, oIdx, val) {
+        const count = currentQuestions[qIdx].options.length;
+        for(let i=0; i<count; i++) {
+            const el = document.getElementById(`q${qIdx}o${i}`);
+            if(el) el.classList.remove('selected');
+        }
+        document.getElementById(`q${qIdx}o${oIdx}`).classList.add('selected');
+        userSelections[qIdx] = val;
+    }
+
+    function startTimer() {
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            secondsLeft--;
+            updateTimerDisplay();
+            if (secondsLeft <= 300) document.getElementById('timer-group').classList.add('timer-urgent');
+            if (secondsLeft <= 0) { clearInterval(timerInterval); submitTest(true); }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const m = Math.floor(secondsLeft / 60);
+        const s = secondsLeft % 60;
+        const mStr = m.toString().padStart(2, '0');
+        const sStr = s.toString().padStart(2, '0');
+        document.getElementById('m1').innerText = mStr[0];
+        document.getElementById('m2').innerText = mStr[1];
+        document.getElementById('s1').innerText = sStr[0];
+        document.getElementById('s2').innerText = sStr[1];
+    }
+
+    function submitTest(isAuto = false) {
+        clearInterval(timerInterval);
+        let score = 0;
+        currentQuestions.forEach((q, idx) => {
+            if (userSelections[idx] === q.correctAnswer) score++;
+        });
+
+        const percent = (score / currentQuestions.length) * 100;
+        let feedback = "";
+        let color = "";
+        let motivation = "";
+        
+        if (percent === 100) { feedback = "EXCELLENT!"; color = "var(--success-green)"; motivation = "You are a true genius! Perfect score achieved. Your hard work is paving the way for a spectacular future."; }
+        else if (percent >= 85) { feedback = "VERY GOOD!"; color = "var(--primary-blue)"; motivation = "Fantastic job! You've mastered almost everything. Keep this momentum going to reach perfection."; }
+        else if (percent >= 50) { feedback = "GOOD"; color = "#334155"; motivation = "Well done! You have a solid understanding. A little more practice will make you unstoppable."; }
+        else { feedback = "NEEDS IMPROVEMENT"; color = "var(--danger-red)"; motivation = "Don't give up! Every mistake is a step toward learning. Review your answers and try again to improve."; }
+
+        document.getElementById('modal-body').innerHTML = `
+            <div class="result-screen">
+                <div class="score-circle" style="border-color:${color}"><span class="score-val" style="color:${color}">${score}/${currentQuestions.length}</span></div>
+                <h2 class="feedback-text" style="color:${color}">${feedback}</h2>
+                <p class="feedback-msg"><strong>All the best for the next attempt!</strong><br>${motivation}</p>
+                <div class="result-buttons">
+                    <button class="btn-res-action btn-res-review" onclick="viewReview()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Review Answers
+                    </button>
+                    <button class="btn-res-action btn-res-close" onclick="closeExam()">
+                        <i class="fa-solid fa-circle-xmark"></i> Close & Exit
+                    </button>
+                </div>
+            </div>
+        `;
+        document.getElementById('modal-body').scrollTo(0,0);
+    }
+
+    function viewReview() {
+        let html = `<h2 style="text-align:center; margin-bottom:20px; font-weight:900; font-size:18px; color:var(--primary-blue); text-transform:uppercase;">Performance Review Report</h2>`;
+        
+        currentQuestions.forEach((q, idx) => {
+            const userAns = userSelections[idx] || 'Not Answered';
+            const isCorrect = userAns === q.correctAnswer;
+            html += `
+                <div class="review-card">
+                    <div class="q-text" style="font-size:14px; margin-bottom:5px;"><span class="q-num-badge">${q.id}</span> ${q.question}</div>
+                    <div class="ans-row">User Choice: <span class="${isCorrect ? 'ans-correct' : 'ans-wrong'}">${userAns}</span></div>
+                    ${!isCorrect ? `<div class="ans-row">Correct Answer: <span class="ans-correct">${q.correctAnswer}</span></div>` : ''}
+                    <div class="explanation-box"><strong>Explanation:</strong> ${q.explanation || 'Review logic for this question.'}</div>
+                </div>
+            `;
+        });
+
+        html += `
+            <div style="text-align:center; padding:30px;">
+                <button class="btn-res-action btn-res-close" style="margin:0 auto;" onclick="closeExam()">
+                    <i class="fa-solid fa-circle-xmark"></i> Close Review
+                </button>
+            </div>
+        `;
+        document.getElementById('modal-body').innerHTML = html;
+        document.getElementById('modal-body').scrollTo(0,0);
+    }
+
+    function closeExam() {
+        clearInterval(timerInterval);
+        document.getElementById('exam-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        document.getElementById('modal-body').innerHTML = "";
+        document.getElementById('modal-topic-title').innerText = "Loading...";
+    }
 </script>
 </body>
 </html>
